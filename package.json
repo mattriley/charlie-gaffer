@@ -7,9 +7,5 @@
     "deploy": "aws s3 sync ./app s3://charliemoukbel.com --profile charlie-moukbel-deploy"
   },
   "author": "",
-  "license": "",
-  "dependencies": {
-    "jquery": "^2.2.3",
-    "lodash": "^4.12.0"
-  }
+  "license": ""
 }
