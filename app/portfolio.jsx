@@ -4,12 +4,12 @@ import data from './data.json'
 class Portfolio extends React.Component {
     render() {
         var collections = data.portfolio.collections.map(collection => this.renderCollection(collection));
-        return <div>{collections}</div>;
+        return <div className="portfolio">{collections}</div>;
     }
 
     renderCollection(collection) {
         var projects = collection.projects.map(project => this.renderProject(project));
-        return <div>
+        return <div className="collection">
             <h1>{collection.title}</h1>
             {projects}
         </div>
@@ -36,10 +36,10 @@ class Portfolio extends React.Component {
 
         var fileInfoElements = filmInfo.map(item => <div>{item}</div>);
 
-        return <div>
+        return <div className="project">
             <h2>{project.title}</h2>
             {images}
-            <div className="film-info">
+            <div className="project-details">
                 {fileInfoElements}
             </div>
         </div>

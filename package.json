@@ -5,7 +5,9 @@
   "main": "",
   "scripts": {
     "start": "webpack-dev-server --inline --hot --content-base build/",
-    "deploy": "aws s3 sync ./app s3://charliemoukbel.com --profile charlie-moukbel-deploy"
+    "build": "webpack --progress --optimize-minimize",
+    "deploy": "aws s3 sync ./build s3://charliemoukbel.com --profile charlie-moukbel-deploy",
+    "deploy-preview": "aws s3 sync ./build s3://charliemoukbel.com/preview --profile charlie-moukbel-deploy"
   },
   "author": "",
   "license": "",

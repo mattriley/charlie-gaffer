@@ -45,7 +45,8 @@ h1, h2, h3 {
     margin: 1px;
 }
 
-.film-info {
+.project-details {
+    margin-top: 10px;
     text-align: left;
 }
 
