@@ -36,7 +36,7 @@
             ]
           },
           {
-            "title": "Music Clip: Warm Blood",
+            "title": "Warm Blood: Music clip",
             "director": "Alex Wu",
             "cinematographer": "Max Walter",
             "images": [
@@ -62,8 +62,8 @@
             ]
           },
           {
-            "title": "Racing Royalty",
-            "subtitle": "Victoria Racing Commission",
+            "title": "Victoria Racing Commission",
+            "subtitle": "Racing Royalty",
             "cinematographer": "Matt Gdanitz",
             "images": [
               "racing-royalty-1.jpg",
@@ -73,8 +73,8 @@
             ]
           },
           {
-            "title": "Prosecco Wines",
-            "company": "Brown Brothers",
+            "title": "Brown Brothers",
+            "company": "Prosecco Wines",
             "cinematographer": "Matt Gdanitz",
             "images": [
               "prosecco-1.jpg",
