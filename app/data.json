@@ -45,6 +45,17 @@
               "warm-blood-3.jpg",
               "warm-blood-4.jpg"
             ]
+          },
+          {
+            "title": "Peach",
+            "director": "Carnelian Rose",
+            "cinematographer": "Josh Mitchell-Frey",
+            "images": [
+              "peach-1.jpg",
+              "peach-2.jpg",
+              "peach-3.jpg",
+              "peach-4.jpg"
+            ]
           }
         ]
       },
@@ -101,6 +112,59 @@
               "violet-2.jpg",
               "violet-3.jpg",
               "violet-4.jpg"
+            ]
+          },
+          {
+            "title": "Fair Work Australia P.A.C.T",
+            "subtitle": "Monster and Bear Production",
+            "cinematographer": "Josh Mitchell-Frey",
+            "images": [
+              "fair-work-1.jpg",
+              "fair-work-2.jpg",
+              "fair-work-3.jpg",
+              "fair-work-4.jpg"
+            ]
+          },
+          {
+            "title": "Akuna Blue",
+            "subtitle": "Monster and Bear Production",
+            "cinematographer": "Josh Mitchell-Frey",
+            "images": [
+              "akuna-1.jpg",
+              "akuna-2.jpg"
+            ]
+          },
+          {
+            "title": "Bertocchi",
+            "subtitle": "Monster and Bear Production",
+            "cinematographer": "Josh Mitchell-Frey",
+            "images": [
+              "bertocchi-1.jpg",
+              "bertocchi-2.jpg",
+              "bertocchi-3.jpg",
+              "bertocchi-4.jpg"
+            ]
+          },
+          {
+            "title": "Telstra  -  One Drive",
+            "subtitle": "Monster and Bear Production",
+            "cinematographer": "Josh Mitchell-Frey",
+            "images": [
+              "telstra-one-drive-1.jpg",
+              "telstra-one-drive-2.jpg",
+              "telstra-one-drive-3.jpg",
+              "telstra-one-drive-4.jpg"
+            ]
+          },
+          {
+            "title": "Telstra",
+            "subtitle": "Monster and Bear Production",
+            "cinematographer": "Josh Mitchell-Frey",
+            "images": [
+              "telstra-1.jpg",
+              "telstra-2.jpg",
+              "telstra-3.jpg",
+              "telstra-4.jpg"
             ]
           }
         ]
