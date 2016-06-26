@@ -42,6 +42,7 @@ h1, h2, h3 {
 
 .portfolio img {
     width: 500px;
+    margin: 1px;
 }
 
 .film-info {

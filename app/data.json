@@ -1,48 +1,110 @@
-[
-  {
-    "title": "Where We Live",
-    "director": "Jesse Richards",
-    "cinematographer": "Max Walter",
-    "gaffer": "Charlie Moukbel",
-    "tags": [
-      "Short Film"
-    ]
-  },
-  {
-    "title": "Heart Station",
-    "director": "Tao Jia",
-    "cinematographer": "Josh Mitchell-Frey",
-    "gaffer": "Charlie Moukbel",
-    "tags": [
-      "Short Film"
-    ]
-  },
-  {
-    "title": "Kawaki and Sharp",
-    "director": "Sam Steele",
-    "cinematographer": "Max Walter",
-    "gaffer": "Charlie Moukbel",
-    "tags": [
-      "Short Film"
-    ],
-    "images": 2
-  },
-  {
-    "title": "Racing Royalty",
-    "company": "Victoria Racing Commission",
-    "cinematographer": "Matt Gdanitz",
-    "gaffer": "Charlie Moukbel",
-    "tags": [
-      "Commercial"
-    ]
-  },
-  {
-    "title": "Prosecco Wines",
-    "company": "Brown Brothers",
-    "cinematographer": "Matt Gdanitz",
-    "gaffer": "Charlie Moukbel",
-    "tags": [
-      "Commercial"
+{
+  "portfolio": {
+    "collections": [
+      {
+        "title": "Short Film",
+        "projects": [
+          {
+            "title": "Where We Live",
+            "director": "Jesse Richards",
+            "cinematographer": "Max Walter",
+            "images": [
+              "where-we-live-1.jpg",
+              "where-we-live-2.jpg",
+              "where-we-live-3.jpg",
+              "where-we-live-4.jpg"
+            ]
+          },
+          {
+            "title": "Heart Station",
+            "director": "Tao Jia",
+            "cinematographer": "Josh Mitchell-Frey",
+            "images": [
+              "heart-station-1.jpg",
+              "heart-station-2.jpg",
+              "heart-station-3.jpg",
+              "heart-station-4.jpg"
+            ]
+          },
+          {
+            "title": "Kawaki and Sharp",
+            "director": "Sam Steele",
+            "cinematographer": "Max Walter",
+            "images": [
+              "kawaki-1.jpg",
+              "kawaki-2.jpg"
+            ]
+          },
+          {
+            "title": "Music Clip: Warm Blood",
+            "director": "Alex Wu",
+            "cinematographer": "Max Walter",
+            "images": [
+              "warm-blood-1.jpg",
+              "warm-blood-2.jpg",
+              "warm-blood-3.jpg",
+              "warm-blood-4.jpg"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Commercial",
+        "projects": [
+          {
+            "title": "MS Australia",
+            "cinematographer": "Max Walter",
+            "images": [
+              "ms-1.jpg",
+              "ms-2.jpg",
+              "ms-3.jpg",
+              "ms-4.jpg"
+            ]
+          },
+          {
+            "title": "Racing Royalty",
+            "subtitle": "Victoria Racing Commission",
+            "cinematographer": "Matt Gdanitz",
+            "images": [
+              "racing-royalty-1.jpg",
+              "racing-royalty-2.jpg",
+              "racing-royalty-3.jpg",
+              "racing-royalty-4.jpg"
+            ]
+          },
+          {
+            "title": "Prosecco Wines",
+            "company": "Brown Brothers",
+            "cinematographer": "Matt Gdanitz",
+            "images": [
+              "prosecco-1.jpg",
+              "prosecco-2.jpg",
+              "prosecco-3.jpg",
+              "prosecco-4.jpg"
+            ]
+          },
+          {
+            "title": "Teeth Magazine - Black Sheep Edition",
+            "cinematographer": "Amy Dellar",
+            "images": [
+              "black-sheep-1.jpg",
+              "black-sheep-2.jpg",
+              "black-sheep-3.jpg",
+              "black-sheep-4.jpg"
+            ]
+          },
+          {
+            "title": "Violet 1 AM Magazine",
+            "cinematographer": "Amy Dellar",
+            "images": [
+              "violet-1.jpg",
+              "violet-2.jpg",
+              "violet-3.jpg",
+              "violet-4.jpg"
+            ]
+          }
+        ]
+      }
     ]
   }
-]
+}

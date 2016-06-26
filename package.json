@@ -4,8 +4,21 @@
   "description": "",
   "main": "",
   "scripts": {
+    "start": "webpack-dev-server --inline --hot --content-base build/",
     "deploy": "aws s3 sync ./app s3://charliemoukbel.com --profile charlie-moukbel-deploy"
   },
   "author": "",
-  "license": ""
+  "license": "",
+  "dependencies": {
+    "react": "^15.1.0",
+    "react-dom": "^15.1.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.10.4",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.5.0",
+    "json-loader": "^0.5.4",
+    "webpack": "^1.13.1"
+  }
 }
