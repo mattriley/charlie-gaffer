@@ -4,10 +4,11 @@
   "description": "",
   "main": "",
   "scripts": {
-    "start": "webpack-dev-server --inline --hot --content-base build/",
+    "start": "webpack-dev-server --inline --hot --content-base src/",
     "build": "webpack --progress --optimize-minimize",
-    "deploy": "aws s3 sync ./build s3://charliemoukbel.com --profile charlie-moukbel-deploy",
-    "deploy-preview": "aws s3 sync ./build s3://charliemoukbel.com/preview --profile charlie-moukbel-deploy"
+    "deploy": "npm run deploy-infrastructure && npm run deploy-app",
+    "deploy-infrastructure": "./run-generated-script.sh deploy-infrastructure",
+    "deploy-app": "./run-generated-script.sh deploy-app"
   },
   "author": "",
   "license": "",
@@ -19,8 +20,10 @@
     "babel-core": "^6.10.4",
     "babel-loader": "^6.2.4",
     "babel-preset-es2015": "^6.9.0",
-    "babel-preset-react": "^6.5.0",
+    "babel-preset-react": "^6.16.0",
     "json-loader": "^0.5.4",
+    "lakitu": "0.0.3",
+    "system": "file:../../libs/system",
     "webpack": "^1.13.1"
   }
 }

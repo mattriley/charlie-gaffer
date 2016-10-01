@@ -1,5 +1,7 @@
-import React from 'react';
-import data from './data.json'
+'use strict';
+
+const React = require('react');
+const data = require('./data');
 
 class Portfolio extends React.Component {
     render() {
@@ -51,4 +53,4 @@ class Portfolio extends React.Component {
     }
 }
 
-export default Portfolio;
+module.exports = Portfolio;
