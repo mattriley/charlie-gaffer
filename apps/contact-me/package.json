@@ -1,13 +1,18 @@
 {
-  "name": "system",
+  "name": "contact-me",
   "version": "1.0.0",
   "description": "",
+  "main": "index.js",
   "scripts": {
     "deploy-infrastructure": "./run-generated-script.sh deploy-infrastructure"
   },
   "author": "",
-  "license": "",
+  "license": "ISC",
   "devDependencies": {
-    "lakitu": "0.0.3"
+    "lakitu": "0.0.3",
+    "system": "file:../../libs/system"
+  },
+  "dependencies": {
+    "lodash": "^4.16.2"
   }
 }
