@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-SCRIPT_GENERATOR=$1 # without .js extension
-GENERATED_SCRIPT=-$1.sh
-node ${SCRIPT_GENERATOR}.js ${GENERATED_SCRIPT}
-chmod 755 ${GENERATED_SCRIPT}
-./${GENERATED_SCRIPT}
