@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "deploy-infrastructure": "./run-generated-script.sh deploy-infrastructure"
+    "lakitu": "lakitu",
+    "deploy-infrastructure": "run-generated-script script-generators/deploy-infrastructure"
   },
   "author": "",
   "license": "",
   "devDependencies": {
-    "lakitu": "0.0.3"
+    "lakitu": "0.0.6"
   }
 }

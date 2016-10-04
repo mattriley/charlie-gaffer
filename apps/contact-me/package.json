@@ -5,12 +5,12 @@
   "main": "index.js",
   "scripts": {
     "lakitu": "lakitu",
-    "deploy-infrastructure": "run-generated-script deploy-infrastructure"
+    "deploy-infrastructure": "run-generated-script script-generators/deploy-infrastructure"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "lakitu": "0.0.4",
+    "lakitu": "0.0.6",
     "system": "file:../../libs/system"
   },
   "dependencies": {

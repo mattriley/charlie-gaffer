@@ -4,3 +4,4 @@ bundle.js
 npm-debug.log
 -*
 *.zip
+**/script-generators/*.sh
