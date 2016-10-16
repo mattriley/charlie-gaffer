@@ -1,0 +1,25 @@
+{
+  "name": "web-api",
+  "version": "1.0.0",
+  "description": "",
+  "engines": {
+    "node": "4.4.5"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "lakitu": "lakitu",
+    "deploy": "npm run deploy-infrastructure && npm run deploy-app",
+    "deploy-infrastructure": "run-generated-script script-generators/deploy-infrastructure",
+    "deploy-app": "run-generated-script script-generators/deploy-app"
+  },
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "cors": "^2.7.1",
+    "express": "^4.14.0"
+  },
+  "devDependencies": {
+    "lakitu": "0.0.6",
+    "system": "../system"
+  }
+}
