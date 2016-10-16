@@ -6,7 +6,7 @@
  
 Used to namespace all resources for the given environment. 
 
-- Default: `dev-$USER`
+- Default: `$DEV_ENV` or `$USER`
 - Production: `prod`
 
 ## External Dependencies
@@ -18,6 +18,11 @@ Used to namespace all resources for the given environment.
 ### [Heroku](https://id.heroku.com/login)
 
 Platform as a service.
+
+Required plugins:
+
+- [Heroku Builds](https://github.com/heroku/heroku-builds)
+
 
 ## System
 
@@ -34,7 +39,7 @@ Platform as a service.
 ### Setup
 
 - Create a Heroku Application named `charliemoukbel--$CHARLIEMOUKBEL_ENV`
-  - `heroku login`
+  - `heroku login` 
   - `heroku create charliemoukbel--$CHARLIEMOUKBEL_ENV`
   
 ### Web Client
