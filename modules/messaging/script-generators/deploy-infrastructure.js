@@ -1,5 +1,5 @@
 const lakitu = require('lakitu');
-const systemConfig = require('system/system-config');
+const systemConfig = require('../system-config');
 
 lakitu.writeScript([
     `export AWS_PROFILE=${systemConfig.awsDeploymentProfile}`,
