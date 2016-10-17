@@ -1,6 +1,7 @@
 body {
     margin: 0;
     font-family: "Helvetica", "Arial", "Sans Serif";
+    margin-bottom: 100px;
 }
 
 .title {
@@ -31,7 +32,7 @@ h1 {
 
 h1, h2, h3 {
     font-weight: normal;
-
+    text-align: center;
 }
 
 .portfolio {
@@ -57,4 +58,26 @@ a {
 .title img {
     display: inline-block;
     height: 100px
+}
+
+.message {
+    width: 1005px;
+    margin: auto;
+}
+
+label {
+    display: block;
+}
+
+input[type=text], textarea {
+    width: 100%;
+    font-size: x-large;
+}
+
+button {
+    font-size: x-large;
+}
+
+.field {
+    margin-bottom: 1.5em;
 }
