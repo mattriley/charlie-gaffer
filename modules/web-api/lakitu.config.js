@@ -1,6 +1,6 @@
 'use strict';
 
-const systemConfig = require('./system-config');
+const systemConfig = require('system/system-config');
 
 module.exports = {
     namespace: systemConfig.systemNamespace,

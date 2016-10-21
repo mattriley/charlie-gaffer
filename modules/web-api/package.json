@@ -16,9 +16,11 @@
   "license": "",
   "dependencies": {
     "aws-sdk": "^2.6.9",
+    "body-parser": "^1.15.2",
     "cors": "^2.7.1",
     "express": "^4.14.0",
-    "messaging": "file:../messaging"
+    "node-fetch": "^1.6.3",
+    "node-uuid": "^1.4.7"
   },
   "devDependencies": {
     "lakitu": "0.0.6",

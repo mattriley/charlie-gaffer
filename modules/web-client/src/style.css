@@ -1,7 +1,6 @@
 body {
-    margin: 0;
     font-family: "Helvetica", "Arial", "Sans Serif";
-    margin-bottom: 100px;
+    margin: 0;
 }
 
 .title {
@@ -61,7 +60,16 @@ a {
 }
 
 .message {
-    width: 1005px;
+
+    background-color: #f5e5d9;
+    padding-bottom: 100px;
+    padding-top: 20px;
+    margin-top: 20px;
+}
+
+form {
+    /*width: 1005px;*/
+    width: 500px;
     margin: auto;
 }
 
@@ -69,15 +77,30 @@ label {
     display: block;
 }
 
-input[type=text], textarea {
+
+
+.field input, .field textarea {
     width: 100%;
     font-size: x-large;
+    border: solid 1px #39251A;
+    padding: 10px;
+
 }
 
 button {
+    /*background-color: #f5e5d9;*/
+    background-color: white;
+    color: #39251A;
     font-size: x-large;
+    border: solid 1px #39251A;
+    padding: 10px;
 }
+
 
 .field {
     margin-bottom: 1.5em;
+}
+
+#errorMessage {
+    color: red;
 }
