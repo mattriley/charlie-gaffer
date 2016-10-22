@@ -11,11 +11,14 @@ class MessageRepository {
     }
 
     insertMessage(message) {
-        var params = {
-            Item: Object.assign({id: uuid.v4()}, message),
-            TableName: this._tableName
+        const meta = {
+            id: uuid.v4(),
+            createdOn: Date.now().toUTCString()
         };
-        return this._dynamoClient.putAsync(params);
+        return this._dynamoClient.putAsync({
+            Item: Object.assign({}, meta, message),
+            TableName: this._tableName
+        });
     }
 
 }
