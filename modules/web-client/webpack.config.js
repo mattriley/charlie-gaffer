@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const path = require('path');
 const systemConfig = require('system/system-config');
 
@@ -21,12 +22,14 @@ module.exports = {
             }
         ]
     },
-    loader: {
-        appSettings: {
-            env: systemConfig.systemEnv
-        }
-    },
     resolve: {
         extensions: ['', '.js', '.jsx']
-    }
+    },
+    plugins: [
+        new webpack.DefinePlugin({
+            'process.env': {
+                'API_URL': JSON.stringify(`https://${systemConfig.systemNamespace}.herokuapp.com`)
+            }
+        })
+    ]
 };

@@ -50,7 +50,7 @@ class Message extends React.Component {
 
         if (!isValid) return;
 
-        fetch("http://localhost:5000/messages",
+        fetch(this.props.apiUrl + '/messages',
             {
                 headers: {
                     'Accept': 'application/json',
