@@ -1,7 +1,7 @@
 'use strict';
 
-const Promise = require('bluebird');
 const uuid = require('node-uuid');
+const Promise = require('bluebird');
 
 class MessageRepository {
 
@@ -11,9 +11,8 @@ class MessageRepository {
     }
 
     insertMessage(message) {
-        message.id = uuid.v4();
         var params = {
-            Item: message,
+            Item: Object.assign({id: uuid.v4()}, message),
             TableName: this._tableName
         };
         return this._dynamoClient.putAsync(params);
