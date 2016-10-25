@@ -28,7 +28,8 @@ module.exports = {
     plugins: [
         new webpack.DefinePlugin({
             'process.env': {
-                'API_URL': JSON.stringify(`https://${systemConfig.systemNamespace}.herokuapp.com`)
+                'API_URL': JSON.stringify(`http://localhost:5000`)
+                // 'API_URL': JSON.stringify(`https://${systemConfig.systemNamespace30}.herokuapp.com`)
             }
         })
     ]

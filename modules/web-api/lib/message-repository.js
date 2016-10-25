@@ -13,12 +13,14 @@ class MessageRepository {
     insertMessage(message) {
         const meta = {
             id: uuid.v4(),
-            createdOn: Date.now().toUTCString()
+            createdOn: new Date().toISOString()
         };
-        return this._dynamoClient.putAsync({
+        const params = {
             Item: Object.assign({}, meta, message),
             TableName: this._tableName
-        });
+        };
+        console.log('INSERT', JSON.stringify(params, null, 2));
+        return this._dynamoClient.putAsync(params);
     }
 
 }

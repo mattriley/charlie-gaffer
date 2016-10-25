@@ -1,7 +1,7 @@
 const lakitu = require('lakitu');
 const systemConfig = require('system/system-config');
 lakitu.writeScript([
-    `APP_NAME=${systemConfig.systemNamespace}`,
+    `APP_NAME=${systemConfig.systemNamespace30}`,
     'linklocal --unlink',
     'npm install',
     'echo Deploying environment variables',

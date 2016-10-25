@@ -16,6 +16,7 @@
   "license": "",
   "dependencies": {
     "aws-sdk": "^2.6.9",
+    "bluebird": "^3.4.6",
     "body-parser": "^1.15.2",
     "cors": "^2.7.1",
     "express": "^4.14.0",
@@ -23,6 +24,7 @@
     "node-uuid": "^1.4.7"
   },
   "devDependencies": {
+    "awscred": "^1.2.0",
     "lakitu": "0.0.6",
     "system": "file:../system"
   }
