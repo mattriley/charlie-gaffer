@@ -1,8 +1,7 @@
 const prodEnvName = 'prod';
 const systemName = 'charlie-moukbel';
 const systemNameSimplified = systemName.replace(/\W/g, '');
-const systemEnvVarPrefix = systemNameSimplified.toUpperCase();
-const systemEnv = process.env[`${systemEnvVarPrefix}_ENV`] || process.env.USER;
+const systemEnv = process.env['SYSTEM_ENV'];
 const testDomain = 'matthewriley.xyz';
 const systemNamespace = `${systemNameSimplified}--${systemEnv}`;
 const systemNamespace30 = systemNamespace.length <= 30 ? systemNamespace : `${systemNameSimplified.substr(0, 20)}--${systemEnv}`.substr(0, 30);
