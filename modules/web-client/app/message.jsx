@@ -2,9 +2,19 @@
 
 const React = require('react');
 const _ = require('lodash');
+const axios = require('axios');
 
 class Message extends React.Component {
     render() {
+        if (_.get(this.state, 'sent')) {
+            return <div className="message">
+                <form>
+                    <h1 id="contact-me">Contact Me</h1>
+                    Thanks for your message, I'll be in touch shortly.
+                </form>
+            </div>
+        }
+
         return <div className="message">
             <form>
                 <h1 id="contact-me">Contact Me</h1>
@@ -50,19 +60,21 @@ class Message extends React.Component {
 
         if (!isValid) return;
 
-        fetch(this.props.apiUrl + '/messages',
-            {
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                method: "POST",
-                body: JSON.stringify(data)
+        axios({
+            url: this.props.apiUrl + '/messages',
+            // headers: {
+            //     'Accept': 'application/json',
+            //     'Content-Type': 'application/json'
+            // },
+            method: "post",
+            data: data
+            // body: JSON.stringify(data)
+        })
+            .then(res => {
+                console.log(res);
+                this.setState({sent: true});
             })
-            .then(function (res) {
-                console.log(res)
-            })
-            .catch(function (res) {
+            .catch(res => {
                 console.log(res)
             });
     }
@@ -89,11 +101,9 @@ class Message extends React.Component {
             return false;
         }
 
-
         this.setState({errorMessage: null});
 
         return true;
-
     }
 }
 

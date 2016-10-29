@@ -6,6 +6,7 @@
     "node": "4.6.1"
   },
   "scripts": {
+    "start-local": "run-generated-script script-generators/start-local",
     "start": "node server.js",
     "lakitu": "lakitu",
     "deploy": "npm run deploy-infrastructure && npm run deploy-app",
