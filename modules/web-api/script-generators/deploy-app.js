@@ -5,7 +5,7 @@ lakitu.writeScript([
     'linklocal --unlink',
     'npm install',
     'echo Deploying environment variables',
-    'heroku config:push --overwrite -a $APP_NAME',
+    `heroku config:push --app $APP_NAME --file .env-${systemConfig.systemEnv} --clean --overwrite`,
     'echo Deploying application',
     'heroku builds:create -a $APP_NAME'
 ]);

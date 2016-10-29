@@ -2,6 +2,8 @@ const webpack = require('webpack');
 const path = require('path');
 const systemConfig = require('system/system-config');
 
+const apiUrl = process.env.API_URL || `https://${systemConfig.systemNamespace30}.herokuapp.com`;
+
 module.exports = {
     entry: {
         app: ['./app/main.jsx']
@@ -28,8 +30,7 @@ module.exports = {
     plugins: [
         new webpack.DefinePlugin({
             'process.env': {
-                'API_URL': JSON.stringify(`http://localhost:5000`)
-                // 'API_URL': JSON.stringify(`https://${systemConfig.systemNamespace30}.herokuapp.com`)
+                'API_URL': JSON.stringify(apiUrl)
             }
         })
     ]
