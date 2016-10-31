@@ -1,8 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
-const systemConfig = require('system/system-config');
 
-const apiUrl = process.env.API_URL || `https://${systemConfig.systemNamespace30}.herokuapp.com`;
+const apiUrl = process.env.API_URL || `https://${process.env.SYSTEM_NAMESPACE_30}.herokuapp.com`;
 
 module.exports = {
     entry: {

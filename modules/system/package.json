@@ -2,13 +2,13 @@
   "name": "system",
   "version": "1.0.0",
   "description": "",
-  "scripts": {
-    "lakitu": "lakitu",
-    "deploy-infrastructure": "run-generated-script script-generators/deploy-infrastructure"
+  "bin": {
+    "syscfg": "bin/syscfg.js"
   },
   "author": "",
   "license": "",
-  "devDependencies": {
+  "dependencies": {
+    "bluebird": "^3.4.6",
     "lakitu": "0.0.6"
   }
 }

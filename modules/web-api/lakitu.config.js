@@ -1,9 +1,7 @@
 'use strict';
 
-const systemConfig = require('system/system-config');
-
 module.exports = {
-    namespace: systemConfig.systemNamespace,
+    namespace: process.env.SYSTEM_NAMESPACE,
     region: 'ap-southeast-2',
     commands: [
         {

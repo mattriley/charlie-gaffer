@@ -4,12 +4,10 @@
   "description": "",
   "main": "",
   "scripts": {
-    "lakitu": "lakitu",
-    "start": "webpack-dev-server --inline --hot --content-base src/",
-    "build": "webpack --progress --optimize-minimize",
-    "deploy": "npm run deploy-infrastructure && npm run deploy-app",
-    "deploy-infrastructure": "run-generated-script script-generators/deploy-infrastructure",
-    "deploy-app": "run-generated-script script-generators/deploy-app"
+    "start-local": "API_URL=http://localhost:5000 webpack-dev-server --inline --hot --content-base src/",
+    "deploy-app": "`syscfg` && npm run webpack-build && aws s3 sync src/ s3://webclient.${TEST_DOMAIN} --profile=${AWS_DEPLOYMENT_PROFILE}",
+    "npm-install": "linklocal && linklocal --unlink && npm install",
+    "webpack-build": "webpack --progress --optimize-minimize"
   },
   "author": "",
   "license": "",

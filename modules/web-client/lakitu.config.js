@@ -3,11 +3,10 @@
 const lakitu = require('lakitu');
 const s3HostedZonesRegionMap = require('lakitu/mappings/s3-hosted-zones-region-map.json');
 
-const systemConfig = require('system/system-config');
 const appConfig = require('./app-config');
 
 module.exports = {
-    namespace: `${systemConfig.systemNameSimplified}--${systemConfig.systemEnv}`,
+    namespace: process.env.SYSTEM_NAMESPACE,
     region: 'ap-southeast-2',
     commands: [
         {

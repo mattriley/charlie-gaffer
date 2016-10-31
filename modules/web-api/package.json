@@ -6,12 +6,13 @@
     "node": "4.6.1"
   },
   "scripts": {
-    "start-local": "run-generated-script script-generators/start-local",
+    "deploy-app": "npm run npm-install && npm run heroku-deploy",
+    "deploy-infrastructure": "`syscfg` && AWS_PROFILE=${AWS_DEPLOYMENT_PROFILE} lakitu",
+    "npm-install": "linklocal && linklocal --unlink && npm install",
     "start": "node server.js",
-    "lakitu": "lakitu",
-    "deploy": "npm run deploy-infrastructure && npm run deploy-app",
-    "deploy-infrastructure": "run-generated-script script-generators/deploy-infrastructure",
-    "deploy-app": "run-generated-script script-generators/deploy-app"
+    "start-local": "`syscfg` && heroku local",
+    "heroku-deploy": "`syscfg` && heroku config:push --overwrite -a ${SYSTEM_NAMESPACE_30} && heroku builds:create -a ${SYSTEM_NAMESPACE_30}",
+    "heroku-logs": "`syscfg` && heroku logs -a ${SYSTEM_NAMESPACE_30}"
   },
   "author": "",
   "license": "",
