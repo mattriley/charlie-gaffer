@@ -3,12 +3,15 @@
   "version": "1.0.0",
   "description": "",
   "bin": {
+    "genenv": "bin/genenv.js",
     "syscfg": "bin/syscfg.js"
   },
   "author": "",
   "license": "",
   "dependencies": {
     "bluebird": "^3.4.6",
-    "lakitu": "0.0.6"
+    "dotenv": "^2.0.0",
+    "lakitu": "0.0.6",
+    "lodash": "^4.16.5"
   }
 }

@@ -6,11 +6,12 @@ const MessageRepository = require('./lib/message-repository');
 const PostMessageHandler = require('./lib/post-message-handler');
 const NotificationService = require('./lib/notification-service');
 const GrecaptchaVerificationService = require('./lib/grecaptcha-verification-service');
+const systemConfig = require('system/system-config');
 
 const appFactory = new AppFactory({
     postMessageHandler: new PostMessageHandler({
         messageRepository: new MessageRepository({
-            tableName: `${process.env.SYSTEM_NAMESPACE}--messages`,
+            tableName: `${systemConfig.systemNamespace}--messages`,
             dynamoClient: new AWS.DynamoDB.DocumentClient()
         }),
         notificationService: new NotificationService({

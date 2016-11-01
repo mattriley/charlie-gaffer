@@ -1,8 +1,10 @@
 'use strict';
 
+const systemConfig = require('system/system-config');
+
 module.exports = {
-    namespace: process.env.SYSTEM_NAMESPACE,
-    region: 'ap-southeast-2',
+    namespace: systemConfig.systemNamespace,
+    region: systemConfig.awsRegion,
     commands: [
         {
             type: 'aws-cloud-formation',

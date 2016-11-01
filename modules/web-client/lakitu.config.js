@@ -3,11 +3,11 @@
 const lakitu = require('lakitu');
 const s3HostedZonesRegionMap = require('lakitu/mappings/s3-hosted-zones-region-map.json');
 
-const appConfig = require('./app-config');
+const moduleConfig = require('./module-config');
 
 module.exports = {
     namespace: process.env.SYSTEM_NAMESPACE,
-    region: 'ap-southeast-2',
+    region: process.env.AWS_REGION,
     commands: [
         {
             type: 'aws-cloud-formation',
@@ -17,7 +17,7 @@ module.exports = {
                 Parameters: {
                     "DomainName": {
                         "Type": "String",
-                        "Default": appConfig.appDomain
+                        "Default": moduleConfig.appDomain
                     }
                 },
                 Outputs: {
@@ -57,7 +57,7 @@ module.exports = {
                 Parameters: {
                     "HostedZoneName": {
                         "Type": "String",
-                        "Default": appConfig.hostedZone
+                        "Default": moduleConfig.hostedZone
                     },
                     "DomainName": {
                         "Type": "String",
