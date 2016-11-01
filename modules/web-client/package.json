@@ -4,9 +4,10 @@
   "description": "",
   "main": "",
   "scripts": {
-    "start-local": "API_URL=http://localhost:5000 webpack-dev-server --inline --hot --content-base src/",
     "deploy-app": "`syscfg` && npm run webpack-build && aws s3 sync src s3://webclient.${TEST_DOMAIN} --profile=${AWS_DEPLOYMENT_PROFILE}",
+    "deploy-infrastructure": "`syscfg` && AWS_PROFILE=${AWS_DEPLOYMENT_PROFILE} lakitu",
     "npm-install": "linklocal && linklocal --unlink && npm install",
+    "start-local": "API_URL=http://localhost:5000 webpack-dev-server --inline --hot --content-base src/",
     "webpack-build": "webpack --progress --optimize-minimize"
   },
   "author": "",
