@@ -5,10 +5,6 @@ module.exports = {
             "Comment": "Point to a S3 Static Site.",
             "Enabled": "true",
             "DefaultRootObject": "index.html",
-            "Logging": {
-                "Bucket": {"Ref": "LogBucketDomainName"},
-                "Prefix": "cdn/"
-            },
             "Origins": [
                 {
                     "DomainName": {"Ref": "RootBucketDomainName"},

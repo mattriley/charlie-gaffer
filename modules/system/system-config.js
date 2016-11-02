@@ -16,6 +16,6 @@ module.exports = Object.assign({}, config, {
     systemNamespace,
     systemNamespace30,
     systemNameSimplified,
-    testDomain: [systemEnv, systemNameSimplified, testDomain].join('.'),
-    testDomainHostedZone: `${testDomain}.`
+    testDomain: [systemEnv, testDomain].join('.'),
+    testDomainHostedZone: config.testDomainHostedZone
 });

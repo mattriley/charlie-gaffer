@@ -5,10 +5,6 @@ module.exports = {
         "WebsiteConfiguration": {
             "IndexDocument": "index.html",
             "ErrorDocument": "error.html"
-        },
-        "LoggingConfiguration": {
-            "DestinationBucketName": {"Ref": "LogBucket"},
-            "LogFilePrefix": "root/"
         }
     }
 };

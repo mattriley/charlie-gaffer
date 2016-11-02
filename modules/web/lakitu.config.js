@@ -11,7 +11,7 @@ module.exports = {
     commands: [
         {
             type: 'aws-cloud-formation',
-            templateDir: 'lakitu/web-client--s3-website',
+            templateDir: 'lakitu/web--s3-website',
             template: {
                 Mappings: {RegionMap: s3HostedZonesRegionMap},
                 Parameters: {
@@ -26,20 +26,17 @@ module.exports = {
                     }
                 }
             },
-            namespaceExcludes: ['RootBucket.BucketName', 'WwwBucket.BucketName', 'LogBucket.BucketName']
+            namespaceExcludes: ['RootBucket.BucketName', 'WwwBucket.BucketName']
         },
         {
             type: 'aws-cloud-formation',
-            templateDir: 'lakitu/web-client--cloudfront-distribution',
+            templateDir: 'lakitu/web--cloudfront-distribution',
             template: {
                 Parameters: {
                     "DomainName": {
                         "Type": "String",
                     },
                     "RootBucketDomainName": {
-                        "Type": "String"
-                    },
-                    "LogBucketDomainName": {
                         "Type": "String"
                     }
                 },
@@ -52,7 +49,7 @@ module.exports = {
         },
         {
             type: 'aws-cloud-formation',
-            templateDir: 'lakitu/web-client--cloudfront-dns',
+            templateDir: 'lakitu/web--cloudfront-dns',
             template: {
                 Parameters: {
                     "HostedZoneName": {
