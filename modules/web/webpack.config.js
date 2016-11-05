@@ -29,7 +29,9 @@ module.exports = {
     plugins: [
         new webpack.DefinePlugin({
             'process.env': {
-                'API_URL': JSON.stringify(moduleConfig.apiUrl)
+                'API_URL': JSON.stringify(moduleConfig.apiUrl),
+                'GOOGLE_RECAPTCHA_SITE_KEY': JSON.stringify(moduleConfig.googleRecaptchaSiteKey),
+                'GOOGLE_ANALYTICS_TRACKING_ID': JSON.stringify(moduleConfig.googleAnalyticsTrackingId),
             }
         })
     ]

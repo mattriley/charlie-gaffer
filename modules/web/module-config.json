@@ -1,4 +1,7 @@
 {
   "moduleName": "web",
-  "productionDomain": "charliemoukbel.com"
+  "testDomain": "test.charliemoukbel.com",
+  "productionDomain": "charliemoukbel.com",
+  "googleRecaptchaSiteKey": "6LeQMAsUAAAAAAm_KMxWOIpbdt3Lzung3U0Jaseh",
+  "googleAnalyticsTrackingId": "UA-86847178-1"
 }

@@ -39,7 +39,7 @@ class Message extends React.Component {
                     <textarea ref="message" required="required"/>
                 </div>
                 <div className="field">
-                    <div className="g-recaptcha" data-sitekey="6LdKdQkUAAAAANNP4rjpsfIjS2lQbrxLf7Zw4jbL"></div>
+                    <div className="g-recaptcha" data-sitekey={this.props.googleRecaptchaSiteKey}></div>
                 </div>
                 <button type="button" onClick={this.send.bind(this)}>Send</button>
             </form>

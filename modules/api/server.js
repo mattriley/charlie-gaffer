@@ -20,7 +20,7 @@ const appFactory = new AppFactory({
             toAddress: process.env.NOTIFICATION_TO_ADDRESS
         }),
         grecaptchaVerificationService: new GrecaptchaVerificationService({
-            secret: process.env.GRECAPTCHA_SECRET
+            secret: process.env.GOOGLE_RECAPTCHA_SECRET_KEY
         })
     })
 });
