@@ -4,9 +4,8 @@
   "description": "",
   "main": "",
   "scripts": {
-    "deploy-app-test": "`syscfg` && npm run webpack-build && aws s3 sync src s3://web.${TEST_DOMAIN} --profile=${AWS_DEPLOYMENT_PROFILE}",
-    "deploy-app": "`syscfg` && npm run webpack-build && aws s3 sync src s3://charliemoukbel.com --profile=${AWS_DEPLOYMENT_PROFILE}",
-    "deploy-infrastructure": "`syscfg` && AWS_PROFILE=${AWS_DEPLOYMENT_PROFILE} lakitu",
+    "deploy-app": "`expcfg` && npm run webpack-build && aws s3 sync src s3://${APP_DOMAIN} --profile=${AWS_DEPLOYMENT_PROFILE}",
+    "deploy-infrastructure": "`expcfg` && AWS_PROFILE=${AWS_DEPLOYMENT_PROFILE} lakitu",
     "npm-install": "linklocal && linklocal --unlink && npm install",
     "start-local": "API_URL=http://localhost:5000 webpack-dev-server --inline --hot --content-base src/",
     "webpack-build": "webpack --progress --optimize-minimize"
@@ -27,7 +26,7 @@
     "fetch-ie8": "^1.4.3",
     "joi": "^9.2.0",
     "json-loader": "^0.5.4",
-    "lakitu": "0.0.6",
+    "lakitu": "0.0.7",
     "lodash": "^4.16.4",
     "system": "file:../system",
     "webpack": "^1.13.1"

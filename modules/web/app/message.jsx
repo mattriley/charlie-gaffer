@@ -6,6 +6,8 @@ const axios = require('axios');
 
 class Message extends React.Component {
     render() {
+        console.log(this.props);
+
         if (_.get(this.state, 'sent')) {
             return <div className="message">
                 <form>

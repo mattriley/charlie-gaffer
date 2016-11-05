@@ -7,12 +7,12 @@
   },
   "scripts": {
     "deploy-app": "npm run npm-install && npm run heroku-deploy",
-    "deploy-infrastructure": "`syscfg` && AWS_PROFILE=${AWS_DEPLOYMENT_PROFILE} lakitu",
+    "deploy-infrastructure": "`expcfg` && AWS_PROFILE=${AWS_DEPLOYMENT_PROFILE} lakitu",
     "npm-install": "linklocal && linklocal --unlink && npm install",
     "start": "node server.js",
-    "start-local": "`syscfg` && genenv && heroku local",
-    "heroku-deploy": "`syscfg` && genenv && heroku config:push --overwrite -a ${SYSTEM_NAMESPACE_30} && heroku builds:create -a ${SYSTEM_NAMESPACE_30}",
-    "heroku-logs": "`syscfg` && heroku logs -a ${SYSTEM_NAMESPACE_30}"
+    "start-local": "`expcfg` && genenv && heroku local",
+    "heroku-deploy": "`expcfg` && genenv && heroku config:push --overwrite -a ${SYSTEM_NAMESPACE_30} && heroku builds:create -a ${SYSTEM_NAMESPACE_30}",
+    "heroku-logs": "`expcfg` && heroku logs -a ${SYSTEM_NAMESPACE_30}"
   },
   "author": "",
   "license": "",
@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "awscred": "^1.2.0",
-    "lakitu": "0.0.6",
+    "lakitu": "0.0.7",
     "system": "file:../system"
   }
 }
