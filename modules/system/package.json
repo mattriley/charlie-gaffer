@@ -2,9 +2,6 @@
   "name": "system",
   "version": "1.0.0",
   "description": "",
-  "bin": {
-    "genenv": "bin/genenv.js"
-  },
   "author": "",
   "license": "",
   "dependencies": {

@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "awscred": "^1.2.0",
-    "lakitu": "0.0.7",
+    "lakitu": "0.0.8",
     "system": "file:../system"
   }
 }
