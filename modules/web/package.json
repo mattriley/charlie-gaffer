@@ -4,7 +4,7 @@
   "description": "",
   "main": "",
   "scripts": {
-    "deploy-app": "`expcfg` && npm run webpack-build && aws s3 sync src s3://${APP_DOMAIN} --profile=${AWS_DEPLOYMENT_PROFILE}",
+    "deploy-app": "`expcfg` && NODE_ENV=production && npm run webpack-build && aws s3 sync src s3://${APP_DOMAIN} --profile=${AWS_DEPLOYMENT_PROFILE}",
     "deploy-infrastructure": "`expcfg` && AWS_PROFILE=${AWS_DEPLOYMENT_PROFILE} lakitu",
     "npm-install": "linklocal && linklocal --unlink && npm install",
     "start-local": "API_URL=http://localhost:5000 webpack-dev-server --inline --hot --content-base src/",

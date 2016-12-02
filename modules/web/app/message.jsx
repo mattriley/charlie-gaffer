@@ -6,8 +6,6 @@ const axios = require('axios');
 
 class Message extends React.Component {
     render() {
-        console.log(this.props);
-
         if (_.get(this.state, 'sent')) {
             return <div className="message">
                 <form>
@@ -64,16 +62,10 @@ class Message extends React.Component {
 
         axios({
             url: this.props.apiUrl + '/messages',
-            // headers: {
-            //     'Accept': 'application/json',
-            //     'Content-Type': 'application/json'
-            // },
             method: "post",
             data: data
-            // body: JSON.stringify(data)
         })
             .then(res => {
-                console.log(res);
                 this.setState({sent: true});
             })
             .catch(res => {

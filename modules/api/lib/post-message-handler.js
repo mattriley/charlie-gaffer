@@ -17,6 +17,7 @@ class PostMessageHandler {
                 return;
             }
             const message = req.body.message;
+            if (message.phone === '') delete message.phone; // Dynamo doesn't accept empty string
             return this._messageRepository.insertMessage(message).then(() => {
                 this._notificationService.send(message);
                 res.sendStatus(201);
