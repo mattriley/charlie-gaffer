@@ -5,8 +5,15 @@ const _ = require('lodash');
 const axios = require('axios');
 
 class Message extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            errorMessages: []
+        }
+    }
+
     render() {
-        if (_.get(this.state, 'sent')) {
+        if (this.isStatus('sent')) {
             return <div className="message">
                 <form>
                     <h1 id="contact-me">Contact Me</h1>
@@ -15,10 +22,18 @@ class Message extends React.Component {
             </div>
         }
 
+        const errorMessages = this.state.errorMessages.map(errorMessage => {
+            return <div>{errorMessage}</div>;
+        });
+
+        const sendButton = this.isStatus('sending') ? <span><img src="/images/ajax-loader.gif"/> Sending...</span> :
+            <button type="button" onClick={this.send.bind(this)}>Send</button>;
+
         return <div className="message">
             <form>
                 <h1 id="contact-me">Contact Me</h1>
-                <div id="errorMessage">{_.get(this.state, 'errorMessage')}</div>
+                <p>Van Package available</p>
+                <div id="errorMessage">{errorMessages}</div>
                 <br/>
                 <div className="field">
                     <label>Name</label>
@@ -39,13 +54,12 @@ class Message extends React.Component {
                 <div className="field">
                     <div className="g-recaptcha" data-sitekey={this.props.googleRecaptchaSiteKey}></div>
                 </div>
-                <button type="button" onClick={this.send.bind(this)}>Send</button>
+                {sendButton}
             </form>
         </div>
     }
 
     send() {
-
         const data = {
             message: {
                 name: this.refs.name.value,
@@ -56,49 +70,75 @@ class Message extends React.Component {
             grecaptchaResponse: grecaptcha.getResponse()
         };
 
-        const isValid = this.validate(data);
+        const isValid = this.validateData(data);
 
         if (!isValid) return;
 
+        this.setStatus('sending');
+
         axios({
             url: this.props.apiUrl + '/messages',
-            method: "post",
+            method: 'post',
             data: data
         })
-            .then(res => {
-                this.setState({sent: true});
+            .then(() => {
+                this.setStatus('sent');
             })
-            .catch(res => {
-                console.log(res)
+            .catch(() => {
+                this.setStatus('error');
+                this.setErrorMessages(['Sorry, an unexpected error occurred. Please try again later.'])
             });
     }
 
-    validate(data) {
-        if (isBlank(data.message, 'name')) {
-            this.setState({errorMessage: 'Name is required'});
-            return false;
-        }
-        if (isBlank(data.message, 'email')) {
-            this.setState({errorMessage: 'Email is required'});
-            return false;
-        }
-        if (!isEmail(data.message.email)) {
-            this.setState({errorMessage: 'Email must contain @'});
-            return false;
-        }
-        if (isBlank(data.message, 'body')) {
-            this.setState({errorMessage: 'Message is required'});
-            return false;
-        }
-        if (isBlank(data, 'grecaptchaResponse')) {
-            this.setState({errorMessage: "Please prove you're not a robot"});
-            return false;
-        }
+    getErrorMessages(data) {
+        const validations = [
+            {
+                fn: () => !isBlank(data.message, 'name'),
+                errorMessage: 'Name is required'
+            },
+            {
+                fn: () => !isBlank(data.message, 'email'),
+                errorMessage: 'Email is required'
+            },
+            {
+                fn: () => !isEmail(data.message.email),
+                errorMessage: 'Email must contain @'
+            },
+            {
+                fn: () => !isBlank(data.message, 'body'),
+                errorMessage: 'Message is required'
+            },
+            {
+                fn: () => !isBlank(data, 'grecaptchaResponse'),
+                errorMessage: "Please prove you're not a robot"
+            }
+        ];
 
-        this.setState({errorMessage: null});
-
-        return true;
+        return validations.reduce((memo, item) => {
+            const isValid = item.fn();
+            if (!isValid) memo.push(item.errorMessage);
+            return memo;
+        }, []);
     }
+
+    validateData(data) {
+        const errorMessages = this.getErrorMessages(data);
+        this.setErrorMessages(errorMessages);
+        return errorMessages.length === 0;
+    }
+
+    isStatus(status) {
+        return _.get(this.state, 'status') === status;
+    }
+
+    setStatus(status) {
+        this.setState({status});
+    }
+
+    setErrorMessages(errorMessages) {
+        this.setState({errorMessages});
+    }
+
 }
 
 function isBlank(obj, path) {
