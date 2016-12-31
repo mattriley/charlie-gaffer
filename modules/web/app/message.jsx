@@ -8,6 +8,10 @@ class Message extends React.Component {
     constructor() {
         super();
         this.state = {
+            name: '',
+            email: '',
+            phone: '',
+            message: '',
             errorMessages: []
         }
     }
@@ -37,19 +41,19 @@ class Message extends React.Component {
                 <br/>
                 <div className="field">
                     <label>Name</label>
-                    <input ref="name" type="text" required/>
+                    <input name="name" type="text" value={this.state.name} onChange={this._fieldChanged.bind(this)}/>
                 </div>
                 <div className="field">
                     <label>Email</label>
-                    <input ref="email" type="email" required="required"/>
+                    <input name="email" type="email" value={this.state.email} onChange={this._fieldChanged.bind(this)}/>
                 </div>
                 <div className="field">
                     <label>Phone</label>
-                    <input ref="phone" type="tel"/>
+                    <input name="phone" type="tel" value={this.state.phone} onChange={this._fieldChanged.bind(this)}/>
                 </div>
                 <div className="field">
                     <label>Message</label>
-                    <textarea ref="message" required="required"/>
+                    <textarea name="message" value={this.state.message} onChange={this._fieldChanged.bind(this)}/>
                 </div>
                 <div className="field">
                     <div className="g-recaptcha" data-sitekey={this.props.googleRecaptchaSiteKey}></div>
@@ -59,90 +63,103 @@ class Message extends React.Component {
         </div>
     }
 
-    send() {
-        const data = {
-            message: {
-                name: this.refs.name.value,
-                email: this.refs.email.value,
-                phone: this.refs.phone.value,
-                body: this.refs.message.value,
-            },
-            grecaptchaResponse: grecaptcha.getResponse()
-        };
-
-        const isValid = this.validateData(data);
-
-        if (!isValid) return;
-
-        this.setStatus('sending');
-
-        axios({
-            url: this.props.apiUrl + '/messages',
-            method: 'post',
-            data: data
-        })
-            .then(() => {
-                this.setStatus('sent');
-            })
-            .catch(() => {
-                this.setStatus('error');
-                this.setErrorMessages(['Sorry, an unexpected error occurred. Please try again later.'])
-            });
+    _fieldChanged(e) {
+        const name = e.target.getAttribute('name');
+        this.setState({[name]: e.target.value}, () => this.validateField(name));
     }
 
-    getErrorMessages(data) {
+    send() {
+        this.setState({grecaptchaResponse: grecaptcha.getResponse()}, () => {
+            const errorMessages = this.getErrorMessages({});
+            const isValid = errorMessages.length === 0;
+            this.setState({errorMessages});
+
+            if (!isValid) return;
+
+            this.setState({status: 'sending'});
+
+            const data = {
+                message: {
+                    name: this.state.name,
+                    email: this.state.email,
+                    phone: this.state.phone,
+                    body: this.state.message
+                },
+                grecaptchaResponse: this.state.grecaptchaResponse
+            };
+
+            axios({
+                url: this.props.apiUrl + '/messages',
+                method: 'post',
+                data: data
+            })
+                .then(() => {
+                    this.setState({status: 'sent'});
+                })
+                .catch(() => {
+                    this.setState({status: 'error'});
+                    this.setState({errorMessages: ['Sorry, an unexpected error occurred. Please try again later.']});
+                });
+        });
+    }
+
+    validateField(field) {
+        const errorMessages = this.getErrorMessages({field});
+        this.setState({errorMessages});
+    }
+
+    validate() {
+        const errorMessages = this.getErrorMessages({});
+        this.setState({errorMessages});
+        return errorMessages.length === 0;
+    }
+
+    getErrorMessages(params) {
         const validations = [
             {
-                fn: () => !isBlank(data.message, 'name'),
+                field: 'name',
+                fn: () => !isBlank(this.state.name),
                 errorMessage: 'Name is required'
             },
             {
-                fn: () => !isBlank(data.message, 'email'),
+                field: 'email',
+                fn: () => !isBlank(this.state.email),
                 errorMessage: 'Email is required'
             },
             {
-                fn: () => !isEmail(data.message.email),
+                field: 'email',
+                fn: () => isEmail(this.state.email),
                 errorMessage: 'Email must contain @'
             },
             {
-                fn: () => !isBlank(data.message, 'body'),
+                field: 'message',
+                fn: () => !isBlank(this.state.message),
                 errorMessage: 'Message is required'
             },
             {
-                fn: () => !isBlank(data, 'grecaptchaResponse'),
+                fn: () => !isBlank(this.state.grecaptchaResponse),
                 errorMessage: "Please prove you're not a robot"
             }
         ];
 
-        return validations.reduce((memo, item) => {
+        const filteredValidations = params.field ?
+            validations.filter(item => item.field === params.field) : validations;
+
+        return filteredValidations.reduce((memo, item) => {
             const isValid = item.fn();
             if (!isValid) memo.push(item.errorMessage);
             return memo;
         }, []);
     }
 
-    validateData(data) {
-        const errorMessages = this.getErrorMessages(data);
-        this.setErrorMessages(errorMessages);
-        return errorMessages.length === 0;
-    }
-
     isStatus(status) {
         return _.get(this.state, 'status') === status;
     }
 
-    setStatus(status) {
-        this.setState({status});
-    }
-
-    setErrorMessages(errorMessages) {
-        this.setState({errorMessages});
-    }
-
 }
 
-function isBlank(obj, path) {
-    return _.get(obj, path).trim() === '';
+function isBlank(obj) {
+    return obj.trim() === '';
 }
 
 function isEmail(value) {
