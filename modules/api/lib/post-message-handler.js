@@ -1,5 +1,7 @@
 'use strict';
 
+const _ = require('lodash');
+
 class PostMessageHandler {
 
     constructor(params) {
@@ -16,7 +18,7 @@ class PostMessageHandler {
                 res.sendStatus(500);
                 return;
             }
-            const message = req.body.message;
+            const message = _.pick(req.body, ['name', 'email', 'phone', 'message']);
             if (message.phone === '') delete message.phone; // Dynamo doesn't accept empty string
             return this._messageRepository.insertMessage(message).then(() => {
                 this._notificationService.send(message);

@@ -5,6 +5,7 @@ const _ = require('lodash');
 const axios = require('axios');
 
 class Message extends React.Component {
+
     constructor() {
         super();
         this.state = {
@@ -12,12 +13,13 @@ class Message extends React.Component {
             email: '',
             phone: '',
             message: '',
+            grecaptchaResponse: null,
             errorMessages: []
         }
     }
 
     render() {
-        if (this.isStatus('sent')) {
+        if (this._isStatus('sent')) {
             return <div className="message">
                 <form>
                     <h1 id="contact-me">Contact Me</h1>
@@ -30,8 +32,8 @@ class Message extends React.Component {
             return <div>{errorMessage}</div>;
         });
 
-        const sendButton = this.isStatus('sending') ? <span><img src="/images/ajax-loader.gif"/> Sending...</span> :
-            <button type="button" onClick={this.send.bind(this)}>Send</button>;
+        const sendButton = this._isStatus('sending') ? <span><img src="/images/ajax-loader.gif"/> Sending...</span> :
+            <button type="button" onClick={this._sendMessage.bind(this)}>Send</button>;
 
         return <div className="message">
             <form>
@@ -64,57 +66,42 @@ class Message extends React.Component {
     }
 
     _fieldChanged(e) {
-        const name = e.target.getAttribute('name');
-        this.setState({[name]: e.target.value}, () => this.validateField(name));
-    }
-
-    send() {
-        this.setState({grecaptchaResponse: grecaptcha.getResponse()}, () => {
-            const errorMessages = this.getErrorMessages({});
-            const isValid = errorMessages.length === 0;
+        const fieldName = e.target.getAttribute('name');
+        this.setState({[fieldName]: e.target.value}, () => {
+            const errorMessages = this._getErrorMessages({field: fieldName});
             this.setState({errorMessages});
-
-            if (!isValid) return;
-
-            this.setState({status: 'sending'});
-
-            const data = {
-                message: {
-                    name: this.state.name,
-                    email: this.state.email,
-                    phone: this.state.phone,
-                    body: this.state.message
-                },
-                grecaptchaResponse: this.state.grecaptchaResponse
-            };
-
-            axios({
-                url: this.props.apiUrl + '/messages',
-                method: 'post',
-                data: data
-            })
-                .then(() => {
-                    this.setState({status: 'sent'});
-                })
-                .catch(() => {
-                    this.setState({status: 'error'});
-                    this.setState({errorMessages: ['Sorry, an unexpected error occurred. Please try again later.']});
-                });
         });
     }
 
-    validateField(field) {
-        const errorMessages = this.getErrorMessages({field});
-        this.setState({errorMessages});
+    _sendMessage() {
+        this.setState({grecaptchaResponse: grecaptcha.getResponse()}, () => {
+            const errorMessages = this._getErrorMessages({});
+            const isValid = errorMessages.length === 0;
+            this.setState({errorMessages});
+            if (!isValid) return;
+
+            this.setState({status: 'sending'}, () => {
+                this._postMessage().then(() => {
+                    this.setState({status: 'sent'});
+                }).catch(() => {
+                    this.setState({
+                        status: 'error',
+                        errorMessages: ['Sorry, an unexpected error occurred. Please try again later.']
+                    });
+                });
+            });
+        });
     }
 
-    validate() {
-        const errorMessages = this.getErrorMessages({});
-        this.setState({errorMessages});
-        return errorMessages.length === 0;
+    _postMessage() {
+        return axios({
+            url: `${this.props.apiUrl}/messages`,
+            method: 'post',
+            data: _.pick(this.state, ['name', 'email', 'phone', 'message', 'grecaptchaResponse'])
+        });
     }
 
-    getErrorMessages(params) {
+    _getErrorMessages(params) {
         const validations = [
             {
                 field: 'name',
@@ -152,7 +139,7 @@ class Message extends React.Component {
         }, []);
     }
 
-    isStatus(status) {
+    _isStatus(status) {
         return _.get(this.state, 'status') === status;
     }
 
