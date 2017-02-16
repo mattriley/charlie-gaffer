@@ -38,7 +38,7 @@ class NotificationService {
             `Name: ${params.name}`,
             `Email: ${params.email}`,
             `Phone: ${params.phone}`,
-            `Message: ${params.body}`
+            `Message: ${params.message}`
         ];
     }
 
