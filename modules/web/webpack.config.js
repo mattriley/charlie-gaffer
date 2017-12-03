@@ -16,7 +16,7 @@ module.exports = {
         loaders: [
             {
                 exclude: /(node_modules)/,
-                loader: 'babel',
+                loader: 'babel-loader',
                 query: {
                     presets: ['es2015', 'react']
                 }
@@ -24,7 +24,7 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: ['', '.js', '.jsx']
+        extensions: ['.js', '.jsx']
     },
     plugins: [
         new webpack.DefinePlugin({

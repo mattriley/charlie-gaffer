@@ -29,6 +29,7 @@
     "lakitu": "0.0.7",
     "lodash": "^4.16.4",
     "system": "file:../system",
-    "webpack": "^1.13.1"
+    "webpack": "^3.9.1",
+    "webpack-dev-server": "^2.9.5"
   }
 }
