@@ -1,7 +1,0 @@
-node_modules/
-**/.env*
-bundle.js
-npm-debug.log
--*
-*.zip
-**/script-generators/*.sh

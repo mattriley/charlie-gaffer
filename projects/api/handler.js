@@ -1,0 +1,1 @@
+module.exports.send = require('./lib/messenger').send;
