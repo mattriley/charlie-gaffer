@@ -1,0 +1,71 @@
+service: web-backend
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  stage: ${env:STAGE}
+  region: ap-southeast-2
+  profile: ${env:AWS_PROFILE}
+  tracing: true
+  environment:
+    AWS_SES_REGION: ${env:AWS_SES_REGION}
+    AWS_SES_IDENTITY: ${env:AWS_SES_IDENTITY}
+    NOTIFICATION_FROM_ADDRESS: ${env:NOTIFICATION_FROM_ADDRESS}
+    NOTIFICATION_TO_ADDRESS: ${env:NOTIFICATION_TO_ADDRESS}
+    GOOGLE_RECAPTCHA_SECRET_KEY: ${env:GOOGLE_RECAPTCHA_SECRET_KEY}
+    MESSAGES_TABLE_NAME: ${env:MESSAGES_TABLE_NAME}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - xray:PutTraceSegments
+        - xray:PutTelemetryRecords
+      Resource:
+        - '*'
+    - Effect: Allow
+      Action:
+        - dynamodb:PutItem
+      Resource:
+        - 'Fn::Join':
+            - ':'
+            -
+              - arn:aws:dynamodb
+              - Ref: AWS::Region
+              - Ref: AWS::AccountId
+              - ${env:MESSAGES_TABLE_NAME}
+    - Effect: Allow
+      Action:
+        - ses:SendEmail
+      Resource: 
+        - 'Fn::Join':
+            - ':'
+            -
+              - arn:aws:ses
+              - ${env:AWS_SES_REGION}
+              - Ref: AWS::AccountId
+              - '*'
+
+functions:
+  sendMessage:
+    handler: handler.send
+    events:
+      - http:
+          path: messages
+          method: post
+          cors: true
+
+resources:
+  Resources:
+    DynamoDbTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${env:MESSAGES_TABLE_NAME}
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+          

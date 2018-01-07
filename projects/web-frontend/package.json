@@ -1,0 +1,31 @@
+{
+  "name": "charliemoukbel-web",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "deploy": "sls deploy && npm run webpack-build && aws s3 sync src s3://$DOMAIN_NAME --profile=$AWS_PROFILE",
+    "start-local": "API_URL=http://localhost:5000 webpack-dev-server --inline --hot --content-base src/",
+    "webpack-build": "webpack --progress --optimize-minimize"
+  },
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "react": "^15.1.0",
+    "react-dom": "^15.1.0"
+  },
+  "devDependencies": {
+    "axios": "^0.15.2",
+    "babel-core": "^6.10.4",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.16.0",
+    "es6-promise": "^4.0.5",
+    "fetch-ie8": "^1.4.3",
+    "joi": "^9.2.0",
+    "json-loader": "^0.5.4",
+    "lodash": "^4.16.4",
+    "webpack": "^3.9.1",
+    "webpack-dev-server": "^2.9.5"
+  }
+}

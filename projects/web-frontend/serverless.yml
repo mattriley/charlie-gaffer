@@ -1,0 +1,68 @@
+service: web-frontend
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  stage: ${env:STAGE}
+  region: ap-southeast-2
+  profile: ${env:AWS_PROFILE}
+
+resources:
+  Resources:
+
+    WebsiteBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${env:DOMAIN_NAME}
+        AccessControl: PublicRead
+        WebsiteConfiguration:
+          IndexDocument: index.html
+          ErrorDocument: error.html
+
+    WWWBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: www.${env:DOMAIN_NAME}
+        WebsiteConfiguration:
+          RedirectAllRequestsTo:
+            HostName: ${env:DOMAIN_NAME}
+
+    WebsiteBucketPolicy:
+      Type: AWS::S3::BucketPolicy
+      Properties:
+        Bucket: 
+          Ref: WebsiteBucket
+        PolicyDocument:
+          Statement:
+            Sid: PublicReadForGetBucketObjects
+            Effect: Allow
+            Principal: '*'
+            Action: s3:GetObject  
+            Resource: 
+              'Fn::Join':
+                - ''
+                - 
+                  - 'Fn::GetAtt':
+                      - WebsiteBucket
+                      - Arn
+                  - /*
+
+    WebsiteDNS:
+      Type: AWS::Route53::RecordSet
+      Properties:
+        HostedZoneName: ${env:HOSTED_ZONE}
+        Name: ${env:DOMAIN_NAME}
+        Type: A
+        AliasTarget:
+          HostedZoneId: Z1WCIGYICN2BYD
+          DNSName: s3-website-ap-southeast-2.amazonaws.com
+
+    WWWDNS:
+      Type: AWS::Route53::RecordSet
+      Properties:
+        HostedZoneName: ${env:HOSTED_ZONE}
+        Name: www.${env:DOMAIN_NAME}
+        Type: A
+        AliasTarget:
+          HostedZoneId: Z1WCIGYICN2BYD
+          DNSName: s3-website-ap-southeast-2.amazonaws.com          
