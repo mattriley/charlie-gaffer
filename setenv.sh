@@ -16,12 +16,13 @@ then
     export NOTIFICATION_TO_ADDRESS="matthewriley.charliemoukbel@gmail.com"
     export DOMAIN_NAME="dev.charliemoukbel.com"
     export API_URL="https://75bsmtwvu3.execute-api.ap-southeast-2.amazonaws.com/dev"
-fi
 
-if [ $STAGE = "prod" ]
+elif [ $STAGE = "prod" ]
 then
     export STAGE="prod"
     export NOTIFICATION_TO_ADDRESS="cmoukbel@hotmail.com"
     export DOMAIN_NAME="charliemoukbel.com"
     export API_URL=""
+else
+    echo "Unknown stage: $STAGE"
 fi
