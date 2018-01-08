@@ -22,7 +22,7 @@ then
     export STAGE="prod"
     export NOTIFICATION_TO_ADDRESS="cmoukbel@hotmail.com"
     export DOMAIN_NAME="charliemoukbel.com"
-    export API_URL=""
+    export API_URL="https://i2z0fo0hqj.execute-api.ap-southeast-2.amazonaws.com/prod"
 else
     echo "Unknown stage: $STAGE"
 fi
