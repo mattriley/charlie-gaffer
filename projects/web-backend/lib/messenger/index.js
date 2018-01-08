@@ -33,27 +33,20 @@ module.exports.send = (event, context, callback) => {
 
     const body = JSON.parse(event.body);
 
-    const message = _.pick(body, ['name', 'email', 'phone', 'message']);
-    if (message.phone === '') delete message.phone; // Dynamo doesn't accept empty string
-    return messageRepository.insertMessage(message).then(() => {
-        notificationService.send(message);
-        sendStatus(201);
+    return grecaptchaVerificationService.verify({
+        response: body.grecaptchaResponse
+    }).then(verificationResult => {
+        if (!verificationResult.success) {
+            return sendStatus(500);
+        }
+        const message = _.pick(body, ['name', 'email', 'phone', 'message']);
+        if (message.phone === '') delete message.phone; // Dynamo doesn't accept empty string
+        return messageRepository.insertMessage(message).then(() => {
+            notificationService.send(message);
+            sendStatus(201);
+        });
+    }).catch(err => {
+        console.log(err.stack);
+        sendStatus(500);
     });
-
-    // return grecaptchaVerificationService.verify({
-    //     response: body.grecaptchaResponse
-    // }).then(verificationResult => {
-    //     if (!verificationResult.success) {
-    //         return sendStatus(500);
-    //     }
-    //     const message = _.pick(body, ['name', 'email', 'phone', 'message']);
-    //     if (message.phone === '') delete message.phone; // Dynamo doesn't accept empty string
-    //     return messageRepository.insertMessage(message).then(() => {
-    //         notificationService.send(message);
-    //         sendStatus(201);
-    //     });
-    // }).catch(err => {
-    //     console.log(err.stack);
-    //     sendStatus(500);
-    // });
 };
