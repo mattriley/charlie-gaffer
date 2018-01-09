@@ -15,7 +15,7 @@ test('verify captcha', t => {
     const verifyCaptcha = _verifyCaptcha.bind({ secret: 'SECRET', fetch });
 
     verifyCaptcha({ response: 'RESPONSE' }).then(result => {
-        t.equal(result, 'FETCH_RESPONSE_DATA');
+        t.equal(result, 'FETCH_RESPONSE_DATA', 'captcha would have been verified');
         t.end();
     });
 });

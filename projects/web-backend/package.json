@@ -5,7 +5,7 @@
   "author": "",
   "license": "",
   "scripts": {
-    "test": "tape tests/**/*.test.js -r ./test-bootstrap.js",
+    "test": "tape tests/**/*.test.js -r ./test-bootstrap.js | tap-spec",
     "cov": "nyc --reporter=text --reporter=html npm test",
     "deploy": "sls deploy"
   },
@@ -17,8 +17,10 @@
   },
   "devDependencies": {
     "aws-sdk": "^2.6.9",
+    "faucet": "0.0.1",
     "glob": "^7.1.2",
     "nyc": "^11.4.1",
+    "tap-spec": "^4.1.1",
     "tape": "^4.8.0",
     "testdouble": "^3.3.1"
   }

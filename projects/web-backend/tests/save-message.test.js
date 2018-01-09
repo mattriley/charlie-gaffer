@@ -28,5 +28,8 @@ test('save message', t => {
         dynamoClient
     });
 
-    saveMessage({ foo: 'BAR' }).then(t.end);
+    saveMessage({ foo: 'BAR' }).then(() => {
+        t.pass('message would have been saved');
+        t.end();
+    });
 });
