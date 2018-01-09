@@ -1,6 +1,6 @@
 const Promise = require('bluebird');
 
-module.exports = message => {
+module.exports = function (message) {
     const { toAddress, fromAddress, sesClient } = this;
 
     const lines = [
