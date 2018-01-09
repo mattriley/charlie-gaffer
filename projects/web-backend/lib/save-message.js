@@ -1,11 +1,11 @@
 const Promise = require('bluebird');
 
-module.exports = message => {
-    const { tableName, uuid, dynamoClient } = this;
+module.exports = function (message) {
+    const { tableName, uuid, dynamoClient, getISODateString } = this;
 
     const meta = {
         id: uuid.v4(),
-        createdOn: new Date().toISOString()
+        createdOn: getISODateString()
     };
 
     const params = {

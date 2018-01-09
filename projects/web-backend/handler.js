@@ -11,7 +11,8 @@ const send = _sendMessage.bind({
     saveMessage: _saveMessage.bind({
         tableName: process.env.MESSAGES_TABLE_NAME,
         uuid,
-        dynamoClient: new AWS.DynamoDB.DocumentClient()
+        dynamoClient: new AWS.DynamoDB.DocumentClient(),
+        getISODateString: () => new Date().toISOString()
     }),
     sendEmail: _sendEmail.bind({
         fromAddress: process.env.NOTIFICATION_FROM_ADDRESS,
