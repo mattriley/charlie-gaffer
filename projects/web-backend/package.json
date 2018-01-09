@@ -1,19 +1,25 @@
 {
-    "name": "web-backend",
-    "version": "1.0.0",
-    "description": "",
-    "author": "",
-    "license": "",
-    "scripts": {
-        "deploy": "sls deploy"
-    },
-    "dependencies": {
-        "bluebird": "^3.4.6",
-        "lodash": "^4.17.3",
-        "node-fetch": "^1.6.3",
-        "node-uuid": "^1.4.7"
-    },
-    "devDependencies": {
-        "aws-sdk": "^2.6.9"
-    }
+  "name": "web-backend",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "license": "",
+  "scripts": {
+    "test": "tape tests/**/*.test.js -r ./test-bootstrap.js",
+    "cov": "nyc --reporter=text --reporter=html npm test",
+    "deploy": "sls deploy"
+  },
+  "dependencies": {
+    "bluebird": "^3.4.6",
+    "lodash": "^4.17.3",
+    "node-fetch": "^1.6.3",
+    "node-uuid": "^1.4.7"
+  },
+  "devDependencies": {
+    "aws-sdk": "^2.6.9",
+    "glob": "^7.1.2",
+    "nyc": "^11.4.1",
+    "tape": "^4.8.0",
+    "testdouble": "^3.3.1"
+  }
 }
