@@ -2,6 +2,8 @@ const test = require('tape');
 const td = require('testdouble');
 const _verifyCaptcha = require('../lib/verify-captcha');
 
+// TODO: Success and failure cases
+
 test('verify captcha', t => {
     const fetchResponse = { json: td.function() };
     td.when(fetchResponse.json()).thenResolve('FETCH_RESPONSE_DATA');

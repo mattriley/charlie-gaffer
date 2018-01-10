@@ -1,31 +1,23 @@
 const Promise = require('bluebird');
 
 module.exports = (event, context, callback) => {
-    const { console, saveMessage, sendEmail, verifyGrecaptcha } = this;
+    const { verifyCaptcha, saveMessage, sendEmail } = this;
 
-    const sendStatus = (statusCode) => {
+    const sendResponse = () => {
         const response = {
-            statusCode,
+            statusCode: 201,
             headers: {
-                'Access-Control-Allow-Origin': '*', // Required for CORS support to work
+                'Access-Control-Allow-Origin': '*',
             }
         };
         callback(null, response);
     };
 
-    const checkCaptchaResult = body => {
-        return verifyGrecaptcha({ response: body.grecaptchaResponse })
-            .then(result => {
-                if (result.success) return;
-                throw new Error('Captcha verification failed.');
-            });
-    };
-
     return Promise.resolve(event.body)
         .then(JSON.parse)
-        .tap(checkCaptchaResult)
-        .then(saveMessage)
-        .tap(sendEmail)
-        .then(() => sendStatus(201))
+        .tap(message => verifyCaptcha({ response: message.grecaptchaResponse }))
+        .tap(saveMessage)
+        .tap(sendEmail) 
+        .tap(sendResponse)
         .catch(callback);
 };
