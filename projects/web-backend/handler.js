@@ -4,15 +4,15 @@ const fetch = require('node-fetch');
 const _saveMessage = require('./lib/save-message');
 const _sendEmail = require('./lib/send-email');
 const _verifyCaptcha = require('./lib/verify-captcha');
-const _handleMessage = require('./lib/handle-message');
+const _handleMessageEvent = require('./lib/handle-message-event');
 
-const handleMessage = _handleMessage.bind({
+const handleMessageEvent = _handleMessageEvent.bind({
     console,
     saveMessage: _saveMessage.bind({
+        now: Date.now,
+        uuid: uuid.v4,
         tableName: process.env.MESSAGES_TABLE_NAME,
-        uuid,
-        dynamoClient: new AWS.DynamoDB.DocumentClient(),
-        getISODateString: () => new Date().toISOString()
+        dynamoClient: new AWS.DynamoDB.DocumentClient()
     }),
     sendEmail: _sendEmail.bind({
         fromAddress: process.env.NOTIFICATION_FROM_ADDRESS,
@@ -25,4 +25,4 @@ const handleMessage = _handleMessage.bind({
     })
 });
 
-module.exports = { handleMessage };
+module.exports = { handleMessageEvent };

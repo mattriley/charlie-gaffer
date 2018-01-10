@@ -3,15 +3,15 @@ const td = require('testdouble');
 const _saveMessage = require('../lib/save-message');
 
 test('save message', t => {
-    const uuid = { v4: td.function() };
-    td.when(uuid.v4()).thenReturn('ID');
+    const uuid = td.function();
+    td.when(uuid()).thenReturn('ID');
 
-    const getISODateString = td.function();
-    td.when(getISODateString()).thenReturn('DATE');
+    const now = td.function();
+    td.when(now()).thenReturn(Date.parse('2018-01-11'));
 
     const item = {
         id: 'ID',
-        createdOn: 'DATE',
+        createdOn: '2018-01-11T00:00:00.000Z',
         foo: 'BAR'
     };
 
@@ -19,12 +19,12 @@ test('save message', t => {
 
     const dynamoClient = { put: td.function() };
     const putParams = { Item: item, TableName: tableName };
-    td.when(dynamoClient.put(putParams)).thenCallback(null, null);
+    td.when(dynamoClient.put(putParams)).thenCallback(null);
 
     const saveMessage = _saveMessage.bind({
-        tableName,
+        now,
         uuid,
-        getISODateString,
+        tableName,
         dynamoClient
     });
 
