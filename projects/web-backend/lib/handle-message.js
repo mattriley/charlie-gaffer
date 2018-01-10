@@ -33,8 +33,5 @@ module.exports = (event, context, callback) => {
         .then(saveMessage)
         .tap(sendEmail)
         .then(() => sendStatus(201))
-        .catch(err => {
-            console.error(err.stack);
-            sendStatus(500);
-        });
+        .catch(callback);
 };

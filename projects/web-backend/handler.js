@@ -4,9 +4,9 @@ const fetch = require('node-fetch');
 const _saveMessage = require('./lib/save-message');
 const _sendEmail = require('./lib/send-email');
 const _verifyCaptcha = require('./lib/verify-captcha');
-const _sendMessage = require('./lib/send-message');
+const _handleMessage = require('./lib/handle-message');
 
-const send = _sendMessage.bind({
+const handleMessage = _handleMessage.bind({
     console,
     saveMessage: _saveMessage.bind({
         tableName: process.env.MESSAGES_TABLE_NAME,
@@ -25,4 +25,4 @@ const send = _sendMessage.bind({
     })
 });
 
-module.exports = { send };
+module.exports = { handleMessage };

@@ -46,7 +46,7 @@ provider:
 
 functions:
   sendMessage:
-    handler: handler.send
+    handler: handler.handleMessage
     events:
       - http:
           path: messages
