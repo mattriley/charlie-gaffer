@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 export STAGE=${1:-test}
-export AWS_PROFILE="charliemoukbel-deploy"
+export AWS_PROFILE="charliemoukbel"
 export AWS_SES_REGION="us-west-2"
 export AWS_SES_IDENTITY="charliemoukbel.com"
 export NOTIFICATION_FROM_ADDRESS="charliemoukbel.com <noreply@charliemoukbel.com>"
