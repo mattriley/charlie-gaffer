@@ -46,7 +46,7 @@ provider:
 
 functions:
   sendMessage:
-    handler: lib/index.handleMessage
+    handler: lib/handler.handleMessage
     events:
       - http:
           path: messages

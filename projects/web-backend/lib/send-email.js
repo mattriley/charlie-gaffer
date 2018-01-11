@@ -30,6 +30,6 @@ module.exports = function (message) {
         Source: fromAddress
     }
 
-    const sendEmail = Promise.promisify(sesClient.sendEmail);
-    return sendEmail(sendEmailParams);
+    Promise.promisifyAll(sesClient);
+    return sesClient.sendEmailAsync(sendEmailParams);
 };

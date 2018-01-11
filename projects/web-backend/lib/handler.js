@@ -6,7 +6,7 @@ const _sendEmail = require('./send-email');
 const _verifyCaptcha = require('./verify-captcha');
 const _handleMessageEvent = require('./handle-message-event');
 
-const handleMessageEvent = _handleMessageEvent.bind({
+const handleMessage = _handleMessageEvent.bind({
     console,
     saveMessage: _saveMessage.bind({
         now: Date.now,
@@ -25,4 +25,4 @@ const handleMessageEvent = _handleMessageEvent.bind({
     })
 });
 
-module.exports = { handleMessageEvent };
+module.exports = { handleMessage };

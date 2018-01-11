@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-export STAGE=${1:-dev}
+export STAGE=${1:-test}
 export AWS_PROFILE="charliemoukbel-deploy"
 export AWS_SES_REGION="us-west-2"
 export AWS_SES_IDENTITY="charliemoukbel.com"
@@ -10,16 +10,14 @@ export GOOGLE_ANALYTICS_TRACKING_ID="UA-86847178-1"
 export HOSTED_ZONE="charliemoukbel.com."
 export MESSAGES_TABLE_NAME="messages-$STAGE"
 
-if [ $STAGE = "dev" ]
+if [ $STAGE = "test" ]
 then
-    export STAGE="dev"
     export NOTIFICATION_TO_ADDRESS="matthewriley.charliemoukbel@gmail.com"
-    export DOMAIN_NAME="dev.charliemoukbel.com"
-    export API_URL="https://75bsmtwvu3.execute-api.ap-southeast-2.amazonaws.com/dev"
+    export DOMAIN_NAME="test.charliemoukbel.com"
+    export API_URL="https://fsbsjkefs5.execute-api.ap-southeast-2.amazonaws.com/test"
 
 elif [ $STAGE = "prod" ]
 then
-    export STAGE="prod"
     export NOTIFICATION_TO_ADDRESS="cmoukbel@hotmail.com"
     export DOMAIN_NAME="charliemoukbel.com"
     export API_URL="https://i2z0fo0hqj.execute-api.ap-southeast-2.amazonaws.com/prod"
