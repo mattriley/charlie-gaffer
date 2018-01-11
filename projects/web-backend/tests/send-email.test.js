@@ -34,8 +34,11 @@ test('send email', t => {
         Source: fromAddress
     };
 
+    const sendEmailResult = { promise: td.function() };
+    td.when(sendEmailResult.promise()).thenResolve();
+
     const sesClient = { sendEmail: td.function() };
-    td.when(sesClient.sendEmail(sendEmailParams)).thenCallback(null);
+    td.when(sesClient.sendEmail(sendEmailParams)).thenReturn(sendEmailResult);
 
     const sendEmail = _sendEmail.bind({ toAddress, fromAddress, sesClient });
 

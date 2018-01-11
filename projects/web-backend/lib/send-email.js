@@ -1,5 +1,3 @@
-const Promise = require('bluebird');
-
 module.exports = function (message) {
     const { toAddress, fromAddress, sesClient } = this;
 
@@ -30,6 +28,5 @@ module.exports = function (message) {
         Source: fromAddress
     }
 
-    Promise.promisifyAll(sesClient);
-    return sesClient.sendEmailAsync(sendEmailParams);
+    return sesClient.sendEmail(sendEmailParams).promise();
 };
