@@ -1,6 +1,6 @@
 const Promise = require('bluebird');
 
-module.exports = (event, context, callback) => {
+module.exports = function (event, context, callback) {
     const { verifyCaptcha, saveMessage, sendEmail } = this;
 
     const sendResponse = () => {
@@ -17,7 +17,7 @@ module.exports = (event, context, callback) => {
         .then(JSON.parse)
         .tap(message => verifyCaptcha({ response: message.grecaptchaResponse }))
         .tap(saveMessage)
-        .tap(sendEmail) 
+        .tap(sendEmail)
         .tap(sendResponse)
         .catch(callback);
 };
