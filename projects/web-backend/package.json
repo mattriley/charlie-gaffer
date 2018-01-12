@@ -2,7 +2,7 @@
   "name": "web-backend",
   "version": "1.0.0",
   "description": "",
-  "author": "",
+  "author": "Matthew Riley",
   "license": "",
   "scripts": {
     "test": "tape tests/**/*.test.js -r ./test-bootstrap.js | tap-spec",
