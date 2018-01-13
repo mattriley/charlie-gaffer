@@ -69,3 +69,22 @@ resources:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
           
+plugins:
+  - serverless-plugin-aws-alerts
+
+custom:
+  alerts:
+    stages:
+      - test
+      - prod
+    topics:
+      alarm: 
+        topic: ${self:service}-${env:STAGE}-alerts-alarm
+        notifications:
+          - protocol: email
+            endpoint: ${env:ALERTS_TO_ADDRESS}
+    alarms:
+      - functionErrors
+      - functionThrottles
+      - functionInvocations
+      - functionDuration                  

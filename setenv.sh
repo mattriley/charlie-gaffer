@@ -8,6 +8,7 @@ export HOSTED_ZONE="charliemoukbel.com."
 export MESSAGES_TABLE_NAME="messages-$STAGE"
 export GOOGLE_RECAPTCHA_SITE_KEY="6LeQMAsUAAAAAAm_KMxWOIpbdt3Lzung3U0Jaseh"
 export GOOGLE_ANALYTICS_TRACKING_ID="UA-86847178-1"
+export ALERTS_TO_ADDRESS="matthewriley.charliemoukbel@gmail.com"
 
 if [ $STAGE = "test" ]
 then
