@@ -32,34 +32,36 @@ class Message extends React.Component {
             return <div>{errorMessage}</div>;
         });
 
-        const sendButton = this._isStatus('sending') ? <span><img src="/images/ajax-loader.gif"/> Sending...</span> :
+        const sendButton = this._isStatus('sending') ? <span><img src="/images/ajax-loader.gif" /> Sending...</span> :
             <button type="button" onClick={this._sendMessage.bind(this)}>Send</button>;
+
+        const captcha = this.props.captchaEnabled ? <div className="field">
+            <div className="g-recaptcha" data-sitekey={this.props.googleRecaptchaSiteKey}></div>
+        </div> : null;
 
         return <div className="message">
             <form>
                 <h1 id="contact-me">Contact Me</h1>
                 <p>Van Package available</p>
                 <div id="errorMessage">{errorMessages}</div>
-                <br/>
+                <br />
                 <div className="field">
                     <label>Name</label>
-                    <input name="name" type="text" value={this.state.name} onChange={this._fieldChanged.bind(this)}/>
+                    <input name="name" type="text" value={this.state.name} onChange={this._fieldChanged.bind(this)} />
                 </div>
                 <div className="field">
                     <label>Email</label>
-                    <input name="email" type="email" value={this.state.email} onChange={this._fieldChanged.bind(this)}/>
+                    <input name="email" type="email" value={this.state.email} onChange={this._fieldChanged.bind(this)} />
                 </div>
                 <div className="field">
                     <label>Phone</label>
-                    <input name="phone" type="tel" value={this.state.phone} onChange={this._fieldChanged.bind(this)}/>
+                    <input name="phone" type="tel" value={this.state.phone} onChange={this._fieldChanged.bind(this)} />
                 </div>
                 <div className="field">
                     <label>Message</label>
-                    <textarea name="message" value={this.state.message} onChange={this._fieldChanged.bind(this)}/>
+                    <textarea name="message" value={this.state.message} onChange={this._fieldChanged.bind(this)} />
                 </div>
-                <div className="field">
-                    <div className="g-recaptcha" data-sitekey={this.props.googleRecaptchaSiteKey}></div>
-                </div>
+                {captcha}
                 {sendButton}
             </form>
         </div>
@@ -67,22 +69,23 @@ class Message extends React.Component {
 
     _fieldChanged(e) {
         const fieldName = e.target.getAttribute('name');
-        this.setState({[fieldName]: e.target.value}, () => {
-            const errorMessages = this._getErrorMessages({field: fieldName});
-            this.setState({errorMessages});
+        this.setState({ [fieldName]: e.target.value }, () => {
+            const errorMessages = this._getErrorMessages({ field: fieldName });
+            this.setState({ errorMessages });
         });
     }
 
     _sendMessage() {
-        this.setState({grecaptchaResponse: grecaptcha.getResponse()}, () => {
+        const state = this.props.captchaEnabled ? { grecaptchaResponse: grecaptcha.getResponse() } : {};
+        this.setState(state, () => {
             const errorMessages = this._getErrorMessages({});
             const isValid = errorMessages.length === 0;
-            this.setState({errorMessages});
+            this.setState({ errorMessages });
             if (!isValid) return;
 
-            this.setState({status: 'sending'}, () => {
+            this.setState({ status: 'sending' }, () => {
                 this._postMessage().then(() => {
-                    this.setState({status: 'sent'});
+                    this.setState({ status: 'sent' });
                 }).catch(() => {
                     this.setState({
                         status: 'error',
@@ -122,12 +125,15 @@ class Message extends React.Component {
                 field: 'message',
                 fn: () => !isBlank(this.state.message),
                 errorMessage: 'Message is required'
-            },
-            {
-                fn: () => !isBlank(this.state.grecaptchaResponse),
-                errorMessage: "Please prove you're not a robot"
             }
         ];
+
+        if (this.props.captchaEnabled) {
+            validations.push({
+                fn: () => !isBlank(this.state.grecaptchaResponse),
+                errorMessage: "Please prove you're not a robot"
+            });
+        }
 
         const filteredValidations = params.field ?
             validations.filter(item => item.field === params.field) : validations;

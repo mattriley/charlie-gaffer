@@ -5,7 +5,7 @@
   "main": "",
   "scripts": {
     "deploy": "sls deploy && npm run webpack-build && aws s3 sync src s3://$DOMAIN_NAME --profile=$AWS_PROFILE",
-    "start-local": "API_URL=http://localhost:5000 webpack-dev-server --inline --hot --content-base src/",
+    "start": "webpack-dev-server --inline --hot --content-base src/",
     "webpack-build": "webpack --progress --optimize-minimize",
     "systest": "tape system-tests/**/*.test.js"
   },

@@ -15,12 +15,14 @@ then
     export NOTIFICATION_TO_ADDRESS="matthewriley.charliemoukbel@gmail.com"
     export DOMAIN_NAME="test.charliemoukbel.com"
     export API_URL="https://fsbsjkefs5.execute-api.ap-southeast-2.amazonaws.com/test"
+    export CAPTCHA_ENABLED=0
 
 elif [ $STAGE = "prod" ]
 then
     export NOTIFICATION_TO_ADDRESS="cmoukbel@hotmail.com"
     export DOMAIN_NAME="charliemoukbel.com"
     export API_URL="https://i2z0fo0hqj.execute-api.ap-southeast-2.amazonaws.com/prod"
+    export CAPTCHA_ENABLED=1
 else
     echo "Unknown stage: $STAGE"
 fi

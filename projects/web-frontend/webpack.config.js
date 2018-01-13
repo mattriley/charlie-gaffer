@@ -29,7 +29,8 @@ module.exports = {
             'process.env': {
                 API_URL: JSON.stringify(process.env.API_URL),
                 GOOGLE_RECAPTCHA_SITE_KEY: JSON.stringify(process.env.GOOGLE_RECAPTCHA_SITE_KEY),
-                GOOGLE_ANALYTICS_TRACKING_ID: JSON.stringify(process.env.GOOGLE_ANALYTICS_TRACKING_ID)
+                GOOGLE_ANALYTICS_TRACKING_ID: JSON.stringify(process.env.GOOGLE_ANALYTICS_TRACKING_ID),
+                CAPTCHA_ENABLED: process.env.CAPTCHA_ENABLED
             }
         })
     ]

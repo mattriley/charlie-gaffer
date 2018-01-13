@@ -20,6 +20,7 @@ const handleMessage = _handleMessageEvent.bind({
         sesClient: new AWS.SES({ region: process.env.AWS_SES_REGION })
     }),
     verifyCaptcha: _verifyCaptcha.bind({
+        enabled: process.env.CAPTCHA_ENABLED,
         secret: process.env.GOOGLE_RECAPTCHA_SECRET_KEY,
         fetch
     })
