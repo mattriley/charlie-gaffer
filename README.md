@@ -10,5 +10,4 @@
 
 ## TODO
 
-- Implement monitoring.
 - Review usage of webpack and ensure easy local testing of frontend.
