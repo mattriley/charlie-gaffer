@@ -10,4 +10,4 @@
 
 ## TODO
 
-- Review usage of webpack and ensure easy local testing of frontend.
+- Frontend testing. With Jest?

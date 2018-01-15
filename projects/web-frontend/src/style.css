@@ -1,0 +1,106 @@
+body {
+    font-family: "Helvetica", "Arial", "Sans Serif";
+    margin: 0;
+}
+
+.title {
+    padding: 20px;
+    text-align: center;
+    background-color: #f5e5d9;
+    color: #39251A;
+}
+
+h1 {
+    /*padding: 5px;*/
+    border-bottom-style: dotted;
+    font-family: "Arial Black";
+}
+
+.title .name {
+    font-size: xx-large;
+}
+
+.title .role {
+    /*font-weight: bold;*/
+
+}
+
+.title > div {
+    margin: 5px;
+}
+
+h1, h2, h3 {
+    font-weight: normal;
+    text-align: center;
+}
+
+.portfolio {
+    text-align: center;
+    width: 1005px;
+    margin: auto;
+}
+
+.portfolio img {
+    width: 500px;
+    margin: 1px;
+}
+
+.project-details {
+    margin-top: 10px;
+    text-align: left;
+}
+
+a {
+    color: #39251A;
+}
+
+.title img {
+    display: inline-block;
+    height: 100px
+}
+
+.message {
+
+    background-color: #f5e5d9;
+    padding-bottom: 100px;
+    padding-top: 20px;
+    margin-top: 20px;
+}
+
+form {
+    /*width: 1005px;*/
+    width: 500px;
+    margin: auto;
+}
+
+label {
+    display: block;
+}
+
+
+
+.field input, .field textarea {
+    width: 100%;
+    font-size: x-large;
+    border: solid 1px #39251A;
+    padding: 10px;
+
+}
+
+button {
+    /*background-color: #f5e5d9;*/
+    background-color: white;
+    color: #39251A;
+    font-size: x-large;
+    border: solid 1px #39251A;
+    padding: 10px;
+}
+
+
+.field {
+    margin-bottom: 1.5em;
+}
+
+#errorMessage {
+    color: red;
+}

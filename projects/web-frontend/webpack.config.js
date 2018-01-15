@@ -1,12 +1,20 @@
 const webpack = require('webpack');
 const path = require('path');
 
+const srcDir = path.join(__dirname, 'src');
+
 module.exports = {
+    devServer: {
+        contentBase: srcDir,
+        compress: true,
+        port: 9000,
+        hot: true
+    },
     entry: {
-        app: ['./app/main.jsx']
+        app: ['./lib/main.jsx']
     },
     output: {
-        path: path.resolve(__dirname, 'src'),
+        path: srcDir,
         publicPath: '/',
         filename: 'bundle.js'
     },

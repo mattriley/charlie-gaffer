@@ -7,7 +7,5 @@ jspm_packages
 
 npm-debug.log
 
-projects/web-frontend/src
-
 .nyc_output
 coverage
