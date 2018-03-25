@@ -28,3 +28,4 @@ else
 fi
 
 export NOTIFICATION_FROM_ADDRESS="$DOMAIN_NAME <noreply@$DOMAIN_NAME>"
+export GOOGLE_RECAPTCHA_SECRET_KEY=`aws ssm get-parameter --name google_recaptcha_secret_key --with-decryption | jq -r '.Parameter.Value'`
