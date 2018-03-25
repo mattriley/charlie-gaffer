@@ -4,9 +4,9 @@ const fetch = require('node-fetch');
 const _saveMessage = require('./save-message');
 const _sendEmail = require('./send-email');
 const _verifyCaptcha = require('./verify-captcha');
-const _handleMessageEvent = require('./handle-message-event');
+const _lambda = require('./lambda');
 
-const handleMessage = _handleMessageEvent.bind({
+const handleMessage = _lambda.bind({
     console,
     saveMessage: _saveMessage.bind({
         now: Date.now,

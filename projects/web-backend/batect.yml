@@ -1,16 +1,20 @@
 containers:
   build-env:
-    image: node:6.10.3-alpine
+    build_directory: dockerfiles/build-env
     volumes:
       - .:/code:cached
+      - ../..:/code/root:cached
     working_directory: /code
+    environment:
+      - AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
 
 tasks:
-  shell:
+  sh:
     description: Start a shell.
     run:
       container: build-env
-      command: bash
+      command: /bin/sh
 
   npm-install:
     description: Install NPM dependencies.
@@ -23,3 +27,9 @@ tasks:
     run:
       container: build-env
       command: npm t
+
+  deploy:
+    description: Deploy.
+    run:
+      container: build-env
+      command: sh ./root/setenv.sh && npm run deploy

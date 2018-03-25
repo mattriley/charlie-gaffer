@@ -5,7 +5,7 @@ provider:
   runtime: nodejs6.10
   stage: ${env:STAGE}
   region: ap-southeast-2
-  profile: ${env:AWS_PROFILE}
+  #profile: ${env:AWS_PROFILE}
   tracing: true
   environment:
     AWS_SES_REGION: ${env:AWS_SES_REGION}
@@ -46,7 +46,7 @@ provider:
 
 functions:
   sendMessage:
-    handler: lib/handler.handleMessage
+    handler: lib/index.handleMessage
     events:
       - http:
           path: messages
