@@ -1,0 +1,25 @@
+containers:
+  build-env:
+    image: node:6.10.3-alpine
+    volumes:
+      - .:/code:cached
+    working_directory: /code
+
+tasks:
+  shell:
+    description: Start a shell.
+    run:
+      container: build-env
+      command: bash
+
+  npm-install:
+    description: Install NPM dependencies.
+    run:
+      container: build-env
+      command: npm install
+
+  test:
+    description: Run the unit tests.
+    run:
+      container: build-env
+      command: npm t
