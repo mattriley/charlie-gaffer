@@ -16,7 +16,7 @@ test('handle message event', t => {
     const saveMessage = td.function();
     const sendEmail = td.function();
 
-    const handleMessageEvent = _handleMessageEvent.bind({
+    const handleMessageEvent = _handleMessageEvent({
         verifyCaptcha,
         saveMessage,
         sendEmail

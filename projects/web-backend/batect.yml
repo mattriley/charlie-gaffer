@@ -1,35 +1,41 @@
 containers:
-  build-env:
-    build_directory: dockerfiles/build-env
+  build:
+    build_directory: dockerfiles/build
+    volumes:
+      - .:/code:cached
+    working_directory: /code
+
+  deploy:
+    build_directory: dockerfiles/deploy
     volumes:
       - .:/code:cached
       - ../..:/code/root:cached
     working_directory: /code
     environment:
       - AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
-      - AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+      - AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY      
 
 tasks:
   sh:
     description: Start a shell.
     run:
-      container: build-env
+      container: build
       command: /bin/sh
 
   npm-install:
     description: Install NPM dependencies.
     run:
-      container: build-env
+      container: build
       command: npm install
 
   test:
     description: Run the unit tests.
     run:
-      container: build-env
+      container: build
       command: npm t
 
   deploy:
     description: Deploy.
     run:
-      container: build-env
+      container: deploy
       command: sh ./root/setenv.sh && npm run deploy

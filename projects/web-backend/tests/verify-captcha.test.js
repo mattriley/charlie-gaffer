@@ -12,7 +12,7 @@ test('successfully verify captcha', t => {
         { method: 'POST' }
     )).thenResolve(fetchResponse);
 
-    const verifyCaptcha = _verifyCaptcha.bind({ secret: 'SECRET', fetch });
+    const verifyCaptcha = _verifyCaptcha({ secret: 'SECRET', fetch, enabled: true });
 
     verifyCaptcha({ response: 'RESPONSE' }).then(() => {
         t.pass('Captcha verification would have succeeded');
@@ -30,7 +30,7 @@ test('failure to verify captcha', t => {
         { method: 'POST' }
     )).thenResolve(fetchResponse);
 
-    const verifyCaptcha = _verifyCaptcha.bind({ secret: 'SECRET', fetch });
+    const verifyCaptcha = _verifyCaptcha({ secret: 'SECRET', fetch, enabled: true });
 
     verifyCaptcha({ response: 'RESPONSE' }).catch(err => {
         t.equal(err.message, 'Captcha verification failed.');

@@ -26,7 +26,7 @@ test('save message', t => {
     const putParams = { Item: item, TableName: tableName };
     td.when(dynamoClient.put(putParams)).thenCallback(null);
 
-    const saveMessage = _saveMessage.bind({
+    const saveMessage = _saveMessage({
         now,
         uuid,
         tableName,

@@ -40,7 +40,7 @@ test('send email', t => {
     const sesClient = { sendEmail: td.function() };
     td.when(sesClient.sendEmail(sendEmailParams)).thenReturn(sendEmailResult);
 
-    const sendEmail = _sendEmail.bind({ toAddress, fromAddress, sesClient });
+    const sendEmail = _sendEmail({ toAddress, fromAddress, sesClient });
 
     sendEmail(message).then(() => {
         t.pass('email would have been sent');
