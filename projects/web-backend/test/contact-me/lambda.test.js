@@ -1,6 +1,6 @@
 const test = require('tape');
 const td = require('testdouble');
-const _handleMessageEvent = require('../lib/lambda');
+const _handleMessageEvent = require('../../lib/contact-me/lambda');
 
 test('handle message event', t => {
 

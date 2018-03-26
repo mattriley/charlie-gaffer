@@ -1,6 +1,6 @@
 const test = require('tape');
 const td = require('testdouble');
-const _sendEmail = require('../lib/send-email');
+const _sendEmail = require('../../lib/contact-me/send-email');
 
 test('send email', t => {
 

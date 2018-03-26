@@ -1,6 +1,6 @@
 const test = require('tape');
 const td = require('testdouble');
-const _saveMessage = require('../lib/save-message');
+const _saveMessage = require('../../lib/contact-me/save-message');
 
 // TODO: Test empty and extra fields.
 

@@ -1,6 +1,6 @@
 const test = require('tape');
 const td = require('testdouble');
-const _verifyCaptcha = require('../lib/verify-captcha');
+const _verifyCaptcha = require('../../lib/contact-me/verify-captcha');
 
 test('successfully verify captcha', t => {
     const fetchResponse = { json: td.function() };
