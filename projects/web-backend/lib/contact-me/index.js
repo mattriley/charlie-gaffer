@@ -3,12 +3,12 @@ const _sendEmail = require('./send-email');
 const _verifyCaptcha = require('./verify-captcha');
 const _lambda = require('./lambda');
 
-module.exports = ({ dynamoClient, sesClient, fetch, uuid, config }) => {
+module.exports = ({ dynamoClient, sesClient, fetch, uuid, now, config }) => {
     return _lambda({
         console,
         saveMessage: _saveMessage({
-            now: Date.now, // TODO: maybe extract this.
-            uuid: uuid.v4,
+            now,
+            uuid,
             tableName: config.messagesTableName,
             dynamoClient
         }),

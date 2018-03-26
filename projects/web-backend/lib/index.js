@@ -7,7 +7,8 @@ const contactMe = composeContactMe({
     dynamoClient: new AWS.DynamoDB.DocumentClient(),
     sesClient: new AWS.SES({ region: process.env.AWS_SES_REGION }),
     fetch,
-    uuid,
+    uuid: uuid.v4,
+    now: Date.now,
     config: {
         messagesTableName: process.env.MESSAGES_TABLE_NAME,
         notificationFromAddress: process.env.NOTIFICATION_FROM_ADDRESS,
