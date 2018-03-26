@@ -7,7 +7,7 @@
   "scripts": {
     "test": "tape tests/**/*.test.js -r ./test-bootstrap.js | tap-spec",
     "cov": "nyc --reporter=text --reporter=html npm test",
-    "deploy": ". /project/setenv.sh && sls deploy"
+    "deploy": ". ../../setenv.sh && sls deploy"
   },
   "dependencies": {
     "bluebird": "^3.4.6",

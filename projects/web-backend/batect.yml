@@ -2,9 +2,8 @@ containers:
   build:
     build_directory: dockerfiles/build
     volumes:
-      - .:/code:cached
-      - ../..:/project:cached
-    working_directory: /code
+      - ../..:/code:cached
+    working_directory: /code/projects/web-backend
 
 tasks:
   sh:
