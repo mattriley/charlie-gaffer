@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 export STAGE=${1:-test}
-export AWS_PROFILE="charliemoukbel"
+# export AWS_PROFILE="charliemoukbel"
+export AWS_REGION="ap-southeast-2"
 export AWS_SES_REGION="us-west-2"
 export AWS_SES_IDENTITY="charliemoukbel.com"
 export HOSTED_ZONE="charliemoukbel.com."
@@ -28,4 +29,4 @@ else
 fi
 
 export NOTIFICATION_FROM_ADDRESS="$DOMAIN_NAME <noreply@$DOMAIN_NAME>"
-export GOOGLE_RECAPTCHA_SECRET_KEY=`aws ssm get-parameter --name google_recaptcha_secret_key --with-decryption | jq -r '.Parameter.Value'`
+export GOOGLE_RECAPTCHA_SECRET_KEY=`aws ssm get-parameter --region $AWS_REGION --name google_recaptcha_secret_key --with-decryption | jq -r '.Parameter.Value'`

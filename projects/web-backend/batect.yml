@@ -3,17 +3,8 @@ containers:
     build_directory: dockerfiles/build
     volumes:
       - .:/code:cached
+      - ../..:/project:cached
     working_directory: /code
-
-  deploy:
-    build_directory: dockerfiles/deploy
-    volumes:
-      - .:/code:cached
-      - ../..:/code/root:cached
-    working_directory: /code
-    environment:
-      - AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
-      - AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY      
 
 tasks:
   sh:
@@ -36,6 +27,11 @@ tasks:
 
   deploy:
     description: Deploy.
+    prerequisites:
+      - npm-install
     run:
-      container: deploy
-      command: sh ./root/setenv.sh && npm run deploy
+      container: build
+      command: npm run deploy
+      environment:
+        - AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+        - AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY 

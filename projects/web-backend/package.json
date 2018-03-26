@@ -7,7 +7,7 @@
   "scripts": {
     "test": "tape tests/**/*.test.js -r ./test-bootstrap.js | tap-spec",
     "cov": "nyc --reporter=text --reporter=html npm test",
-    "deploy": "sls deploy"
+    "deploy": ". /project/setenv.sh && sls deploy"
   },
   "dependencies": {
     "bluebird": "^3.4.6",
@@ -20,6 +20,7 @@
     "faucet": "0.0.1",
     "glob": "^7.1.2",
     "nyc": "^11.4.1",
+    "serverless": "^1.26.1",
     "serverless-plugin-aws-alerts": "^1.2.4",
     "tap-spec": "^4.1.1",
     "tape": "^4.8.0",
