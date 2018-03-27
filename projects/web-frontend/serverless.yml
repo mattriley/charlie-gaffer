@@ -4,12 +4,11 @@ provider:
   name: aws
   runtime: nodejs6.10
   stage: ${env:STAGE}
-  region: ap-southeast-2
+  region: ${env:AWS_REGION}
   profile: ${env:AWS_PROFILE}
 
 resources:
   Resources:
-
     WebsiteBucket:
       Type: AWS::S3::Bucket
       Properties:

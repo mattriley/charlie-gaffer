@@ -44,8 +44,8 @@ provider:
               - '*'
 
 functions:
-  sendMessage:
-    handler: lib/index.handleMessage
+  contactMe:
+    handler: lib/index.contactMe
     events:
       - http:
           path: messages

@@ -2,7 +2,7 @@ containers:
   build:
     build_directory: dockerfiles/build
     volumes:
-      - ../..:/code:cached
+      - .:/code:cached
     working_directory: /code/projects/web-backend
 
 tasks:
@@ -28,7 +28,7 @@ tasks:
     description: Run unit tests.
     run:
       container: build
-      command: npm t
+      command: npm test
 
   deploy:
     description: Deploy.
