@@ -15,7 +15,7 @@ module.exports = ({ verifyCaptcha, saveMessage, sendEmail }) => {
 
         return Promise.resolve(event.body)
             .then(JSON.parse)
-            .tap(message => verifyCaptcha({ response: message.grecaptchaResponse }))
+            .tap(message => verifyCaptcha(message.grecaptchaResponse))
             .tap(saveMessage)
             .tap(sendEmail)
             .tap(sendResponse)

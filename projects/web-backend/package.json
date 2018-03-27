@@ -5,10 +5,11 @@
     "author": "Matthew Riley",
     "license": "",
     "scripts": {
+        "build": "npm run test && npm run cov",
         "test": "npm run test-unit && npm run test-composition",
         "test-unit": "tape test/**/*.test.js -r ./test-bootstrap.js | tap-spec",
         "test-composition": "tape test-composition/**/*.test.js -r ./test-bootstrap.js | tap-spec",
-        "cov": "nyc --reporter=text --reporter=html npm test",
+        "cov": "nyc --reporter=text --reporter=html npm run test-unit",
         "deploy": ". ../../setenv.sh && sls deploy"
     },
     "dependencies": {

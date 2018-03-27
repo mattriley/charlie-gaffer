@@ -23,7 +23,7 @@ test('handle message event', t => {
     });
 
     const callback = (err, res) => {
-        td.verify(verifyCaptcha({ response: message.grecaptchaResponse }));
+        td.verify(verifyCaptcha(message.grecaptchaResponse));
         td.verify(saveMessage(message));
         td.verify(sendEmail(message));
         t.end();

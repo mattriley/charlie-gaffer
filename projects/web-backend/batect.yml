@@ -18,8 +18,14 @@ tasks:
       container: build
       command: npm install
 
+  build:
+    description: Run unit and composition tests, and coverage.
+    run:
+      container: build
+      command: npm run build
+
   test:
-    description: Run the unit tests.
+    description: Run unit tests.
     run:
       container: build
       command: npm t

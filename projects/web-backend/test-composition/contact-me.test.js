@@ -2,7 +2,7 @@ const test = require('tape');
 const td = require('testdouble');
 const composeContactMe = require('../lib/contact-me');
 
-test('...', t => {
+test('contact me happy path', t => {
 
     const fetchResponse = { json: td.function() };
     td.when(fetchResponse.json()).thenResolve({ success: true });

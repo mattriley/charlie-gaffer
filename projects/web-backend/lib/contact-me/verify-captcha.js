@@ -1,7 +1,7 @@
 module.exports = ({ secret, fetch, enabled }) => {
-    return ({ response }) => {
-        if (!enabled) return;
+    if (!enabled) return () => { };
 
+    return (response) => {
         const url = `https://www.google.com/recaptcha/api/siteverify?secret=${secret}&response=${response}`;
         return fetch(url, { method: 'POST' })
             .then(res => res.json())
