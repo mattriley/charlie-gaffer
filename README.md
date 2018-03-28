@@ -11,4 +11,3 @@
 ## TODO
 
 - Frontend testing. With Jest?
-- Needs `brew install jq`

@@ -1,6 +1,6 @@
 containers:
   build:
-    build_directory: dockerfiles/build
+    build_directory: ../../dockerfiles/build
     volumes:
       - .:/code:cached
     working_directory: /code
