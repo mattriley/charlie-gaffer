@@ -18,4 +18,4 @@ const contactMe = composeContactMe({
     }
 });
 
-return { contactMe };
+module.exports = { contactMe };

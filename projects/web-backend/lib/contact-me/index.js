@@ -14,7 +14,7 @@ module.exports = ({ dynamoClient, sesClient, fetch, uuid, now, config }) => {
         }),
         sendEmail: _sendEmail({
             fromAddress: config.notificationFromAddress,
-            toAddress: config.notificationToAdress,
+            toAddress: config.notificationToAddress,
             sesClient
         }),
         verifyCaptcha: _verifyCaptcha({

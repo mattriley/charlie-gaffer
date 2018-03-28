@@ -7,7 +7,7 @@ module.exports = ({ verifyCaptcha, saveMessage, sendEmail }) => {
             const response = {
                 statusCode: 201,
                 headers: {
-                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Origin': '*'
                 }
             };
             callback(null, response);

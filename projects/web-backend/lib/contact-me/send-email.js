@@ -27,6 +27,8 @@ module.exports = ({ toAddress, fromAddress, sesClient }) => {
             Source: fromAddress
         }
 
+        console.log(sendEmailParams)
+
         return sesClient.sendEmail(sendEmailParams).promise();
     };
 };
