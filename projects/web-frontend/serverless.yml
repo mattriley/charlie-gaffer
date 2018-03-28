@@ -5,7 +5,6 @@ provider:
   runtime: nodejs6.10
   stage: ${env:STAGE}
   region: ${env:AWS_REGION}
-  profile: ${env:AWS_PROFILE}
 
 resources:
   Resources:

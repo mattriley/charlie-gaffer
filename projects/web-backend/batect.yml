@@ -3,7 +3,10 @@ containers:
     build_directory: dockerfiles/build
     volumes:
       - .:/code:cached
-    working_directory: /code/projects/web-backend
+    working_directory: /code
+    environment:
+      - AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY 
 
 tasks:
   sh:
@@ -37,6 +40,3 @@ tasks:
     run:
       container: build
       command: npm run deploy
-      environment:
-        - AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
-        - AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY 

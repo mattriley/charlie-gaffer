@@ -69,9 +69,15 @@ resources:
           WriteCapacityUnits: 1
           
 plugins:
+  - serverless-domain-manager
   - serverless-plugin-aws-alerts
 
 custom:
+  customDomain:
+    domainName: api.charliemoukbel.com
+    basePath: ${self:provider.stage}
+    stage: ${self:provider.stage}
+    createRoute53Record: true
   alerts:
     stages:
       - test
