@@ -1,6 +1,4 @@
-module.exports = ({ secret, fetch, enabled }) => {
-    if (!enabled) return () => { };
-
+module.exports = ({ secret, fetch }) => {
     return (response) => {
         const url = `https://www.google.com/recaptcha/api/siteverify?secret=${secret}&response=${response}`;
         return fetch(url, { method: 'POST' })
