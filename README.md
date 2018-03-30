@@ -18,7 +18,7 @@ To deploy:
 
 1. `. ./setcreds.sh` to export the AWS credentials from the `charliemoukbel` profile as environment variables.
 2. `cd` to the desired project directory.
-3. `STAGE=prod ./batect deploy`. Omitting `STAGE` will default to `test`.
+3. `STAGE=prod ./batect deploy`. `STAGE` can be anything else for non-prod.
 
 ## Future Improvements
 

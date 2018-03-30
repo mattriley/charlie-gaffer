@@ -35,9 +35,9 @@ class Message extends React.Component {
         const sendButton = this._isStatus('sending') ? <span><img src="/images/ajax-loader.gif" /> Sending...</span> :
             <button type="button" onClick={this._sendMessage.bind(this)}>Send</button>;
 
-        const captcha = this.props.captchaEnabled ? <div className="field">
+        const captcha = <div className="field">
             <div className="g-recaptcha" data-sitekey={this.props.googleRecaptchaSiteKey}></div>
-        </div> : null;
+        </div>
 
         return <div className="message">
             <form>
@@ -76,7 +76,7 @@ class Message extends React.Component {
     }
 
     _sendMessage() {
-        const state = this.props.captchaEnabled ? { grecaptchaResponse: grecaptcha.getResponse() } : {};
+        const state = { grecaptchaResponse: grecaptcha.getResponse() };
         this.setState(state, () => {
             const errorMessages = this._getErrorMessages({});
             const isValid = errorMessages.length === 0;
@@ -98,7 +98,7 @@ class Message extends React.Component {
 
     _postMessage() {
         return axios({
-            url: `${this.props.apiUrl}/messages`,
+            url: `${this.props.apiUrl}/contact-me`,
             method: 'post',
             data: _.pick(this.state, ['name', 'email', 'phone', 'message', 'grecaptchaResponse'])
         });
@@ -128,12 +128,10 @@ class Message extends React.Component {
             }
         ];
 
-        if (this.props.captchaEnabled) {
-            validations.push({
-                fn: () => !isBlank(this.state.grecaptchaResponse),
-                errorMessage: "Please prove you're not a robot"
-            });
-        }
+        validations.push({
+            fn: () => !isBlank(this.state.grecaptchaResponse),
+            errorMessage: "Please prove you're not a robot"
+        });
 
         const filteredValidations = params.field ?
             validations.filter(item => item.field === params.field) : validations;

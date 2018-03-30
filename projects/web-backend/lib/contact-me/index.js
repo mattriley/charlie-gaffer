@@ -1,4 +1,3 @@
-const _ = require('lodash');
 const _saveMessage = require('./save-message');
 const _sendEmail = require('./send-email');
 const _verifyCaptcha = require('./verify-captcha');
@@ -18,9 +17,9 @@ module.exports = ({ dynamoClient, sesClient, fetch, uuid, now, config }) => {
             toAddress: config.notificationToAddress,
             sesClient
         }),
-        verifyCaptcha: config.captchaEnabled ? _verifyCaptcha({
+        verifyCaptcha: _verifyCaptcha({
             secret: config.recaptchaSecretKey,
             fetch
-        }) : _.noop()
+        })
     });
 };

@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-export STAGE=${1:-test}
-
 PROD_DOMAIN="charliemoukbel.com"
 NONPROD_TO_ADDRESS="matthewriley.charliemoukbel+$STAGE@gmail.com"
 
@@ -14,10 +12,8 @@ export GOOGLE_RECAPTCHA_SECRET_KEY=`aws ssm get-parameter --region $AWS_REGION -
 export ALERTS_TO_ADDRESS=$NONPROD_TO_ADDRESS
 export NOTIFICATION_TO_ADDRESS=$NONPROD_TO_ADDRESS
 export NOTIFICATION_FROM_ADDRESS="$PROD_DOMAIN <noreply@$PROD_DOMAIN>"
-export CAPTCHA_ENABLED="1"
 
 if [ $STAGE = "prod" ]
 then
     export NOTIFICATION_TO_ADDRESS="cmoukbel@hotmail.com"
-    export CAPTCHA_ENABLED="1"
 fi

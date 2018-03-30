@@ -4,10 +4,6 @@ containers:
     volumes:
       - .:/code:cached
     working_directory: /code
-    environment:
-      - STAGE=$STAGE
-      - AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
-      - AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY 
 
 tasks:
   sh:
@@ -15,6 +11,9 @@ tasks:
     run:
       container: build
       command: /bin/sh
+      environment:
+        - AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+        - AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY 
 
   npm-install:
     description: Install NPM dependencies.
@@ -41,3 +40,7 @@ tasks:
     run:
       container: build
       command: npm run deploy
+      environment:
+        - STAGE=$STAGE
+        - AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+        - AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY

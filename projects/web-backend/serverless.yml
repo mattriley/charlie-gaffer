@@ -48,7 +48,7 @@ functions:
     handler: lib/index.contactMe
     events:
       - http:
-          path: messages
+          path: contact-me
           method: post
           cors: true
 
