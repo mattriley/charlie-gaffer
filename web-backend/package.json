@@ -1,36 +1,27 @@
 {
-  "name": "web-backend",
-  "version": "1.0.0",
-  "description": "",
-  "author": "Matthew Riley",
-  "license": "",
-  "scripts": {
-    "build": "npm run lint && npm run test-composition && npm run cov",
-    "lint": "eslint lib",
-    "fixlint": "eslint lib --fix",
-    "test": "npm run test-unit && npm run test-composition",
-    "test-unit": "tape test/**/*.test.js -r ./test-bootstrap.js | tap-spec",
-    "test-composition": "tape test-composition/**/*.test.js -r ./test-bootstrap.js | tap-spec",
-    "cov": "nyc --check-coverage --lines 100 --functions 100 --branches 100 --reporter=text --reporter=html npm run test-unit",
-    "deploy": ". ./setenv.sh && sls deploy"
-  },
-  "dependencies": {
-    "bluebird": "^3.4.6",
-    "lodash": "^4.17.3",
-    "node-fetch": "^1.6.3",
-    "node-uuid": "^1.4.7"
-  },
-  "devDependencies": {
-    "aws-sdk": "^2.6.9",
-    "eslint": "^4.19.1",
-    "faucet": "0.0.1",
-    "glob": "^7.1.2",
-    "nyc": "^11.4.1",
-    "serverless": "^1.26.1",
-    "serverless-domain-manager": "^2.3.6",
-    "serverless-plugin-aws-alerts": "^1.2.4",
-    "tap-spec": "^4.1.1",
-    "tape": "^4.8.0",
-    "testdouble": "^3.3.1"
-  }
+    "name": "charlie-moukbel-web-backend",
+    "version": "1.0.0",
+    "description": "",
+    "author": "Matt Riley",
+    "license": "",
+    "dependencies": {
+        "bluebird": "^3.4.6",
+        "lodash": "^4.17.3",
+        "node-fetch": "^1.6.3",
+        "node-uuid": "^1.4.7"
+    },
+    "devDependencies": {
+        "aws-sdk": "^2.6.9",
+        "eslint": "^8.19.0",
+        "faucet": "0.0.1",
+        "glob": "^7.1.2",
+        "nyc": "^11.4.1",
+        "serverless": "^1.26.1",
+        "serverless-domain-manager": "^2.3.6",
+        "serverless-plugin-aws-alerts": "^1.2.4",
+        "tap-spec": "^4.1.1",
+        "tape": "^4.8.0",
+        "task-library": "^0.4.1",
+        "testdouble": "^3.3.1"
+    }
 }
