@@ -45,7 +45,7 @@ provider:
 
 functions:
   contactMe:
-    handler: lib/index.contactMe
+    handler: src/lambda
     events:
       - http:
           path: contact-me
