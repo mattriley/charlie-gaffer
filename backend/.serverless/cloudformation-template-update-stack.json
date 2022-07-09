@@ -215,7 +215,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/web-backend/test/1657363950731-2022-07-09T10:52:30.731Z/web-backend.zip"
+          "S3Key": "serverless/web-backend/test/1657364752908-2022-07-09T11:05:52.908Z/web-backend.zip"
         },
         "Handler": "src/lambda.handler",
         "Runtime": "nodejs16.x",
@@ -243,14 +243,14 @@
         "ContactMeLogGroup"
       ]
     },
-    "ContactMeLambdaVersionr5eC9yTj3mXtDsmELHKejFyoPBR2OTn5fpA9eLnbyQ": {
+    "ContactMeLambdaVersionp5jabmOjDFjHszO8lMI4GPTrLV0r7iLk44tdUb4pc": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ContactMeLambdaFunction"
         },
-        "CodeSha256": "9J/9B7tJTFaIzWbKmZhyvrcPwY9FAfdxe02d/udL/xc="
+        "CodeSha256": "35RayZkVGQtND4rn+MjE3JpmQXSDGoMwKbGI5YwlFrE="
       }
     },
     "ApiGatewayRestApi": {
@@ -371,7 +371,7 @@
         "ContactMeLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1657363945571": {
+    "ApiGatewayDeployment1657364747787": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -588,7 +588,7 @@
     "ContactMeLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ContactMeLambdaVersionr5eC9yTj3mXtDsmELHKejFyoPBR2OTn5fpA9eLnbyQ"
+        "Ref": "ContactMeLambdaVersionp5jabmOjDFjHszO8lMI4GPTrLV0r7iLk44tdUb4pc"
       },
       "Export": {
         "Name": "sls-web-backend-test-ContactMeLambdaFunctionQualifiedArn"
