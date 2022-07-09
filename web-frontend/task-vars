@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+export PROJECT_NAME="Charlie Moukbel - Gaffer"
+export WEB_HOST_NAME="charliemoukbel.com"
+
+export ESLINT_PATHS=("$SRC")
+
+export COV_BRANCHES=0
+export COV_LINES=0
+export COV_FUNCTIONS=0
+export COV_STATEMENTS=0

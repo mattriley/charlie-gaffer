@@ -1,1 +1,12 @@
-src/bundle.js
+.DS_Store
+/*cache
+/*output
+/.vscode
+/build
+/config.*
+/coverage
+/dist
+/itermocil.yml
+/metrics
+/temp
+src/bundle.jsnode_modules
