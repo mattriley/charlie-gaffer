@@ -1,8 +1,8 @@
 const compose = require('./compose');
 
-module.exports.handler = (event, context, callback) => {
+module.exports.handler = event => {
 
     const { modules } = compose();
-    return modules.contactMe.lambda(event, context, callback);
+    return modules.contactMe.lambda(event);
 
 };

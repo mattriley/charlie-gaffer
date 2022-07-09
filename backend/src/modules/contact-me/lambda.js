@@ -1,6 +1,6 @@
 module.exports = ({ contactMe }) => async event => {
 
-    const message = JSON.parse(event.body);
+    const message = event.body;
     await contactMe.verifyCaptcha(message.grecaptchaResponse);
     await contactMe.saveMessage(message);
     await contactMe.sendEmail(message);

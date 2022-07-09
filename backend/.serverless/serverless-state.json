@@ -246,7 +246,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/web-backend/test/1657363224492-2022-07-09T10:40:24.492Z/web-backend.zip"
+                "S3Key": "serverless/web-backend/test/1657363950731-2022-07-09T10:52:30.731Z/web-backend.zip"
               },
               "Handler": "src/lambda.handler",
               "Runtime": "nodejs16.x",
@@ -274,14 +274,14 @@
               "ContactMeLogGroup"
             ]
           },
-          "ContactMeLambdaVersionaSwfqTv8KVQ3DDMKDhVHY7Qm9wTyqyK4b02aqt3XKs": {
+          "ContactMeLambdaVersionr5eC9yTj3mXtDsmELHKejFyoPBR2OTn5fpA9eLnbyQ": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "ContactMeLambdaFunction"
               },
-              "CodeSha256": "vE9Cu1nMITNfmUtsvvjx4uCkxPAWuCK6WNg8+AUghiI="
+              "CodeSha256": "9J/9B7tJTFaIzWbKmZhyvrcPwY9FAfdxe02d/udL/xc="
             }
           },
           "ApiGatewayRestApi": {
@@ -402,7 +402,7 @@
               "ContactMeLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1657363219317": {
+          "ApiGatewayDeployment1657363945571": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -619,7 +619,7 @@
           "ContactMeLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "ContactMeLambdaVersionaSwfqTv8KVQ3DDMKDhVHY7Qm9wTyqyK4b02aqt3XKs"
+              "Ref": "ContactMeLambdaVersionr5eC9yTj3mXtDsmELHKejFyoPBR2OTn5fpA9eLnbyQ"
             },
             "Export": {
               "Name": "sls-web-backend-test-ContactMeLambdaFunctionQualifiedArn"
@@ -808,7 +808,7 @@
         "timeout": 6,
         "runtime": "nodejs16.x",
         "vpc": {},
-        "versionLogicalId": "ContactMeLambdaVersionaSwfqTv8KVQ3DDMKDhVHY7Qm9wTyqyK4b02aqt3XKs"
+        "versionLogicalId": "ContactMeLambdaVersionr5eC9yTj3mXtDsmELHKejFyoPBR2OTn5fpA9eLnbyQ"
       }
     },
     "resources": {
@@ -863,7 +863,7 @@
     "artifact": "/Users/mattriley/Home/Code/charliemoukbel/backend/.serverless/web-backend.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/web-backend/test/1657363224492-2022-07-09T10:40:24.492Z",
+    "artifactDirectoryName": "serverless/web-backend/test/1657363950731-2022-07-09T10:52:30.731Z",
     "artifact": "web-backend.zip"
   }
 }
