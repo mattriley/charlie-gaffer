@@ -3,12 +3,78 @@
   "Description": "The AWS CloudFormation template for this Serverless application",
   "Resources": {
     "ServerlessDeploymentBucket": {
-      "Type": "AWS::S3::Bucket"
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketEncryption": {
+          "ServerSideEncryptionConfiguration": [
+            {
+              "ServerSideEncryptionByDefault": {
+                "SSEAlgorithm": "AES256"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "ServerlessDeploymentBucketPolicy": {
+      "Type": "AWS::S3::BucketPolicy",
+      "Properties": {
+        "Bucket": {
+          "Ref": "ServerlessDeploymentBucket"
+        },
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "s3:*",
+              "Effect": "Deny",
+              "Principal": "*",
+              "Resource": [
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":s3:::",
+                      {
+                        "Ref": "ServerlessDeploymentBucket"
+                      },
+                      "/*"
+                    ]
+                  ]
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":s3:::",
+                      {
+                        "Ref": "ServerlessDeploymentBucket"
+                      }
+                    ]
+                  ]
+                }
+              ],
+              "Condition": {
+                "Bool": {
+                  "aws:SecureTransport": false
+                }
+              }
+            }
+          ]
+        }
+      }
     },
     "ContactMeLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "LogGroupName": "/aws/lambda/web-backend-prod-contactMe"
+        "LogGroupName": "/aws/lambda/web-backend-test-contactMe"
       }
     },
     "IamRoleLambdaExecution": {
@@ -36,8 +102,8 @@
               "Fn::Join": [
                 "-",
                 [
-                  "prod",
                   "web-backend",
+                  "test",
                   "lambda"
                 ]
               ]
@@ -48,11 +114,12 @@
                 {
                   "Effect": "Allow",
                   "Action": [
-                    "logs:CreateLogStream"
+                    "logs:CreateLogStream",
+                    "logs:CreateLogGroup"
                   ],
                   "Resource": [
                     {
-                      "Fn::Sub": "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/web-backend-prod-contactMe:*"
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/web-backend-test*:*"
                     }
                   ]
                 },
@@ -63,7 +130,7 @@
                   ],
                   "Resource": [
                     {
-                      "Fn::Sub": "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/web-backend-prod-contactMe:*:*"
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/web-backend-test*:*:*"
                     }
                   ]
                 },
@@ -94,7 +161,7 @@
                           {
                             "Ref": "AWS::AccountId"
                           },
-                          "table/messages-prod"
+                          "table/messages-test"
                         ]
                       ]
                     }
@@ -131,8 +198,10 @@
             "-",
             [
               "web-backend",
-              "prod",
-              "ap-southeast-2",
+              "test",
+              {
+                "Ref": "AWS::Region"
+              },
               "lambdaRole"
             ]
           ]
@@ -146,54 +215,54 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/web-backend/prod/1522381339170-2018-03-30T03:42:19.170Z/web-backend.zip"
+          "S3Key": "serverless/web-backend/test/1657361896020-2022-07-09T10:18:16.020Z/web-backend.zip"
         },
-        "FunctionName": "web-backend-prod-contactMe",
-        "Handler": "lib/index.contactMe",
+        "Handler": "src/lambda.handler",
+        "Runtime": "nodejs16.x",
+        "FunctionName": "web-backend-test-contactMe",
         "MemorySize": 1024,
-        "Role": {
-          "Fn::GetAtt": [
-            "IamRoleLambdaExecution",
-            "Arn"
-          ]
-        },
-        "Runtime": "nodejs6.10",
         "Timeout": 6,
         "Environment": {
           "Variables": {
             "AWS_SES_REGION": "us-west-2",
             "AWS_SES_IDENTITY": "charliemoukbel.com",
             "NOTIFICATION_FROM_ADDRESS": "charliemoukbel.com <noreply@charliemoukbel.com>",
-            "NOTIFICATION_TO_ADDRESS": "cmoukbel@hotmail.com",
+            "NOTIFICATION_TO_ADDRESS": "matthewriley.charliemoukbel+test@gmail.com",
             "GOOGLE_RECAPTCHA_SECRET_KEY": "6LeQMAsUAAAAAKPAErOaKV3UjMxbDUv-6QSZX6Cf",
-            "MESSAGES_TABLE_NAME": "messages-prod"
+            "MESSAGES_TABLE_NAME": "messages-test"
           }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
         }
       },
       "DependsOn": [
-        "ContactMeLogGroup",
-        "IamRoleLambdaExecution"
+        "ContactMeLogGroup"
       ]
     },
-    "ContactMeLambdaVersionMEVb7v1usmYjgY6QKs4ea1A2JZCp6jiAXqZNFJGX0": {
+    "ContactMeLambdaVersionYP8QQnLgvNQr1GUH23kibNs56XIiL0TIHkGZhuuYOE": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ContactMeLambdaFunction"
         },
-        "CodeSha256": "/M4hpsfWvdmINVKMIpDIQ1tGcXwduF/4KhXYryGUTfc="
+        "CodeSha256": "phTUOQPqMuoRm2fjkvFwgR8ymcNQn87N9w+gOnAPx9M="
       }
     },
     "ApiGatewayRestApi": {
       "Type": "AWS::ApiGateway::RestApi",
       "Properties": {
-        "Name": "prod-web-backend",
+        "Name": "test-web-backend",
         "EndpointConfiguration": {
           "Types": [
             "EDGE"
           ]
-        }
+        },
+        "Policy": ""
       }
     },
     "ApiGatewayResourceContactDashme": {
@@ -222,8 +291,7 @@
             "ResponseParameters": {
               "method.response.header.Access-Control-Allow-Origin": true,
               "method.response.header.Access-Control-Allow-Headers": true,
-              "method.response.header.Access-Control-Allow-Methods": true,
-              "method.response.header.Access-Control-Allow-Credentials": true
+              "method.response.header.Access-Control-Allow-Methods": true
             },
             "ResponseModels": {}
           }
@@ -234,14 +302,14 @@
           "RequestTemplates": {
             "application/json": "{statusCode:200}"
           },
+          "ContentHandling": "CONVERT_TO_TEXT",
           "IntegrationResponses": [
             {
               "StatusCode": "200",
               "ResponseParameters": {
                 "method.response.header.Access-Control-Allow-Origin": "'*'",
-                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
-                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'",
-                "method.response.header.Access-Control-Allow-Credentials": "'false'"
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,X-Amzn-Trace-Id'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'"
               },
               "ResponseTemplates": {
                 "application/json": ""
@@ -277,7 +345,11 @@
             "Fn::Join": [
               "",
               [
-                "arn:aws:apigateway:",
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
                 {
                   "Ref": "AWS::Region"
                 },
@@ -294,17 +366,21 @@
           }
         },
         "MethodResponses": []
-      }
+      },
+      "DependsOn": [
+        "ContactMeLambdaPermissionApiGateway"
+      ]
     },
-    "ApiGatewayDeployment1522381339342": {
+    "ApiGatewayDeployment1657361890982": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
           "Ref": "ApiGatewayRestApi"
         },
-        "StageName": "prod"
+        "StageName": "test"
       },
       "DependsOn": [
+        "ApiGatewayMethodContactDashmeOptions",
         "ApiGatewayMethodContactDashmePost"
       ]
     },
@@ -323,7 +399,11 @@
           "Fn::Join": [
             "",
             [
-              "arn:aws:execute-api:",
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
               {
                 "Ref": "AWS::Region"
               },
@@ -344,11 +424,11 @@
     "AwsAlertsAlarm": {
       "Type": "AWS::SNS::Topic",
       "Properties": {
-        "TopicName": "web-backend-prod-alerts-alarm",
+        "TopicName": "web-backend-test-alerts-alarm",
         "Subscription": [
           {
             "Protocol": "email",
-            "Endpoint": "matthewriley.charliemoukbel+prod@gmail.com"
+            "Endpoint": "matthewriley.charliemoukbel+test@gmail.com"
           }
         ]
       }
@@ -356,11 +436,13 @@
     "ContactMeFunctionErrorsAlarm": {
       "Type": "AWS::CloudWatch::Alarm",
       "Properties": {
+        "ActionsEnabled": true,
         "Namespace": "AWS/Lambda",
         "MetricName": "Errors",
         "Threshold": 1,
         "Period": 60,
         "EvaluationPeriods": 1,
+        "DatapointsToAlarm": 1,
         "ComparisonOperator": "GreaterThanOrEqualToThreshold",
         "OKActions": [],
         "AlarmActions": [
@@ -384,11 +466,13 @@
     "ContactMeFunctionThrottlesAlarm": {
       "Type": "AWS::CloudWatch::Alarm",
       "Properties": {
+        "ActionsEnabled": true,
         "Namespace": "AWS/Lambda",
         "MetricName": "Throttles",
         "Threshold": 1,
         "Period": 60,
         "EvaluationPeriods": 1,
+        "DatapointsToAlarm": 1,
         "ComparisonOperator": "GreaterThanOrEqualToThreshold",
         "OKActions": [],
         "AlarmActions": [
@@ -412,11 +496,13 @@
     "ContactMeFunctionInvocationsAlarm": {
       "Type": "AWS::CloudWatch::Alarm",
       "Properties": {
+        "ActionsEnabled": true,
         "Namespace": "AWS/Lambda",
         "MetricName": "Invocations",
         "Threshold": 100,
         "Period": 60,
         "EvaluationPeriods": 1,
+        "DatapointsToAlarm": 1,
         "ComparisonOperator": "GreaterThanOrEqualToThreshold",
         "OKActions": [],
         "AlarmActions": [
@@ -440,11 +526,13 @@
     "ContactMeFunctionDurationAlarm": {
       "Type": "AWS::CloudWatch::Alarm",
       "Properties": {
+        "ActionsEnabled": true,
         "Namespace": "AWS/Lambda",
         "MetricName": "Duration",
         "Threshold": 500,
         "Period": 60,
         "EvaluationPeriods": 1,
+        "DatapointsToAlarm": 1,
         "ComparisonOperator": "GreaterThanOrEqualToThreshold",
         "OKActions": [],
         "AlarmActions": [
@@ -468,7 +556,7 @@
     "DynamoDbTable": {
       "Type": "AWS::DynamoDB::Table",
       "Properties": {
-        "TableName": "messages-prod",
+        "TableName": "messages-test",
         "AttributeDefinitions": [
           {
             "AttributeName": "id",
@@ -492,12 +580,18 @@
     "ServerlessDeploymentBucketName": {
       "Value": {
         "Ref": "ServerlessDeploymentBucket"
+      },
+      "Export": {
+        "Name": "sls-web-backend-test-ServerlessDeploymentBucketName"
       }
     },
     "ContactMeLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ContactMeLambdaVersionMEVb7v1usmYjgY6QKs4ea1A2JZCp6jiAXqZNFJGX0"
+        "Ref": "ContactMeLambdaVersionYP8QQnLgvNQr1GUH23kibNs56XIiL0TIHkGZhuuYOE"
+      },
+      "Export": {
+        "Name": "sls-web-backend-test-ContactMeLambdaFunctionQualifiedArn"
       }
     },
     "ServiceEndpoint": {
@@ -510,9 +604,20 @@
             {
               "Ref": "ApiGatewayRestApi"
             },
-            ".execute-api.ap-southeast-2.amazonaws.com/prod"
+            ".execute-api.",
+            {
+              "Ref": "AWS::Region"
+            },
+            ".",
+            {
+              "Ref": "AWS::URLSuffix"
+            },
+            "/test"
           ]
         ]
+      },
+      "Export": {
+        "Name": "sls-web-backend-test-ServiceEndpoint"
       }
     }
   }

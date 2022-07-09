@@ -2,10 +2,9 @@ service: web-backend
 
 provider:
   name: aws
-  runtime: nodejs6.10
+  runtime: nodejs16.x
   stage: ${env:STAGE}
   region: ${env:AWS_REGION}
-  tracing: true
   environment:
     AWS_SES_REGION: ${env:AWS_SES_REGION}
     AWS_SES_IDENTITY: ${env:AWS_SES_IDENTITY}
@@ -45,7 +44,7 @@ provider:
 
 functions:
   contactMe:
-    handler: src/lambda
+    handler: src/lambda.handler
     events:
       - http:
           path: contact-me
