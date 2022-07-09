@@ -2,6 +2,7 @@
 
 export PROJECT_NAME="Charlie Moukbel - Gaffer"
 export WEB_HOST_NAME="charliemoukbel.com"
+export GITHUB_PAGES_PATH="../docs"
 
 export ESLINT_PATHS=("$SRC")
 
