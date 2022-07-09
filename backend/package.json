@@ -6,6 +6,7 @@
     "license": "",
     "dependencies": {
         "lodash": "^4.17.21",
+        "module-composer": "^0.53.0",
         "node-fetch": "^3.2.6"
     },
     "devDependencies": {
