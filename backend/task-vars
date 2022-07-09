@@ -18,9 +18,9 @@ export ALERTS_TO_ADDRESS=$NONPROD_TO_ADDRESS
 export NOTIFICATION_TO_ADDRESS=$NONPROD_TO_ADDRESS
 export NOTIFICATION_FROM_ADDRESS="$PROD_DOMAIN <noreply@$PROD_DOMAIN>"
 
-if [[ $STAGE = "prod" ]]; then
-    export NOTIFICATION_TO_ADDRESS="cmoukbel@hotmail.com"
-fi
+# if [[ $STAGE = "prod" ]]; then
+    # export NOTIFICATION_TO_ADDRESS="cmoukbel@hotmail.com"
+# fi
 
 export COV_BRANCHES=0
 export COV_LINES=0

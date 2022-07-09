@@ -1,6 +1,8 @@
 .DS_Store
 /*cache
 /*output
+/.nyc_output
+/.serverless
 /.vscode
 /build
 /config.*
@@ -10,3 +12,4 @@
 /metrics
 /temp
 node_modules
+npm-debug.log
