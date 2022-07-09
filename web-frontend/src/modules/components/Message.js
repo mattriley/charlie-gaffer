@@ -1,6 +1,5 @@
 const React = require('react');
 const _ = require('lodash');
-const axios = require('axios');
 
 module.exports = ({ config }) => {
 
@@ -97,10 +96,10 @@ module.exports = ({ config }) => {
         }
 
         _postMessage() {
-            return axios({
-                url: `${config.apiUrl}/contact-me`,
-                method: 'post',
-                data: _.pick(this.state, ['name', 'email', 'phone', 'message', 'grecaptchaResponse'])
+            const data = _.pick(this.state, ['name', 'email', 'phone', 'message', 'grecaptchaResponse']);
+            return fetch(`${config.apiUrl}/contact-me`, {
+                method: 'POST',
+                data: JSON.stringify(data)
             });
         }
 
