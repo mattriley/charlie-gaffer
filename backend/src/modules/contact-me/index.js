@@ -1,6 +1,6 @@
 module.exports = {
-    lambda: require('./lambda'),
-    saveMessage: require('./save-message'),
-    sendEmail: require('./send-email'),
+    ddbRequest: require('./ddb-request'),
+    handleEvent: require('./handle-event'),
+    sesRequest: require('./ses-request'),
     verifyCaptcha: require('./verify-captcha')
 };

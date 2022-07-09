@@ -1,6 +1,5 @@
-module.exports = ({ io, config }) => message => {
+module.exports = ({ config }) => message => {
 
-    const { sesClient } = io;
     const fromAddress = config.notificationFromAddress;
     const toAddress = config.notificationToAddress;
 
@@ -11,7 +10,7 @@ module.exports = ({ io, config }) => message => {
         `Message: ${message.message}`
     ];
 
-    const sendEmailParams = {
+    return {
         Destination: {
             ToAddresses: [toAddress]
         },
@@ -31,5 +30,4 @@ module.exports = ({ io, config }) => message => {
         Source: fromAddress
     };
 
-    return sesClient.sendEmail(sendEmailParams).promise();
 };

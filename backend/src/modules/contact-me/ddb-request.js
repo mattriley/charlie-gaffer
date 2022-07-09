@@ -7,7 +7,6 @@ module.exports = ({ io, config }) => message => {
     const id = io.uuid();
     const createdOn = new Date(io.now()).toISOString();
     const item = _.chain(message).pick(recordAttrs).omitBy(v => !v).assign({ id, createdOn }).value();
-    const params = { TableName: tableName, Item: item };
-    return io.dynamoClient.putAsync(params).promise();
+    return { TableName: tableName, Item: item };
 
 };
