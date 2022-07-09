@@ -1,6 +1,5 @@
 const test = require('tape');
 const td = require('testdouble');
-
 const compose = require('../src/compose');
 
 // TODO: Test empty and extra fields.
@@ -24,8 +23,11 @@ test('save message', async t => {
         io: { uuid, now, dynamoClient }
     };
 
+    console.log({ dynamoClient })
+
     const { modules } = compose({ configs: [config], overrides });
 
+    // console.log({ modules })
 
 
     const item = {
@@ -47,7 +49,12 @@ test('save message', async t => {
         message: 'MESSAGE'
     };
 
+
+
     await modules.contactMe.saveMessage(message);
+
+    td.verify(dynamoClient.put(putParams));
+
     t.pass('message would have been saved');
     t.end();
 });

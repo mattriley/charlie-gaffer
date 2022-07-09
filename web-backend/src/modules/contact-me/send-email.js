@@ -4,6 +4,8 @@ module.exports = ({ io, config }) => message => {
     const fromAddress = config.notificationFromAddress;
     const toAddress = config.notificationToAddress;
 
+    // console.log({ io, config })
+
     const lines = [
         `Name: ${message.name}`,
         `Email: ${message.email}`,
@@ -30,6 +32,8 @@ module.exports = ({ io, config }) => message => {
         },
         Source: fromAddress
     };
+
+    console.log(sesClient)
 
     return sesClient.sendEmail(sendEmailParams).promise();
 };
