@@ -5,8 +5,8 @@ It consists of a portfolio and a "contact me" form.
 
 This repository contains 2 projects: 
 
-- `web-backend`: A serverless application to serve "contact me" requests hosted on API Gateway and Lambda. It stores a copy of each message in DynamoDB, and emails the message using SES.
-- `web-frontend`: A React.js application hosted on S3.
+- `backend`: A serverless application to serve "contact me" requests hosted on API Gateway and Lambda. It stores a copy of each message in DynamoDB, and emails the message using SES.
+- `frontend`: A React.js application hosted on S3.
 
 ## Deployment
 
@@ -16,9 +16,9 @@ Once only:
 
 To deploy:
 
-1. `. ./setcreds.sh` to export the AWS credentials from the `charliemoukbel` profile as environment variables.
+1. `. ./setcreds` to export the AWS credentials from the `charliemoukbel` profile as environment variables.
 2. `cd` to the desired project directory.
-3. `STAGE=prod ./batect deploy`. `STAGE` can be anything else for non-prod.
+3. `npx task deploy` to deploy.
 
 ## Future Improvements
 
