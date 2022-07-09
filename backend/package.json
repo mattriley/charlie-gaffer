@@ -1,9 +1,7 @@
 {
-    "name": "charlie-moukbel-web-backend",
+    "name": "charlie-moukbel-gaffer-backend",
     "version": "1.0.0",
-    "description": "",
     "author": "Matt Riley",
-    "license": "",
     "dependencies": {
         "lodash": "^4.17.21",
         "module-composer": "^0.53.0",

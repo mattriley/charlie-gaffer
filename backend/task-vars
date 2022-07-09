@@ -1,28 +1,34 @@
 #!/bin/bash
 
-export AWS_PROFILE="charliemoukbel"
+export PROJECT_NAME="Charlie Moukbel - Gaffer"
+export WEB_HOST_NAME="charliemoukbel.com"
 
-PROD_DOMAIN="charliemoukbel.com"
-NONPROD_TO_ADDRESS="matthewriley.charliemoukbel+$STAGE@gmail.com"
-
-export AWS_REGION="ap-southeast-2"
-export AWS_SES_REGION="us-west-2"
-export AWS_SES_IDENTITY=$PROD_DOMAIN
-export MESSAGES_TABLE_NAME="messages-$STAGE"
-export GOOGLE_RECAPTCHA_SITE_KEY="6LeQMAsUAAAAAAm_KMxWOIpbdt3Lzung3U0Jaseh"
-export GOOGLE_RECAPTCHA_SECRET_KEY=`aws ssm get-parameter --region $AWS_REGION --name google_recaptcha_secret_key --with-decryption | jq -r '.Parameter.Value'`
-
-
-
-export ALERTS_TO_ADDRESS=$NONPROD_TO_ADDRESS
-export NOTIFICATION_TO_ADDRESS=$NONPROD_TO_ADDRESS
-export NOTIFICATION_FROM_ADDRESS="$PROD_DOMAIN <noreply@$PROD_DOMAIN>"
-
-if [[ $STAGE = "prod" ]]; then
-    export NOTIFICATION_TO_ADDRESS="cmoukbel@hotmail.com"
-fi
+export ESLINT_PATHS=("$SRC")
 
 export COV_BRANCHES=0
 export COV_LINES=0
 export COV_FUNCTIONS=0
 export COV_STATEMENTS=0
+
+# Project specific
+
+WEB_HOST_NAME="charliemoukbel.com"
+TECHNICAL_CONTACT_EMAIL="matthewriley.charliemoukbel+$STAGE@gmail.com"
+
+export STAGE=${STAGE:="test"}
+export AWS_PROFILE="charliemoukbel"
+export AWS_REGION="ap-southeast-2"
+export AWS_SES_REGION="us-west-2"
+export AWS_SES_IDENTITY="$WEB_HOST_NAME"
+export MESSAGES_TABLE_NAME="messages-$STAGE"
+export GOOGLE_RECAPTCHA_VERIFY_URL="https://www.google.com/recaptcha/api/siteverify"
+export GOOGLE_RECAPTCHA_SITE_KEY="6LeQMAsUAAAAAAm_KMxWOIpbdt3Lzung3U0Jaseh"
+export GOOGLE_RECAPTCHA_SECRET_KEY=$(aws ssm get-parameter --region $AWS_REGION --name google_recaptcha_secret_key --with-decryption | jq -r '.Parameter.Value')
+
+export ALERTS_TO_EMAIL="$TECHNICAL_CONTACT_EMAIL"
+export NOTIFICATION_TO_EMAIL="$TECHNICAL_CONTACT_EMAIL"
+export NOTIFICATION_FROM_EMAIL="Gaffer website <noreply@$WEB_HOST_NAME>"
+
+if [[ $STAGE = "prod" ]]; then
+    export NOTIFICATION_TO_EMAIL="cmoukbel@hotmail.com"
+fi

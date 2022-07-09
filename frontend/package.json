@@ -1,10 +1,6 @@
 {
-    "name": "charliemoukbel-web",
+    "name": "charlie-moukbel-gaffer-frontend",
     "version": "1.0.0",
-    "description": "",
-    "scripts": {
-        "systest": "tape system-tests/**/*.test.js"
-    },
     "author": "Matt Riley",
     "devDependencies": {
         "eslint": "^8.19.0",

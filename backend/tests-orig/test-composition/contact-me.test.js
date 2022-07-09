@@ -16,10 +16,9 @@ test('contact me happy path', t => {
 
     const config = {
         messagesTableName: 'MESSAGES_TABLE_NAME',
-        notificationFromAddress: 'NOTIFICATION_FROM_ADDRESS',
-        notificationToAddress: 'NOTIFICATION_TO_ADDRESS',
-        captchaEnabled: true,
-        recaptchaSecretKey: 'RECAPTCHA_SECRET_KEY'
+        notificationFromAddress: 'NOTIFICATION_FROM_EMAIL',
+        notificationToAddress: 'NOTIFICATION_TO_EMAIL',
+        captchaSecretKey: 'RECAPTCHA_SECRET_KEY'
     };
 
 
@@ -41,7 +40,7 @@ test('contact me happy path', t => {
 
     const sendEmailParams = {
         Destination: {
-            ToAddresses: ['NOTIFICATION_TO_ADDRESS']
+            ToAddresses: ['NOTIFICATION_TO_EMAIL']
         },
         Message: {
             Body: {
@@ -56,7 +55,7 @@ test('contact me happy path', t => {
                 Data: 'NAME sent you a message'
             }
         },
-        Source: 'NOTIFICATION_FROM_ADDRESS'
+        Source: 'NOTIFICATION_FROM_EMAIL'
     };
 
 
