@@ -1,0 +1,211 @@
+{
+  "service": {
+    "service": "web-frontend",
+    "serviceObject": {
+      "name": "web-frontend"
+    },
+    "provider": {
+      "stage": "prod",
+      "region": "ap-southeast-2",
+      "variableSyntax": "\\${([ ~:a-zA-Z0-9._'\",\\-\\/\\(\\)]+?)}",
+      "name": "aws",
+      "runtime": "nodejs6.10",
+      "versionFunctions": true,
+      "remoteFunctionData": null,
+      "compiledCloudFormationTemplate": {
+        "AWSTemplateFormatVersion": "2010-09-09",
+        "Description": "The AWS CloudFormation template for this Serverless application",
+        "Resources": {
+          "ServerlessDeploymentBucket": {
+            "Type": "AWS::S3::Bucket"
+          },
+          "WebsiteBucket": {
+            "Type": "AWS::S3::Bucket",
+            "Properties": {
+              "BucketName": "charliemoukbel.com",
+              "AccessControl": "PublicRead",
+              "WebsiteConfiguration": {
+                "IndexDocument": "index.html",
+                "ErrorDocument": "error.html"
+              }
+            }
+          },
+          "WWWBucket": {
+            "Type": "AWS::S3::Bucket",
+            "Properties": {
+              "BucketName": "www.charliemoukbel.com",
+              "WebsiteConfiguration": {
+                "RedirectAllRequestsTo": {
+                  "HostName": "charliemoukbel.com"
+                }
+              }
+            }
+          },
+          "WebsiteBucketPolicy": {
+            "Type": "AWS::S3::BucketPolicy",
+            "Properties": {
+              "Bucket": {
+                "Ref": "WebsiteBucket"
+              },
+              "PolicyDocument": {
+                "Statement": {
+                  "Sid": "PublicReadForGetBucketObjects",
+                  "Effect": "Allow",
+                  "Principal": "*",
+                  "Action": "s3:GetObject",
+                  "Resource": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        {
+                          "Fn::GetAtt": [
+                            "WebsiteBucket",
+                            "Arn"
+                          ]
+                        },
+                        "/*"
+                      ]
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "WebsiteDNS": {
+            "Type": "AWS::Route53::RecordSet",
+            "Properties": {
+              "HostedZoneName": "charliemoukbel.com.",
+              "Name": "charliemoukbel.com",
+              "Type": "A",
+              "AliasTarget": {
+                "HostedZoneId": "Z1WCIGYICN2BYD",
+                "DNSName": "s3-website-ap-southeast-2.amazonaws.com"
+              }
+            }
+          },
+          "WWWDNS": {
+            "Type": "AWS::Route53::RecordSet",
+            "Properties": {
+              "HostedZoneName": "charliemoukbel.com.",
+              "Name": "www.charliemoukbel.com",
+              "Type": "A",
+              "AliasTarget": {
+                "HostedZoneId": "Z1WCIGYICN2BYD",
+                "DNSName": "s3-website-ap-southeast-2.amazonaws.com"
+              }
+            }
+          }
+        },
+        "Outputs": {
+          "ServerlessDeploymentBucketName": {
+            "Value": {
+              "Ref": "ServerlessDeploymentBucket"
+            }
+          }
+        }
+      },
+      "coreCloudFormationTemplate": {
+        "AWSTemplateFormatVersion": "2010-09-09",
+        "Description": "The AWS CloudFormation template for this Serverless application",
+        "Resources": {
+          "ServerlessDeploymentBucket": {
+            "Type": "AWS::S3::Bucket"
+          }
+        },
+        "Outputs": {
+          "ServerlessDeploymentBucketName": {
+            "Value": {
+              "Ref": "ServerlessDeploymentBucket"
+            }
+          }
+        }
+      }
+    },
+    "functions": {},
+    "resources": {
+      "Resources": {
+        "WebsiteBucket": {
+          "Type": "AWS::S3::Bucket",
+          "Properties": {
+            "BucketName": "charliemoukbel.com",
+            "AccessControl": "PublicRead",
+            "WebsiteConfiguration": {
+              "IndexDocument": "index.html",
+              "ErrorDocument": "error.html"
+            }
+          }
+        },
+        "WWWBucket": {
+          "Type": "AWS::S3::Bucket",
+          "Properties": {
+            "BucketName": "www.charliemoukbel.com",
+            "WebsiteConfiguration": {
+              "RedirectAllRequestsTo": {
+                "HostName": "charliemoukbel.com"
+              }
+            }
+          }
+        },
+        "WebsiteBucketPolicy": {
+          "Type": "AWS::S3::BucketPolicy",
+          "Properties": {
+            "Bucket": {
+              "Ref": "WebsiteBucket"
+            },
+            "PolicyDocument": {
+              "Statement": {
+                "Sid": "PublicReadForGetBucketObjects",
+                "Effect": "Allow",
+                "Principal": "*",
+                "Action": "s3:GetObject",
+                "Resource": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "WebsiteBucket",
+                          "Arn"
+                        ]
+                      },
+                      "/*"
+                    ]
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "WebsiteDNS": {
+          "Type": "AWS::Route53::RecordSet",
+          "Properties": {
+            "HostedZoneName": "charliemoukbel.com.",
+            "Name": "charliemoukbel.com",
+            "Type": "A",
+            "AliasTarget": {
+              "HostedZoneId": "Z1WCIGYICN2BYD",
+              "DNSName": "s3-website-ap-southeast-2.amazonaws.com"
+            }
+          }
+        },
+        "WWWDNS": {
+          "Type": "AWS::Route53::RecordSet",
+          "Properties": {
+            "HostedZoneName": "charliemoukbel.com.",
+            "Name": "www.charliemoukbel.com",
+            "Type": "A",
+            "AliasTarget": {
+              "HostedZoneId": "Z1WCIGYICN2BYD",
+              "DNSName": "s3-website-ap-southeast-2.amazonaws.com"
+            }
+          }
+        }
+      },
+      "Outputs": {}
+    }
+  },
+  "package": {
+    "artifactDirectoryName": "serverless/web-frontend/prod/1522381474089-2018-03-30T03:44:34.089Z",
+    "artifact": ""
+  }
+}

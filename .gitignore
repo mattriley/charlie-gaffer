@@ -1,14 +1,1 @@
-# package directories
-node_modules
-jspm_packages
-
-# Serverless directories
-.serverless
-
-npm-debug.log
-
-.nyc_output
-coverage
-node-dependencies-*
-
-.DS_Store
+/.vscode

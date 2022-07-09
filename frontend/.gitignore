@@ -9,4 +9,5 @@
 /itermocil.yml
 /metrics
 /temp
-src/bundle.jsnode_modules
+src/bundle.js
+node_modules
