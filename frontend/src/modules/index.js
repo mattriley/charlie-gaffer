@@ -1,3 +1,5 @@
 module.exports = {
-    components: require('./components')
+    components: require('./components'),
+    hooks: require('./hooks'),
+    services: require('./services')
 };

@@ -4,20 +4,20 @@ module.exports = ({ config }) => {
 
     return class Portfolio extends React.Component {
         render() {
-            var collections = config.portfolio.collections.map(collection => this.renderCollection(collection));
+            var collections = config.portfolio.collections.map((collection, i) => this.renderCollection(collection, i));
             return <div className="portfolio">{collections}</div>;
         }
 
-        renderCollection(collection) {
-            var projects = collection.projects.map(project => this.renderProject(project));
-            return <div className="collection">
+        renderCollection(collection, i) {
+            var projects = collection.projects.map((project, i) => this.renderProject(project, i));
+            return <div key={i} className="collection">
                 <h1>{collection.title}</h1>
                 {projects}
             </div>;
         }
 
-        renderProject(project) {
-            var images = project.images.map(image => this.renderImage(image));
+        renderProject(project, i) {
+            var images = project.images.map((image, i) => this.renderImage(image, i));
 
             var filmInfo = [];
 
@@ -35,9 +35,9 @@ module.exports = ({ config }) => {
 
             filmInfo.push('Gaffer: Charlie Moukbel');
 
-            var fileInfoElements = filmInfo.map(item => <div>{item}</div>);
+            var fileInfoElements = filmInfo.map((item, i) => <div key={i}>{item}</div>);
 
-            return <div className="project">
+            return <div key={i} className="project">
                 <h2>{project.title}</h2>
                 {images}
                 <div className="project-details">
@@ -46,9 +46,9 @@ module.exports = ({ config }) => {
             </div>;
         }
 
-        renderImage(image) {
+        renderImage(image, i) {
             var src = 'screenshots/' + image;
-            return <img src={src} />;
+            return <img key={i} src={src} />;
         }
     };
 };

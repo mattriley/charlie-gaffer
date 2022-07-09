@@ -1,159 +1,101 @@
 const React = require('react');
 const _ = require('lodash');
 
-module.exports = ({ config }) => {
+module.exports = ({ services, hooks, config }) => () => {
 
-    return class Message extends React.Component {
+    const [state, setState] = React.useState({
+        name: 'Matt',
+        email: 'mattrileyaus@gmail.com',
+        phone: '0430512239',
+        message: 'test only',
+        grecaptchaResponse: null,
+        errorMessages: []
+    });
 
-        constructor() {
-            super();
-            this.state = {
-                name: '',
-                email: '',
-                phone: '',
-                message: '',
-                grecaptchaResponse: null,
-                errorMessages: []
-            };
-        }
+    console.log(state);
 
-        render() {
-            if (this._isStatus('sent')) {
-                return <div className="message">
-                    <form>
-                        <h1 id="contact-me">Contact Me</h1>
-                        Thanks for your message, I'll be in touch shortly.
-                    </form>
-                </div>;
-            }
+    const { send, loading, data } = hooks.useApi();
 
-            const errorMessages = this.state.errorMessages.map(errorMessage => {
-                return <div>{errorMessage}</div>;
-            });
+    const _fieldChanged = e => {
+        const fieldName = e.target.getAttribute('name');
+        const newState = { ...state, [fieldName]: e.target.value };
+        const errorMessages = services.validateMessage(newState, { field: fieldName });
+        setState({ ...newState, errorMessages });
+    };
 
-            const sendButton = this._isStatus('sending') ? <span><img src="/images/ajax-loader.gif" /> Sending...</span> :
-                <button type="button" onClick={this._sendMessage.bind(this)}>Send</button>;
-
-            const captcha = <div className="field">
-                <div className="g-recaptcha" data-sitekey={config.googleRecaptchaSiteKey}></div>
-            </div>;
-
-            return <div className="message">
-                <form>
-                    <h1 id="contact-me">Contact Me</h1>
-                    <p>Van Package available</p>
-                    <div id="errorMessage">{errorMessages}</div>
-                    <br />
-                    <div className="field">
-                        <label>Name</label>
-                        <input name="name" type="text" value={this.state.name} onChange={this._fieldChanged.bind(this)} />
-                    </div>
-                    <div className="field">
-                        <label>Email</label>
-                        <input name="email" type="email" value={this.state.email} onChange={this._fieldChanged.bind(this)} />
-                    </div>
-                    <div className="field">
-                        <label>Phone</label>
-                        <input name="phone" type="tel" value={this.state.phone} onChange={this._fieldChanged.bind(this)} />
-                    </div>
-                    <div className="field">
-                        <label>Message</label>
-                        <textarea name="message" value={this.state.message} onChange={this._fieldChanged.bind(this)} />
-                    </div>
-                    {captcha}
-                    {sendButton}
-                </form>
-            </div>;
-        }
-
-        _fieldChanged(e) {
-            const fieldName = e.target.getAttribute('name');
-            this.setState({ [fieldName]: e.target.value }, () => {
-                const errorMessages = this._getErrorMessages({ field: fieldName });
-                this.setState({ errorMessages });
-            });
-        }
-
-        _sendMessage() {
-            const state = { grecaptchaResponse: grecaptcha.getResponse() };
-            this.setState(state, () => {
-                const errorMessages = this._getErrorMessages({});
-                const isValid = errorMessages.length === 0;
-                this.setState({ errorMessages });
-                if (!isValid) return;
-
-                this.setState({ status: 'sending' }, () => {
-                    this._postMessage().then(() => {
-                        this.setState({ status: 'sent' });
-                    }).catch(() => {
-                        this.setState({
-                            status: 'error',
-                            errorMessages: ['Sorry, an unexpected error occurred. Please try again later.']
-                        });
-                    });
-                });
-            });
-        }
-
-        _postMessage() {
-            const data = _.pick(this.state, ['name', 'email', 'phone', 'message', 'grecaptchaResponse']);
-            return fetch(`${config.apiUrl}/contact-me`, {
+    const _sendMessage = () => {
+        console.log(1);
+        return setState(state => {
+            const newState = { ...state, grecaptchaResponse: grecaptcha.getResponse() };
+            const errorMessages = services.validateMessage(newState, {});
+            const isValid = errorMessages.length === 0;
+            let status = isValid ? 'sending' : undefined;
+            if (!isValid) return;
+            const data = _.pick(newState, ['name', 'email', 'phone', 'message', 'grecaptchaResponse']);
+            console.log(2);
+            send({
+                url: `${config.apiUrl}/contact-me`,
                 method: 'POST',
                 data: JSON.stringify(data)
             });
-        }
+            return { ...newState, status, errorMessages };
 
-        _getErrorMessages(params) {
-            const validations = [
-                {
-                    field: 'name',
-                    fn: () => !isBlank(this.state.name),
-                    errorMessage: 'Name is required'
-                },
-                {
-                    field: 'email',
-                    fn: () => !isBlank(this.state.email),
-                    errorMessage: 'Email is required'
-                },
-                {
-                    field: 'email',
-                    fn: () => isEmail(this.state.email),
-                    errorMessage: 'Email must contain @'
-                },
-                {
-                    field: 'message',
-                    fn: () => !isBlank(this.state.message),
-                    errorMessage: 'Message is required'
-                }
-            ];
-
-            validations.push({
-                fn: () => !isBlank(this.state.grecaptchaResponse),
-                errorMessage: 'Please prove you\'re not a robot'
-            });
-
-            const filteredValidations = params.field ?
-                validations.filter(item => item.field === params.field) : validations;
-
-            return filteredValidations.reduce((memo, item) => {
-                const isValid = item.fn();
-                if (!isValid) memo.push(item.errorMessage);
-                return memo;
-            }, []);
-        }
-
-        _isStatus(status) {
-            return _.get(this.state, 'status') === status;
-        }
-
+            // try {
+            //     await _postMessage(newState);
+            // } catch (err) {
+            //     return {
+            //         ...state,
+            //         status: 'error',
+            //         errorMessages: ['Sorry, an unexpected error occurred. Please try again later.']
+            //     };
+            // }
+        });
     };
 
-    function isBlank(obj) {
-        return obj.trim() === '';
+    if (data) {
+        return <div className="message">
+            <form>
+                <h1 id="contact-me">Contact Me</h1>
+                Thanks for your message, I'll be in touch shortly.
+            </form>
+        </div>;
     }
 
-    function isEmail(value) {
-        return value.indexOf('@') !== -1;
-    }
+    const errorMessages = state.errorMessages.map((errorMessage, i) => {
+        return <div key={i}>{errorMessage}</div>;
+    });
 
+    const sendButton = loading ? <span><img src="/images/ajax-loader.gif" /> Sending...</span> :
+        <button type="button" onClick={_sendMessage}>Send</button>;
+
+    const captcha = <div className="field">
+        <div className="g-recaptcha" data-sitekey={config.googleRecaptchaSiteKey}></div>
+    </div>;
+
+    return <div className="message">
+        <form>
+            <h1 id="contact-me">Contact Me</h1>
+            <p>Van Package available</p>
+            <div id="errorMessage">{errorMessages}</div>
+            <br />
+            <div className="field">
+                <label>Name</label>
+                <input name="name" type="text" value={state.name} onChange={_fieldChanged} />
+            </div>
+            <div className="field">
+                <label>Email</label>
+                <input name="email" type="email" value={state.email} onChange={_fieldChanged} />
+            </div>
+            <div className="field">
+                <label>Phone</label>
+                <input name="phone" type="tel" value={state.phone} onChange={_fieldChanged} />
+            </div>
+            <div className="field">
+                <label>Message</label>
+                <textarea name="message" value={state.message} onChange={_fieldChanged} />
+            </div>
+            {captcha}
+            {sendButton}
+        </form>
+    </div>;
 };

@@ -1,10 +1,10 @@
 module.exports = ({ components }) => () => {
 
     return <div>
-        <div class="title">
+        <div className="title">
             <img src="images/steamrobo.png" />
-            <div class="name">Charlie Moukbel</div>
-            <div class="role">Gaffer</div>
+            <div className="name">Charlie Moukbel</div>
+            <div className="role">Gaffer</div>
             <a href="#contact-me">Contact Me</a>
         </div>
 

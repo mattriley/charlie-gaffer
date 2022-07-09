@@ -5,7 +5,9 @@ const defaultConfig = require('./default-config');
 module.exports = ({ configs } = {}) => {
 
     const { compose, config } = composer(modules, { defaultConfig, configs });
-    compose('components', { config });
+    const { services } = compose('services');
+    const { hooks } = compose('hooks');
+    compose('components', { services, hooks, config });
     return compose.end();
 
 };
