@@ -1,11 +1,10 @@
 const AWS = require('aws-sdk');
-const fetch = require('node-fetch');
 const crypto = require('crypto');
 
 module.exports = ({ config }) => () => {
 
     return {
-        fetch,
+        fetch: (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args)),
         uuid: crypto.randomUUID,
         now: Date.now,
         dynamoClient: new AWS.DynamoDB.DocumentClient(),

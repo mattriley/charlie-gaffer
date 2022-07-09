@@ -1,4 +1,5 @@
 module.exports = ({ io, config }) => response => {
+
     const secret = config.recaptchaSecretKey;
     const url = `https://www.google.com/recaptcha/api/siteverify?secret=${secret}&response=${response}`;
     return io.fetch(url, { method: 'POST' })
@@ -7,4 +8,5 @@ module.exports = ({ io, config }) => response => {
             if (res.success) return;
             throw new Error('Captcha verification failed.');
         });
+
 };

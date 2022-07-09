@@ -1,4 +1,4 @@
-module.exports = ({ contactMe }) => event => {
+module.exports = ({ contactMe }) => async event => {
 
     const message = JSON.parse(event.body);
     await contactMe.verifyCaptcha(message.grecaptchaResponse);
