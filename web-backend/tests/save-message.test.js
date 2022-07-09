@@ -34,7 +34,7 @@ test('save message', async t => {
         name: 'NAME',
         email: 'EMAIL',
         phone: 'PHONE',
-        message: 'MESSAGE'
+        message: 'MESSAGE1'
     };
 
     const putParams = { Item: item, TableName: config.messagesTableName };
