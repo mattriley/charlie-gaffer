@@ -1,24 +1,15 @@
-const Promise = require('bluebird');
+module.exports = ({ contactMe }) => event => {
 
-module.exports = ({ contactMe }) => (event, context, callback) => {
+    const message = JSON.parse(event.body);
+    await contactMe.verifyCaptcha(message.grecaptchaResponse);
+    await contactMe.saveMessage(message);
+    await contactMe.sendEmail(message);
 
-    const { verifyCaptcha, saveMessage, sendEmail } = contactMe;
-
-    const sendResponse = () => {
-        const response = {
-            statusCode: 201,
-            headers: {
-                'Access-Control-Allow-Origin': '*'
-            }
-        };
-        callback(null, response);
+    return {
+        statusCode: 201,
+        headers: {
+            'Access-Control-Allow-Origin': '*'
+        }
     };
 
-    return Promise.resolve(event.body)
-        .then(JSON.parse)
-        .tap(message => verifyCaptcha(message.grecaptchaResponse))
-        .tap(saveMessage)
-        .tap(sendEmail)
-        .tap(sendResponse)
-        .catch(callback);
 };
