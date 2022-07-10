@@ -1,11 +1,9 @@
 #!/bin/bash
 
-. ../task-vars-common
-
 # Task library
 
 export EXTERNAL_NAME="Charlie Melbourne Gaffer"
-export GITHUB_PAGES_PATH="../docs"
+export WEB_HOST_NAME="charliemoukbel.com"
 
 read -r -d '' INDEX_HTML_HEAD<<EOF
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
@@ -21,6 +19,8 @@ export COV_STATEMENTS=0
 CONTACT_URL_TEST="https://dvyxxovnfx7szz4ojnchxmww5q0fnvto.lambda-url.ap-southeast-2.on.aws/"
 CONTACT_URL_PROD="https://74h46gbjouvnintgvgezfqzwma0yxtep.lambda-url.ap-southeast-2.on.aws/"
 
+export STAGE=${STAGE:="test"}
 [[ $STAGE = "prod" ]] && CONTACT_URL="${CONTACT_URL_PROD}"
 export CONTACT_URL=${CONTACT_URL:=$CONTACT_URL_TEST}
+export GOOGLE_RECAPTCHA_SITE_KEY="6LeQMAsUAAAAAAm_KMxWOIpbdt3Lzung3U0Jaseh"
 export GOOGLE_ANALYTICS_TRACKING_ID="UA-86847178-1"
