@@ -15,6 +15,7 @@ module.exports = () => callback => {
             setError(null);
         }
         catch (err) {
+            console.log(err);
             setError(err);
             setData(null);
         }
@@ -24,7 +25,9 @@ module.exports = () => callback => {
         }
     };
 
-    if (request) invokeCallback();
+    React.useEffect(() => {
+        if (request && !loading) invokeCallback();
+    });
 
     const send = request => setRequest(request);
 

@@ -10,4 +10,6 @@ module.exports = ({ io, config }) => async message => {
         throw new Error('Failed to send message');
     }
 
+    return resp;
+
 };

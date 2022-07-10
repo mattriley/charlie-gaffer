@@ -13,10 +13,11 @@ module.exports = ({ services, hooks, config }) => () => {
     });
 
     const { send, loading, data, error } = hooks.useApi(() => {
+        const errorMessages = services.validateMessage(state, {});
         const isValid = errorMessages.length === 0;
-        if (!isValid) return;
+        if (!isValid) return setState({ ...state, errorMessages });
         const message = _.pick(state, ['name', 'email', 'phone', 'message', 'grecaptchaResponse']);
-        services.sendMessage(message);
+        return services.sendMessage(message);
     });
 
     const _fieldChanged = e => {
@@ -31,17 +32,11 @@ module.exports = ({ services, hooks, config }) => () => {
 
     window.setCaptcha = token => setField('grecaptchaResponse', token);
 
-    const _sendMessage = () => {
-        return setState(state => {
-            const errorMessages = services.validateMessage(state, {});
-            send();
-            return { ...state, errorMessages };
-        });
+    const getErrorMessages = () => {
+        if (error) return ['Sorry, an unexpected error occurred. Please try again later.'];
+        return state.errorMessages;
     };
 
-    if (error) {
-        setState({ ...state, errorMessages: ['Sorry, an unexpected error occurred. Please try again later.'] });
-    }
 
     if (data) {
         return <div className="message">
@@ -52,12 +47,12 @@ module.exports = ({ services, hooks, config }) => () => {
         </div>;
     }
 
-    const errorMessages = state.errorMessages.map((errorMessage, i) => {
+    const errorMessages = getErrorMessages().map((errorMessage, i) => {
         return <div key={i}>{errorMessage}</div>;
     });
 
     const sendButton = loading ? <span><img src="/images/ajax-loader.gif" /> Sending...</span> :
-        <button type="button" onClick={_sendMessage}>Send</button>;
+        <button type="button" onClick={send}>Send</button>;
 
     const captcha = <div className="field">
         <div className="g-recaptcha"

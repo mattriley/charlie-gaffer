@@ -12,7 +12,7 @@ module.exports = ({ config }) => message => {
     );
 
     const prodSubject = `${message.name} sent you a message`;
-    const Subject = isProd ? prodSubject : `[TEST] ${prodSubject}`;
+    const subject = isProd ? prodSubject : `[TEST] ${prodSubject}`;
 
     const ToAddresses = [];
     const CcAddresses = [];
@@ -28,7 +28,7 @@ module.exports = ({ config }) => message => {
         Source: config.noreplyEmail,
         Destination: { ToAddresses, CcAddresses },
         Message: {
-            Subject,
+            Subject: { Data: subject },
             Body: {
                 Html: { Data: lines.join('<br/>') },
                 Text: { Data: lines.join('\n') }

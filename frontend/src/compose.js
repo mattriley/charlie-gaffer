@@ -4,8 +4,9 @@ const defaultConfig = require('./default-config');
 
 module.exports = ({ configs } = {}) => {
 
-    const { compose, config } = composer(modules, { defaultConfig, configs });
-    const { services } = compose('services');
+    const io = { fetch: (...args) => fetch(...args) };
+    const { compose, config } = composer({ io, ...modules }, { defaultConfig, configs });
+    const { services } = compose('services', { io, config });
     const { hooks } = compose('hooks');
     compose('components', { services, hooks, config });
     return compose.end();

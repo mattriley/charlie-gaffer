@@ -1,5 +1,5 @@
 function isBlank(obj) {
-    return obj.trim() === '';
+    return !obj || obj.trim() === '';
 }
 
 function isEmail(value) {
