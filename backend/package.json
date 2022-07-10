@@ -1,5 +1,5 @@
 {
-    "name": "charlie-moukbel-gaffer-backend",
+    "name": "charlie-gaffer-backend",
     "version": "1.0.0",
     "author": "Matt Riley",
     "dependencies": {
@@ -11,7 +11,6 @@
         "aws-sdk": "^2.1171.0",
         "eslint": "^8.19.0",
         "serverless": "^3.20.0",
-        "serverless-domain-manager": "^6.0.3",
         "serverless-plugin-aws-alerts": "^1.7.5",
         "tap-diff": "^0.1.1",
         "tape": "^5.5.3",

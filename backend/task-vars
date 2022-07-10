@@ -13,14 +13,17 @@ export COV_STATEMENTS=0
 
 # This project
 
-export AWS_PROFILE="charliemoukbel"
+function secret {
+    echo $(aws ssm get-parameter --region $AWS_REGION --name $1 --with-decryption | jq -r '.Parameter.Value')
+}
+
+export AWS_PROFILE="charlie-gaffer"
 export AWS_REGION="ap-southeast-2"
 export AWS_SES_REGION="ap-southeast-2"
 export AWS_SES_IDENTITY="$WEB_HOST_NAME"
 export MESSAGES_TABLE_NAME="messages-$STAGE"
 export GOOGLE_RECAPTCHA_VERIFY_URL="https://www.google.com/recaptcha/api/siteverify"
-export GOOGLE_RECAPTCHA_SECRET_KEY=$(aws ssm get-parameter --region $AWS_REGION --name google_recaptcha_secret_key --with-decryption | jq -r '.Parameter.Value')
-
-export PRIMARY_CONTACT_EMAIL="Charlie Moukbel <cmoukbel@hotmail.com>"
-export TECHNICAL_CONTACT_EMAIL="Matt Riley <mattrileyaus@gmail.com>"
+export GOOGLE_RECAPTCHA_SECRET_KEY=$(secret google_recaptcha_secret_key)
+export PRIMARY_CONTACT_EMAIL=$(secret primary_contact_email)
+export TECHNICAL_CONTACT_EMAIL=$(secret technical_contact_email)
 export NOREPLY_EMAIL="Gaffer website <noreply@$WEB_HOST_NAME>"
