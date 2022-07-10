@@ -12,43 +12,30 @@ module.exports = ({ services, hooks, config }) => () => {
         errorMessages: []
     });
 
-    console.log(state);
-
-    const { send, loading, data, error } = hooks.useApi();
+    const { send, loading, data, error } = hooks.useApi(() => {
+        const isValid = errorMessages.length === 0;
+        if (!isValid) return;
+        const message = _.pick(state, ['name', 'email', 'phone', 'message', 'grecaptchaResponse']);
+        services.sendMessage(message);
+    });
 
     const _fieldChanged = e => {
-        const fieldName = e.target.getAttribute('name');
-        const newState = { ...state, [fieldName]: e.target.value };
-        const errorMessages = services.validateMessage(newState, { field: fieldName });
+        setField(e.target.getAttribute('name'), e.target.value);
+    };
+
+    const setField = (key, value) => {
+        const newState = { ...state, [key]: value };
+        const errorMessages = services.validateMessage(newState, { field: key });
         setState({ ...newState, errorMessages });
     };
 
-    const _sendMessage = () => {
-        console.log(1);
-        return setState(state => {
-            const newState = { ...state, grecaptchaResponse: grecaptcha.getResponse() };
-            const errorMessages = services.validateMessage(newState, {});
-            const isValid = errorMessages.length === 0;
-            let status = isValid ? 'sending' : undefined;
-            if (!isValid) return;
-            const data = _.pick(newState, ['name', 'email', 'phone', 'message', 'grecaptchaResponse']);
-            console.log(2);
-            send({
-                url: config.apiUrl, // `${config.apiUrl}/contact-me`,
-                method: 'POST',
-                body: JSON.stringify(data)
-            });
-            return { ...newState, status, errorMessages };
+    window.setCaptcha = token => setField('grecaptchaResponse', token);
 
-            // try {
-            //     await _postMessage(newState);
-            // } catch (err) {
-            //     return {
-            //         ...state,
-            //         status: 'error',
-            //         errorMessages: ['Sorry, an unexpected error occurred. Please try again later.']
-            //     };
-            // }
+    const _sendMessage = () => {
+        return setState(state => {
+            const errorMessages = services.validateMessage(state, {});
+            send();
+            return { ...state, errorMessages };
         });
     };
 
@@ -60,7 +47,7 @@ module.exports = ({ services, hooks, config }) => () => {
         return <div className="message">
             <form>
                 <h1 id="contact-me">Contact Me</h1>
-                Thanks for your message, I'll be in touch shortly.
+                Thanks for your message, I&#39;ll be in touch shortly.
             </form>
         </div>;
     }
@@ -73,7 +60,10 @@ module.exports = ({ services, hooks, config }) => () => {
         <button type="button" onClick={_sendMessage}>Send</button>;
 
     const captcha = <div className="field">
-        <div className="g-recaptcha" data-sitekey={config.googleRecaptchaSiteKey}></div>
+        <div className="g-recaptcha"
+            data-sitekey={config.googleRecaptchaSiteKey}
+            data-callback="setCaptcha"
+        ></div>
     </div>;
 
     return <div className="message">
