@@ -7,5 +7,5 @@ module.exports = {
     noreplyEmail: process.env.NOREPLY_EMAIL,
     captchaVerifyUrl: process.env.GOOGLE_RECAPTCHA_VERIFY_URL,
     captchaSecretKey: process.env.GOOGLE_RECAPTCHA_SECRET_KEY,
-    messagesTableName: `${process.env.MESSAGES_TABLE_NAME}-${process.env.STAGE}`
+    messagesTableName: process.env.MESSAGES_TABLE_NAME
 };

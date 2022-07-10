@@ -1,6 +1,4 @@
-module.exports = ({ config }) => message => {
-
-    const isTest = config.stage !== 'prod' || config.technicalContactEmail.includes(message.email);
+module.exports = ({ config }) => ({ message, isTest }) => {
 
     const lines = [];
     if (isTest) lines.push('TEST ONLY');
