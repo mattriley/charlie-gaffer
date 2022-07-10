@@ -8,16 +8,15 @@ module.exports = ({ services, hooks, config }) => () => {
         email: 'mattrileyaus@gmail.com',
         phone: '0430512239',
         message: 'test only',
-        grecaptchaResponse: null,
-        errorMessages: []
+        grecaptchaResponse: null
     });
 
+    const [errorMessages, setErrorMessages] = React.useState([]);
+
     const { send, loading, data, error } = hooks.useApi(() => {
-        const errorMessages = services.validateMessage(state, {});
-        const isValid = errorMessages.length === 0;
-        if (!isValid) return setState({ ...state, errorMessages });
-        const message = _.pick(state, ['name', 'email', 'phone', 'message', 'grecaptchaResponse']);
-        return services.sendMessage(message);
+        const errorMessages1 = services.validateMessage(state, {});
+        setErrorMessages(errorMessages1);
+        return services.sendMessage(state);
     });
 
     const _fieldChanged = e => {
@@ -26,15 +25,16 @@ module.exports = ({ services, hooks, config }) => () => {
 
     const setField = (key, value) => {
         const newState = { ...state, [key]: value };
+        setState(newState);
         const errorMessages = services.validateMessage(newState, { field: key });
-        setState({ ...newState, errorMessages });
+        setErrorMessages(errorMessages);
     };
 
     window.setCaptcha = token => setField('grecaptchaResponse', token);
 
     const getErrorMessages = () => {
         if (error) return ['Sorry, an unexpected error occurred. Please try again later.'];
-        return state.errorMessages;
+        return errorMessages;
     };
 
 
@@ -47,7 +47,7 @@ module.exports = ({ services, hooks, config }) => () => {
         </div>;
     }
 
-    const errorMessages = getErrorMessages().map((errorMessage, i) => {
+    const errorMessagesNodes = getErrorMessages().map((errorMessage, i) => {
         return <div key={i}>{errorMessage}</div>;
     });
 
@@ -65,7 +65,7 @@ module.exports = ({ services, hooks, config }) => () => {
         <form>
             <h1 id="contact-me">Contact Me</h1>
             <p>Van Package available</p>
-            <div id="errorMessage">{errorMessages}</div>
+            <div id="errorMessage">{errorMessagesNodes}</div>
             <br />
             <div className="field">
                 <label>Name</label>
