@@ -6,6 +6,7 @@ provider:
   stage: ${env:STAGE}
   region: ${env:AWS_REGION}
   environment:
+    STAGE: ${env:STAGE}
     AWS_SES_REGION: ${env:AWS_SES_REGION}
     AWS_SES_IDENTITY: ${env:AWS_SES_IDENTITY}
     PRIMARY_CONTACT_EMAIL: ${env:PRIMARY_CONTACT_EMAIL}
