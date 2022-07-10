@@ -1,6 +1,6 @@
 const React = require('react');
 
-module.exports = ({ components, services, hooks, config }) => () => {
+module.exports = ({ components, services, hooks }) => () => {
 
     const [message, setMessage] = React.useState({
         name: 'Matt',
@@ -29,7 +29,7 @@ module.exports = ({ components, services, hooks, config }) => () => {
         setErrorMessages(errorMessages);
     };
 
-    window.setCaptcha = token => setField('grecaptchaResponse', token);
+    const onCaptcha = token => setField('grecaptchaResponse', token);
 
     const getErrorMessages = () => {
         if (error) return ['Sorry, an unexpected error occurred. Please try again later.'];
@@ -46,13 +46,6 @@ module.exports = ({ components, services, hooks, config }) => () => {
         <span><img src="/images/ajax-loader.gif" /> Sending...</span> :
         <button type="button" onClick={send}>Send</button>;
 
-    const captcha = <div className="field">
-        <div className="g-recaptcha"
-            data-sitekey={config.googleRecaptchaSiteKey}
-            data-callback="setCaptcha"
-        ></div>
-    </div>;
-
     return <div className="message">
         <form>
             <h1 id="contact-me">Contact Me</h1>
@@ -60,7 +53,7 @@ module.exports = ({ components, services, hooks, config }) => () => {
             <div id="errorMessage">{errorMessagesNodes}</div>
             <br />
             <components.MessageForm message={message} onFieldChanged={onFieldChanged} />
-            {captcha}
+            <components.MessageCaptcha onCaptcha={onCaptcha} />
             {sendButton}
         </form>
     </div>;
