@@ -1,9 +1,9 @@
 module.exports = ({ config }) => message => {
 
-    const isProd = config.stage === 'prod';
+    const isTest = config.stage !== 'prod' || message.email === config.technicalContactEmail;
 
     const lines = [];
-    if (!isProd) lines.push('TEST ONLY');
+    if (isTest) lines.push('TEST ONLY');
     lines.push(
         `Name: ${message.name}`,
         `Email: ${message.email}`,
@@ -12,16 +12,16 @@ module.exports = ({ config }) => message => {
     );
 
     const prodSubject = `${message.name} sent you a message`;
-    const subject = isProd ? prodSubject : `[TEST] ${prodSubject}`;
+    const subject = isTest ? `[TEST] ${prodSubject}` : prodSubject;
 
     const ToAddresses = [];
     const CcAddresses = [];
 
-    if (isProd) {
+    if (isTest) {
+        ToAddresses.push(config.technicalContactEmail);
+    } else {
         ToAddresses.push(config.primaryContactEmail);
         CcAddresses.push(config.technicalContactEmail);
-    } else {
-        ToAddresses.push(config.technicalContactEmail);
     }
 
     return {
