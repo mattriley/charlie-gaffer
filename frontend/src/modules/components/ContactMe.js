@@ -1,6 +1,6 @@
 const React = require('react');
 
-module.exports = ({ components, services, hooks }) => () => {
+module.exports = ({ components, pureComponents, services, hooks }) => () => {
 
     const [message, setMessage] = React.useState({
         name: 'Matt',
@@ -32,7 +32,7 @@ module.exports = ({ components, services, hooks }) => () => {
         setErrorMessages(errorMessages);
     };
 
-    if (data) return <components.MessageSent />;
+    if (data) return <pureComponents.MessageSent />;
 
     const sendButton = loading ?
         <span><img src="/images/ajax-loader.gif" /> Sending...</span> :
@@ -42,9 +42,9 @@ module.exports = ({ components, services, hooks }) => () => {
         <form>
             <h1 id="contact-me">Contact Me</h1>
             <p>Van Package available</p>
-            <components.ErrorMessages errorMessages={errorMessages} />
+            <pureComponents.ErrorMessages errorMessages={errorMessages} />
             <br />
-            <components.MessageForm message={message} onFieldChanged={onFieldChanged} />
+            <pureComponents.MessageForm message={message} onFieldChanged={onFieldChanged} />
             <components.MessageCaptcha onCaptcha={onCaptcha} />
             {sendButton}
         </form>

@@ -1,4 +1,4 @@
-module.exports = ({ config }) => ({ onCaptcha }) => {
+module.exports = ({ config, window }) => ({ onCaptcha }) => {
 
     window.setCaptcha = token => onCaptcha(token);
 

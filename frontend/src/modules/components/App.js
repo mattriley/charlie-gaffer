@@ -1,4 +1,4 @@
-module.exports = ({ components }) => () => {
+module.exports = ({ components, pureComponents }) => () => {
 
     return <div>
         <div className="title">
@@ -9,10 +9,10 @@ module.exports = ({ components }) => () => {
         </div>
 
         <div id="portfolio-container">
-            <components.Portfolio />
+            <pureComponents.Portfolio />
         </div>
         <div id="message-container">
-            <components.Message />
+            <components.ContactMe />
         </div>
     </div>;
 
