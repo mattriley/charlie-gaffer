@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Task library
+
+export PROJECT_NAME="Charlie Moukbel - Gaffer"
+export WEB_HOST_NAME="charliemoukbel.com"
+
+# This project
+
+export STAGE=${STAGE:="test"}
+export GOOGLE_RECAPTCHA_SITE_KEY="6LeQMAsUAAAAAAm_KMxWOIpbdt3Lzung3U0Jaseh"

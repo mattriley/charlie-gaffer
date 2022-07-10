@@ -1,7 +1,8 @@
 #!/bin/bash
 
-export PROJECT_NAME="Charlie Moukbel - Gaffer"
-export WEB_HOST_NAME="charliemoukbel.com"
+. ../task-vars-common
+
+# Task library
 
 export ESLINT_PATHS=("$SRC")
 
@@ -10,9 +11,7 @@ export COV_LINES=0
 export COV_FUNCTIONS=0
 export COV_STATEMENTS=0
 
-# Project specific
-
-export STAGE=${STAGE:="test"}
+# This project
 
 export AWS_PROFILE="charliemoukbel"
 export AWS_REGION="ap-southeast-2"
@@ -20,7 +19,6 @@ export AWS_SES_REGION="ap-southeast-2"
 export AWS_SES_IDENTITY="$WEB_HOST_NAME"
 export MESSAGES_TABLE_NAME="messages-$STAGE"
 export GOOGLE_RECAPTCHA_VERIFY_URL="https://www.google.com/recaptcha/api/siteverify"
-export GOOGLE_RECAPTCHA_SITE_KEY="6LeQMAsUAAAAAAm_KMxWOIpbdt3Lzung3U0Jaseh"
 export GOOGLE_RECAPTCHA_SECRET_KEY=$(aws ssm get-parameter --region $AWS_REGION --name google_recaptcha_secret_key --with-decryption | jq -r '.Parameter.Value')
 
 export PRIMARY_CONTACT_EMAIL="Charlie Moukbel <cmoukbel@hotmail.com>"

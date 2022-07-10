@@ -1,6 +1,7 @@
 {
     "name": "charlie-moukbel-gaffer-frontend",
     "version": "1.0.0",
+    "description": "Professional lighting for your film project.",
     "author": "Matt Riley",
     "devDependencies": {
         "eslint": "^8.19.0",
@@ -12,6 +13,6 @@
         "react-dom": "^18.2.0",
         "selenium-webdriver": "^4.3.1",
         "tape": "^5.5.3",
-        "task-library": "^0.4.1"
+        "task-library": "^0.4.5"
     }
 }
