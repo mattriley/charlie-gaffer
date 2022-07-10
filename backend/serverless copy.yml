@@ -1,4 +1,4 @@
-service: gaffer-backend
+service: web-backend
 
 provider:
   name: aws
@@ -9,8 +9,6 @@ provider:
     AWS_SES_REGION: ${env:AWS_SES_REGION}
     AWS_SES_IDENTITY: ${env:AWS_SES_IDENTITY}
     NOTIFICATION_TO_EMAIL: ${env:NOTIFICATION_TO_EMAIL}
-    NOTIFICATION_FROM_EMAIL: ${env:NOTIFICATION_FROM_EMAIL}
-    GOOGLE_RECAPTCHA_VERIFY_URL: ${env:GOOGLE_RECAPTCHA_VERIFY_URL}    
     GOOGLE_RECAPTCHA_SECRET_KEY: ${env:GOOGLE_RECAPTCHA_SECRET_KEY}
     MESSAGES_TABLE_NAME: ${env:MESSAGES_TABLE_NAME}
   iamRoleStatements:
@@ -46,8 +44,11 @@ provider:
 functions:
   contactMe:
     handler: src/lambda.handler
-    url:
-      cors: true
+    events:
+      - http:
+          path: contact-me
+          method: post
+          cors: true
 
 resources:
   Resources:
@@ -66,9 +67,15 @@ resources:
           WriteCapacityUnits: 1
           
 plugins:
+  - serverless-domain-manager
   - serverless-plugin-aws-alerts
 
 custom:
+  customDomain:
+    domainName: api.charliemoukbel.com
+    basePath: ${self:provider.stage}
+    stage: ${self:provider.stage}
+    createRoute53Record: true
   alerts:
     stages:
       - test

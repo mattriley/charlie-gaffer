@@ -1,6 +1,6 @@
 module.exports = {
     ddbRequest: require('./ddb-request'),
-    handleEvent: require('./handle-event'),
+    handleMessage: require('./handle-message'),
     sesRequest: require('./ses-request'),
     verifyCaptcha: require('./verify-captcha')
 };

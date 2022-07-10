@@ -1,8 +1,10 @@
 const compose = require('./compose');
+const { modules } = compose();
 
-module.exports.handler = event => {
+module.exports.handler = async event => {
 
-    const { modules } = compose();
-    return modules.contactMe.handleEvent(event);
+    const message = JSON.parse(event.body);
+    await modules.contactMe.handleMessage(message);
+    return { statusCode: 201 };
 
 };

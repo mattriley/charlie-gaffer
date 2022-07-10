@@ -14,7 +14,7 @@ module.exports = ({ services, hooks, config }) => () => {
 
     console.log(state);
 
-    const { send, loading, data } = hooks.useApi();
+    const { send, loading, data, error } = hooks.useApi();
 
     const _fieldChanged = e => {
         const fieldName = e.target.getAttribute('name');
@@ -34,9 +34,9 @@ module.exports = ({ services, hooks, config }) => () => {
             const data = _.pick(newState, ['name', 'email', 'phone', 'message', 'grecaptchaResponse']);
             console.log(2);
             send({
-                url: `${config.apiUrl}/contact-me`,
+                url: config.apiUrl, // `${config.apiUrl}/contact-me`,
                 method: 'POST',
-                data: JSON.stringify(data)
+                body: JSON.stringify(data)
             });
             return { ...newState, status, errorMessages };
 
@@ -51,6 +51,10 @@ module.exports = ({ services, hooks, config }) => () => {
             // }
         });
     };
+
+    if (error) {
+        setState({ ...state, errorMessages: ['Sorry, an unexpected error occurred. Please try again later.'] });
+    }
 
     if (data) {
         return <div className="message">

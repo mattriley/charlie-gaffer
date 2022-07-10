@@ -2,7 +2,8 @@ module.exports = ({ io, config }) => async message => {
 
     const url = `${config.captchaVerifyUrl}?secret=${config.captchaSecretKey}&response=${message.grecaptchaResponse}`;
     const res = await io.fetch(url, { method: 'POST' });
-    const { success } = await res.json();
-    if (!success) throw new Error('Captcha verification failed.');
+    const data = await res.json();
+    console.log('Captcha response:', data);
+    if (!data.success) throw new Error('Captcha verification failed.');
 
 };
