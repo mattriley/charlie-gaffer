@@ -4,8 +4,6 @@
 
 # Task library
 
-export ESLINT_PATHS=("$SRC")
-
 export COV_BRANCHES=0
 export COV_LINES=0
 export COV_FUNCTIONS=0
@@ -19,9 +17,9 @@ function secret {
 
 export AWS_PROFILE="charlie-gaffer"
 export AWS_REGION="ap-southeast-2"
-export AWS_SES_REGION="ap-southeast-2"
+export AWS_SES_REGION="$AWS_REGION"
 export AWS_SES_IDENTITY="$WEB_HOST_NAME"
-export MESSAGES_TABLE_NAME="messages-$STAGE"
+export MESSAGES_TABLE_NAME="messages"
 export GOOGLE_RECAPTCHA_VERIFY_URL="https://www.google.com/recaptcha/api/siteverify"
 export GOOGLE_RECAPTCHA_SECRET_KEY=$(secret google_recaptcha_secret_key)
 export PRIMARY_CONTACT_EMAIL=$(secret primary_contact_email)

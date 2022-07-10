@@ -2,7 +2,6 @@
 
 # Task library
 
-export PROJECT_NAME="Charlie Moukbel - Gaffer"
 export WEB_HOST_NAME="charliemoukbel.com"
 
 # This project

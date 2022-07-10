@@ -1,9 +1,10 @@
 {
     "name": "charlie-gaffer-frontend",
     "version": "1.0.0",
-    "description": "Professional lighting for your film project.",
+    "description": "Professional lighting for film and TV.",
     "author": "Matt Riley",
     "devDependencies": {
+        "cloc": "^2.10.0",
         "eslint": "^8.19.0",
         "eslint-plugin-react": "^7.30.1",
         "lodash": "^4.17.21",
@@ -12,7 +13,8 @@
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "selenium-webdriver": "^4.3.1",
+        "tap-diff": "^0.1.1",
         "tape": "^5.5.3",
-        "task-library": "^0.4.5"
+        "task-library": "^0.4.6"
     }
 }

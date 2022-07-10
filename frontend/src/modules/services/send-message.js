@@ -1,6 +1,6 @@
 module.exports = ({ io, config }) => async message => {
 
-    const resp = await io.fetch(config.apiUrl, {
+    const resp = await io.fetch(config.contactUrl, {
         method: 'POST',
         body: JSON.stringify(message)
     });

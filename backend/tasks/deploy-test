@@ -1,0 +1,4 @@
+#!/bin/bash
+
+export STAGE="test"
+sls deploy
