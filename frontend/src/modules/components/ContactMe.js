@@ -3,10 +3,10 @@ const React = require('react');
 module.exports = ({ components, pureComponents, services, hooks }) => () => {
 
     const [message, setMessage] = React.useState({
-        name: 'Matt',
-        email: 'mattrileyaus@gmail.com',
-        phone: '0430512239',
-        message: 'test only',
+        name: '',
+        email: '',
+        phone: '',
+        message: '',
         grecaptchaResponse: null
     });
 
@@ -38,15 +38,17 @@ module.exports = ({ components, pureComponents, services, hooks }) => () => {
         <span><img src="/images/ajax-loader.gif" /> Sending...</span> :
         <button type="button" onClick={send}>Send</button>;
 
-    return <div className="message">
-        <form>
-            <h1 id="contact-me">Contact Me</h1>
-            <p>Van Package available</p>
-            <pureComponents.ErrorMessages errorMessages={errorMessages} />
-            <br />
-            <pureComponents.MessageForm message={message} onFieldChanged={onFieldChanged} />
-            <components.MessageCaptcha onCaptcha={onCaptcha} />
-            {sendButton}
-        </form>
+    return <div id="message-container">
+        <div className="message">
+            <form>
+                <h1 id="contact-me">Contact Me</h1>
+                <p>Van Package available</p>
+                <pureComponents.ErrorMessages errorMessages={errorMessages} />
+                <br />
+                <pureComponents.MessageForm message={message} onFieldChanged={onFieldChanged} />
+                <components.MessageCaptcha onCaptcha={onCaptcha} />
+                {sendButton}
+            </form>
+        </div>
     </div>;
 };
