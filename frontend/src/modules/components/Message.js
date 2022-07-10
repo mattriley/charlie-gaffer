@@ -1,9 +1,8 @@
 const React = require('react');
-const _ = require('lodash');
 
-module.exports = ({ services, hooks, config }) => () => {
+module.exports = ({ components, services, hooks, config }) => () => {
 
-    const [state, setState] = React.useState({
+    const [message, setMessage] = React.useState({
         name: 'Matt',
         email: 'mattrileyaus@gmail.com',
         phone: '0430512239',
@@ -14,19 +13,19 @@ module.exports = ({ services, hooks, config }) => () => {
     const [errorMessages, setErrorMessages] = React.useState([]);
 
     const { send, loading, data, error } = hooks.useApi(() => {
-        const errorMessages1 = services.validateMessage(state, {});
+        const errorMessages1 = services.validateMessage(message, {});
         setErrorMessages(errorMessages1);
-        return services.sendMessage(state);
+        return services.sendMessage(message);
     });
 
-    const _fieldChanged = e => {
+    const onFieldChanged = e => {
         setField(e.target.getAttribute('name'), e.target.value);
     };
 
     const setField = (key, value) => {
-        const newState = { ...state, [key]: value };
-        setState(newState);
-        const errorMessages = services.validateMessage(newState, { field: key });
+        const newState = { ...message, [key]: value };
+        setMessage(newState);
+        const errorMessages = services.validateMessage(newState, { key });
         setErrorMessages(errorMessages);
     };
 
@@ -37,21 +36,14 @@ module.exports = ({ services, hooks, config }) => () => {
         return errorMessages;
     };
 
-
-    if (data) {
-        return <div className="message">
-            <form>
-                <h1 id="contact-me">Contact Me</h1>
-                Thanks for your message, I&#39;ll be in touch shortly.
-            </form>
-        </div>;
-    }
+    if (data) return <components.MessageSent />;
 
     const errorMessagesNodes = getErrorMessages().map((errorMessage, i) => {
         return <div key={i}>{errorMessage}</div>;
     });
 
-    const sendButton = loading ? <span><img src="/images/ajax-loader.gif" /> Sending...</span> :
+    const sendButton = loading ?
+        <span><img src="/images/ajax-loader.gif" /> Sending...</span> :
         <button type="button" onClick={send}>Send</button>;
 
     const captcha = <div className="field">
@@ -67,22 +59,7 @@ module.exports = ({ services, hooks, config }) => () => {
             <p>Van Package available</p>
             <div id="errorMessage">{errorMessagesNodes}</div>
             <br />
-            <div className="field">
-                <label>Name</label>
-                <input name="name" type="text" value={state.name} onChange={_fieldChanged} />
-            </div>
-            <div className="field">
-                <label>Email</label>
-                <input name="email" type="email" value={state.email} onChange={_fieldChanged} />
-            </div>
-            <div className="field">
-                <label>Phone</label>
-                <input name="phone" type="tel" value={state.phone} onChange={_fieldChanged} />
-            </div>
-            <div className="field">
-                <label>Message</label>
-                <textarea name="message" value={state.message} onChange={_fieldChanged} />
-            </div>
+            <components.MessageForm message={message} onFieldChanged={onFieldChanged} />
             {captcha}
             {sendButton}
         </form>

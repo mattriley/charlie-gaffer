@@ -35,8 +35,8 @@ module.exports = () => (state, params) => {
         errorMessage: 'Please prove you\'re not a robot'
     });
 
-    const filteredValidations = params.field ?
-        validations.filter(item => item.field === params.field) : validations;
+    const filteredValidations = params.key ?
+        validations.filter(item => item.field === params.key) : validations;
 
     return filteredValidations.reduce((memo, item) => {
         const isValid = item.fn();
