@@ -14,9 +14,6 @@ export COV_STATEMENTS=0
 
 export STAGE=${STAGE:="test"}
 
-WEB_HOST_NAME="charliemoukbel.com"
-TECHNICAL_CONTACT_EMAIL="matthewriley.charliemoukbel+$STAGE@gmail.com"
-
 export AWS_PROFILE="charliemoukbel"
 export AWS_REGION="ap-southeast-2"
 export AWS_SES_REGION="ap-southeast-2"
@@ -26,10 +23,6 @@ export GOOGLE_RECAPTCHA_VERIFY_URL="https://www.google.com/recaptcha/api/sitever
 export GOOGLE_RECAPTCHA_SITE_KEY="6LeQMAsUAAAAAAm_KMxWOIpbdt3Lzung3U0Jaseh"
 export GOOGLE_RECAPTCHA_SECRET_KEY=$(aws ssm get-parameter --region $AWS_REGION --name google_recaptcha_secret_key --with-decryption | jq -r '.Parameter.Value')
 
-export ALERTS_TO_EMAIL="$TECHNICAL_CONTACT_EMAIL"
-export NOTIFICATION_TO_EMAIL="$TECHNICAL_CONTACT_EMAIL"
-export NOTIFICATION_FROM_EMAIL="Gaffer website <noreply@$WEB_HOST_NAME>"
-
-if [[ $STAGE = "prod" ]]; then
-    export NOTIFICATION_TO_EMAIL="cmoukbel@hotmail.com"
-fi
+export PRIMARY_CONTACT_EMAIL="Charlie Moukbel <cmoukbel@hotmail.com>"
+export TECHNICAL_CONTACT_EMAIL="Matt Riley <mattrileyaus@gmail.com>"
+export NOREPLY_EMAIL="Gaffer website <noreply@$WEB_HOST_NAME>"

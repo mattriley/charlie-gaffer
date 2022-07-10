@@ -8,8 +8,9 @@ provider:
   environment:
     AWS_SES_REGION: ${env:AWS_SES_REGION}
     AWS_SES_IDENTITY: ${env:AWS_SES_IDENTITY}
-    NOTIFICATION_TO_EMAIL: ${env:NOTIFICATION_TO_EMAIL}
-    NOTIFICATION_FROM_EMAIL: ${env:NOTIFICATION_FROM_EMAIL}
+    PRIMARY_CONTACT_EMAIL: ${env:PRIMARY_CONTACT_EMAIL}
+    TECHNICAL_CONTACT_EMAIL: ${env:TECHNICAL_CONTACT_EMAIL}
+    NOREPLY_EMAIL: ${env:NOREPLY_EMAIL}
     GOOGLE_RECAPTCHA_VERIFY_URL: ${env:GOOGLE_RECAPTCHA_VERIFY_URL}    
     GOOGLE_RECAPTCHA_SECRET_KEY: ${env:GOOGLE_RECAPTCHA_SECRET_KEY}
     MESSAGES_TABLE_NAME: ${env:MESSAGES_TABLE_NAME}
@@ -78,7 +79,7 @@ custom:
         topic: ${self:service}-${env:STAGE}-alerts-alarm
         notifications:
           - protocol: email
-            endpoint: ${env:ALERTS_TO_EMAIL}
+            endpoint: ${env:TECHNICAL_CONTACT_EMAIL}
     alarms:
       - functionErrors
       - functionThrottles

@@ -1,9 +1,11 @@
 const process = require('process');
 
 module.exports = {
-    messagesTableName: process.env.MESSAGES_TABLE_NAME,
-    notificationFromAddress: process.env.NOTIFICATION_FROM_EMAIL,
-    notificationToAddress: process.env.NOTIFICATION_TO_EMAIL,
+    stage: process.env.STAGE,
+    primaryContactEmail: process.env.PRIMARY_CONTACT_EMAIL,
+    technicalContactEmail: process.env.TECHNICAL_CONTACT_EMAIL,
+    noreplyEmail: process.env.NOREPLY_EMAIL,
     captchaVerifyUrl: process.env.GOOGLE_RECAPTCHA_VERIFY_URL,
-    captchaSecretKey: process.env.GOOGLE_RECAPTCHA_SECRET_KEY
+    captchaSecretKey: process.env.GOOGLE_RECAPTCHA_SECRET_KEY,
+    messagesTableName: process.env.MESSAGES_TABLE_NAME
 };
