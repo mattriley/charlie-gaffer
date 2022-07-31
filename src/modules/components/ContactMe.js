@@ -1,6 +1,6 @@
 const React = require('react');
 
-module.exports = ({ components, pureComponents, services, hooks }) => () => {
+module.exports = ({ components, pureComponents, effects, lib, hooks }) => () => {
 
     const [message, setMessage] = React.useState({
         name: '',
@@ -13,10 +13,10 @@ module.exports = ({ components, pureComponents, services, hooks }) => () => {
     const [errorMessages, setErrorMessages] = React.useState([]);
 
     const { send, loading, data, error } = hooks.useApi(() => {
-        const errorMessages = services.validateMessage(message, {});
+        const errorMessages = lib.validateMessage(message, {});
         setErrorMessages(errorMessages);
         if (errorMessages.length) return;
-        return services.sendMessage(message);
+        return effects.sendMessage(message);
     });
 
     if (error && !errorMessages.length) {
@@ -27,7 +27,7 @@ module.exports = ({ components, pureComponents, services, hooks }) => () => {
     const onFieldChanged = e => setField(e.target.getAttribute('name'), e.target.value);
     const setField = (key, value) => {
         const newMessage = { ...message, [key]: value };
-        const errorMessages = services.validateMessage(newMessage, { key });
+        const errorMessages = lib.validateMessage(newMessage, { key });
         setMessage(newMessage);
         setErrorMessages(errorMessages);
     };

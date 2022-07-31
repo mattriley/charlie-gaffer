@@ -4,9 +4,8 @@ const { createRoot } = require('react-dom/client');
 
 const compose = require('./compose');
 const composition = compose({ window });
-const { modules, config } = composition;
+const { modules } = composition;
 window.app = composition;
-window.document.title = config.app.name;
 
 const container = document.getElementById('app');
 const root = createRoot(container);
