@@ -1,4 +1,0 @@
-#!/bin/bash
-
-load_vars ${1:-local}
-npx task parcel-serve

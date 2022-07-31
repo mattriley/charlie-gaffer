@@ -1,3 +1,0 @@
-#!/bin/bash
-
-npx task tape-test | npx tap-diff

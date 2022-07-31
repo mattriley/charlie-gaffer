@@ -1,4 +1,0 @@
-#!/bin/bash
-
-export STAGE="prod"
-npx task dist-github-pages

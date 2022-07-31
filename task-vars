@@ -2,8 +2,9 @@
 
 # Task library
 
-export EXTERNAL_NAME="Charlie Melbourne Gaffer"
+export DISPLAY_NAME="Charlie Melbourne Gaffer"
 export WEB_HOST_NAME="charliemoukbel.com"
+export TEST_RUNNER="tape"
 
 read -r -d '' INDEX_HTML_HEAD<<EOF
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>

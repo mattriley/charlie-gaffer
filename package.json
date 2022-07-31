@@ -2,10 +2,33 @@
     "name": "charlie-gaffer-frontend",
     "version": "1.0.0",
     "description": "Professional lighting for film and TV.",
-    "author": "Matt Riley",
+    "homepage": "https://github.com/mattriley/charlie-gaffer",
+    "repository": "github:mattriley/charlie-gaffer",
+    "author": {
+        "name": "Matt Riley",
+        "email": "m@ttriley.dev",
+        "url": "https://github.com/mattriley"
+    },
+    "bugs": {
+        "url": "https://github.com/mattriley/charlie-gaffer/issues",
+        "email": "m@ttriley.dev"
+    },
+    "scripts": {
+        "cov": "npx task cov",
+        "deploy": "npx task deploy",
+        "lint": "npx task lint",
+        "pre": "npx task pre",
+        "start": "npx task start",
+        "test": "npx task test"
+    },
     "devDependencies": {
+        "@babel/core": "^7.18.9",
+        "@babel/preset-env": "^7.18.9",
+        "@babel/preset-react": "^7.18.6",
+        "@node-loader/babel": "^2.0.1",
         "cloc": "^2.10.0",
-        "eslint": "^8.19.0",
+        "doctoc": "^2.2.0",
+        "eslint": "^8.20.0",
         "eslint-plugin-react": "^7.30.1",
         "husky": "^8.0.1",
         "lodash": "^4.17.21",
@@ -16,6 +39,6 @@
         "selenium-webdriver": "^4.3.1",
         "tap-diff": "^0.1.1",
         "tape": "^5.5.3",
-        "task-library": "^0.4.11"
+        "task-library": "^0.40.0"
     }
 }
