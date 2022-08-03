@@ -39,6 +39,6 @@
         "selenium-webdriver": "^4.3.1",
         "tap-diff": "^0.1.1",
         "tape": "^5.5.3",
-        "task-library": "^0.51.0"
+        "task-library": "^0.53.0"
     }
 }
