@@ -2,11 +2,12 @@ const composer = require('module-composer');
 const modules = require('./modules');
 const defaultConfig = require('./default-config');
 
-module.exports = ({ window, configs } = {}) => {
+module.exports = ({ compositionName, window, configs }) => {
 
-    const io = { fetch: (...args) => fetch(...args) };
-    const { compose, config } = composer({ io, ...modules }, { defaultConfig, configs });
+    const options = { compositionName, defaultConfig, configs };
+    const { compose, config } = composer(modules, options);
     const { lib } = compose('lib');
+    const { io } = compose('io', { window });
     const { effects } = compose('effects', { io, config });
     const { pureComponents } = compose('pureComponents', { config });
     const { hooks } = compose('hooks');
