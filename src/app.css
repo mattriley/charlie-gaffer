@@ -87,7 +87,8 @@ h2::after {
 }
 
 a {
-    color: #39251A;
+    /* color: #39251A; */
+    color: white;
 }
 
 .title img {
@@ -173,4 +174,23 @@ color: white;
 
 .g-recaptcha {
     text-align: center;
+}
+
+#header {
+    position: fixed;
+    background-color: white;
+    text-align: right;
+    /* width: 100%; */
+    display: flex;
+}
+
+#header a {
+    background-color: black;
+    color: white;
+    padding: 1rem;
+}
+
+
+a {
+text-decoration: none;
 }
