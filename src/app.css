@@ -9,8 +9,9 @@ body {
     border: solid 1rem rgb(168 94 201);
 }
 
-body, button, input {
+body, button, input, textarea {
     font-family: "Barlow Semi Condensed", "Helvetica", "Arial", "Sans Serif";
+    font-size: 1rem;
 }
 
 .title {
@@ -20,11 +21,17 @@ body, button, input {
     color: black;
 }
 
+h1, h2, h3 {
+    margin: 0;
+    padding: 0;
+}
+
+
 h1 {
     font-size: 2rem;
 }
 
-h2 {
+h2, h3 {
     font-size: 3rem;
 }
 
@@ -45,53 +52,35 @@ h2::after {
 
 .portfolio {
     text-align: center;
-    width: 1005px;
+    width: 1000px;
     margin: auto;
 }
 
-.images {
+.portfolio .images {
     line-height: 0;
 }
 
 .portfolio img {
     width: 500px;
-    display: inline-block;
-    
-    /* margin: 1px; */
 }
 
 .project {
-    margin-top: 5rem;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
 }
 
-
 .project-details {
-    margin-top: 10px;
+    margin-top: 1rem;
     text-align: right;
 }
 
-a {
-    /* color: #39251A; */
-    color: white;
-}
-
-.title img {
-    display: inline-block;
-    /* height: 100px */
-}
-
-
 #footer {
-    background-color: #f5e5d9;
     background-color: white;
-    padding-bottom: 100px;
-    padding-top: 20px;
-    margin-top: 20px;
+    padding: 2rem;
 }
 
 .message {
     width: 500px;
-    background-color: #f5e5d9;
     background-color: white;
     color: black;
     text-align: center;
@@ -104,38 +93,28 @@ label {
     text-align: left;
 }
 
-
-
 .field input, .field textarea {
     width: 100%;
     box-sizing: border-box;
-    font-size: x-large;
-    border: solid 1px #39251A;
-    padding: 10px;
+    border: solid 1px black;
+    padding: 0.8rem;
 
 }
 
-.field {
-    text-align: center;
-}
 
 
 button {
-    /*background-color: #f5e5d9;*/
     background-color: white;
-    color: #39251A;
-    font-size: x-large;
-    border: solid 1px #39251A;
-    padding: 10px;
+    border: solid 1px black;
+    padding: 1rem;
     width: 10rem;
     cursor: pointer;
 }
 
 button:hover {
-background-color: black;
-color: white;
+    background-color: black;
+    color: white;
 }
-
 
 .field {
     margin-bottom: 1.5em;
@@ -145,26 +124,14 @@ color: white;
     color: red;
 }
 
-/* .gaffer {
-    background-color: black;
-    color: white;
-} */
-
-
 .van {
     text-align: center;
 }
 
 
-.g-recaptcha {
-    text-align: center;
-}
-
 #header {
     position: fixed;
     background-color: white;
-    text-align: right;
-    /* width: 100%; */
     display: flex;
 }
 
@@ -172,14 +139,17 @@ color: white;
     background-color: black;
     color: white;
     padding: 1rem;
-    /* border: solid 1rem rgb(168	94	201	); */
 }
 
 
 a {
-text-decoration: none;
+    text-decoration: none;
 }
 
 a:hover {
-text-decoration: underline;
+    text-decoration: underline;
+}
+
+h3 {
+    text-transform: uppercase;
 }
