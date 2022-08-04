@@ -35,7 +35,7 @@ module.exports = ({ pureComponents, effects }) => () => {
     return <div id="footer">
         <div className="message">
             <h1 id="contact-me">Contact Me</h1>
-            <p>Van Package available</p>
+            <p className="van">Van Package available</p>
             <pureComponents.ErrorMessage errorMessage={errorMessage} />
             <br />
             <pureComponents.MessageForm
