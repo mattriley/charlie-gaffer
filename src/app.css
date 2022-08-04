@@ -6,9 +6,7 @@ html, body {
 }
 
 body {
-    border-left: solid 5px rgb(168	94	201	);
-    border-right: solid 5px rgb(168	94	201	);
-    border: solid 1rem rgb(168	94	201	);
+    border: solid 1rem rgb(168 94 201);
 }
 
 body, button, input {
@@ -16,59 +14,39 @@ body, button, input {
 }
 
 .title {
-    padding: 20px;
+    padding: 1rem;
     text-align: center;
-    /* background-color: #f5e5d9; */
     background-color: white;
-    /* color: #39251A; */
     color: black;
 }
 
 h1 {
-    /*padding: 5px;*/
-    /* border-bottom-style: dotted; */
-    /* font-family: "Arial Black"; */
+    font-size: 2rem;
+}
+
+h2 {
     font-size: 3rem;
-    text-transform: uppercase;
 }
 
-.title .name {
-    font-size: xx-large;
-}
-
-.title .role {
-    /*font-weight: bold;*/
-
-}
-
-.title > div {
-    margin: 5px;
-}
-
-h1, h2, h3 {
+h1, h2 {
     font-weight: normal;
     text-align: center;
-    font-size: 3rem;
     margin: 0;
     padding: 0;
 }
 
 h2::before {
-    content: "〝";
     content: "❮ "
 }
 
 h2::after {
-    content: "〞";
     content: " ❯";
-
 }
 
 .portfolio {
     text-align: center;
     width: 1005px;
     margin: auto;
-    
 }
 
 .images {

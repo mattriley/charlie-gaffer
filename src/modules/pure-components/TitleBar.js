@@ -2,8 +2,8 @@ module.exports = () => () => {
 
     return <div className="title">
         <img src="images/steamrobo.png" />
-        <div className="name">Charlie / Gaffer / Melbourne</div>
-
+        <h1>Charlie / Gaffer / Melbourne</h1>
+        <p>Professional lighting for film and TV</p>
     </div>;
 
 };
