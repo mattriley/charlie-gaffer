@@ -5,6 +5,12 @@ html, body {
     font-size: 18px;
 }
 
+body {
+    border-left: solid 5px rgb(168	94	201	);
+    border-right: solid 5px rgb(168	94	201	);
+    border: solid 1rem rgb(168	94	201	);
+}
+
 body, button, input {
     font-family: "Barlow Semi Condensed", "Helvetica", "Arial", "Sans Serif";
 }
@@ -188,9 +194,14 @@ color: white;
     background-color: black;
     color: white;
     padding: 1rem;
+    /* border: solid 1rem rgb(168	94	201	); */
 }
 
 
 a {
 text-decoration: none;
+}
+
+a:hover {
+text-decoration: underline;
 }
