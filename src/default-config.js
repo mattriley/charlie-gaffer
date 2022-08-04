@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 
 module.exports = {
-    portfolio: require('./portfolio'),
+    portfolio: require('./portfolio.json'),
     stage: process.env.STAGE,
     appName: process.env.DISPLAY_NAME,
     contactUrl: process.env.CONTACT_URL,
