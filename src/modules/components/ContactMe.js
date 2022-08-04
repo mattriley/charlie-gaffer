@@ -32,7 +32,7 @@ module.exports = ({ pureComponents, effects }) => () => {
 
     if (status === 'success') return <pureComponents.MessageSent />;
 
-    return <div id="message-container">
+    return <div id="footer">
         <div className="message">
             <h1 id="contact-me">Contact Me</h1>
             <p>Van Package available</p>
