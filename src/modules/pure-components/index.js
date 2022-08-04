@@ -1,5 +1,5 @@
 module.exports = {
-    ErrorMessages: require('./ErrorMessages'),
+    ErrorMessage: require('./ErrorMessage'),
     MessageForm: require('./MessageForm'),
     MessageSent: require('./MessageSent'),
     Portfolio: require('./Portfolio'),

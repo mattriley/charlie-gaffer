@@ -7,7 +7,7 @@ module.exports = ({ compositionName, window, configs }) => {
     const options = { compositionName, defaultConfig, configs };
     const { compose, config } = composer(modules, options);
     const { lib } = compose('lib');
-    const { io } = compose('io', { window });
+    const { io } = compose('io', { config, window });
     const { effects } = compose('effects', { io, config });
     const { pureComponents } = compose('pureComponents', { config });
     const { hooks } = compose('hooks');

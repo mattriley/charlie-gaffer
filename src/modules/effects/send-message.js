@@ -1,15 +1,6 @@
-module.exports = ({ io, config }) => async message => {
+module.exports = ({ io, config }) => message => {
 
-    const resp = await io.fetch(config.contactUrl, {
-        method: 'POST',
-        body: JSON.stringify(message)
-    });
-
-    if (!resp.ok) {
-        console.error(resp);
-        throw new Error('Failed to send message');
-    }
-
-    return resp;
+    const url = `${config.contactUrl}/messages`;
+    return io.fetchJson(url, { method: 'POST', body: message });
 
 };

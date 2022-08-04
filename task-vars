@@ -6,8 +6,6 @@ export DISPLAY_NAME="Charlie Melbourne Gaffer"
 export WEB_HOST_NAME="charliemoukbel.com"
 export TEST_RUNNER="tape"
 
-export INDEX_HTML_HEAD='<script src="https://www.google.com/recaptcha/api.js" async defer></script>'
-
 export COV_BRANCHES=0
 export COV_LINES=0
 export COV_FUNCTIONS=0
@@ -17,6 +15,8 @@ export COV_STATEMENTS=0
 
 export GOOGLE_RECAPTCHA_SITE_KEY="6LeQMAsUAAAAAAm_KMxWOIpbdt3Lzung3U0Jaseh"
 export GOOGLE_ANALYTICS_TRACKING_ID="UA-86847178-1"
+
+export CONTACT_URL="http://localhost:3000"
 
 case $STAGE in
   local)

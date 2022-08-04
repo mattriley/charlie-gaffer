@@ -1,54 +1,49 @@
 const React = require('react');
+const initialState = { name: '', email: '', phone: '', message: '', grecaptchaResponse: null };
 
-module.exports = ({ components, pureComponents, effects, lib, hooks }) => () => {
+module.exports = ({ pureComponents, effects }) => () => {
 
-    const [message, setMessage] = React.useState({
-        name: '',
-        email: '',
-        phone: '',
-        message: '',
-        grecaptchaResponse: null
-    });
+    const [message, setMessage] = React.useState(initialState);
+    const [grecaptcha, setGrecaptcha] = React.useState(false);
+    const [errorMessage, setErrorMessage] = React.useState();
+    const [status, setStatus] = React.useState();
 
-    const [errorMessages, setErrorMessages] = React.useState([]);
+    React.useEffect(() => {
+        const grecaptchaScript = document.createElement('script');
+        grecaptchaScript.onload = () => {
+            window.grecaptcha.ready(() => setGrecaptcha(window.grecaptcha));
+        };
+        grecaptchaScript.src = 'https://www.google.com/recaptcha/api.js';
+        document.head.append(grecaptchaScript);
+    }, []);
 
-    const { send, loading, data, error } = hooks.useApi(() => {
-        const errorMessages = lib.validateMessage(message, {});
-        setErrorMessages(errorMessages);
-        if (errorMessages.length) return;
-        return effects.sendMessage(message);
-    });
-
-    if (error && !errorMessages.length) {
-        setErrorMessages(['Sorry, an unexpected error occurred. Please try again later.']);
-    }
-
-    const onCaptcha = token => setField('grecaptchaResponse', token);
-    const onFieldChanged = e => setField(e.target.getAttribute('name'), e.target.value);
-    const setField = (key, value) => {
-        const newMessage = { ...message, [key]: value };
-        const errorMessages = lib.validateMessage(newMessage, { key });
-        setMessage(newMessage);
-        setErrorMessages(errorMessages);
+    const handleSubmit = async message => {
+        setMessage(message);
+        setStatus('loading');
+        try {
+            await effects.sendMessage(message);
+            setStatus('success');
+        }
+        catch (err) {
+            setStatus('error');
+            setErrorMessage('Sorry, an unexpected error occurred. Please try again later.');
+        }
     };
 
-    if (data) return <pureComponents.MessageSent />;
-
-    const sendButton = loading ?
-        <span><img src="/images/ajax-loader.gif" /> Sending...</span> :
-        <button type="button" onClick={send}>Send</button>;
+    if (status === 'success') return <pureComponents.MessageSent />;
 
     return <div id="message-container">
         <div className="message">
-            <form>
-                <h1 id="contact-me">Contact Me</h1>
-                <p>Van Package available</p>
-                <pureComponents.ErrorMessages errorMessages={errorMessages} />
-                <br />
-                <pureComponents.MessageForm message={message} onFieldChanged={onFieldChanged} />
-                <components.MessageCaptcha onCaptcha={onCaptcha} />
-                {sendButton}
-            </form>
+            <h1 id="contact-me">Contact Me</h1>
+            <p>Van Package available</p>
+            <pureComponents.ErrorMessage errorMessage={errorMessage} />
+            <br />
+            <pureComponents.MessageForm
+                message={message}
+                onSubmit={handleSubmit}
+                isLoading={status === 'loading'}
+                grecaptcha={grecaptcha}
+            />
         </div>
     </div>;
 };
