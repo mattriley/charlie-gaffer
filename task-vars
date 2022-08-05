@@ -22,9 +22,9 @@ case $STAGE in
     export BFF_URL="http://localhost:3000"
     ;;
   test)
-    export BFF_URL="https://dvyxxovnfx7szz4ojnchxmww5q0fnvto.lambda-url.ap-southeast-2.on.aws"
+    export BFF_URL=""
     ;;
   prod)
-    export BFF_URL="https://74h46gbjouvnintgvgezfqzwma0yxtep.lambda-url.ap-southeast-2.on.aws"
+    export BFF_URL="https://xeh4kq3z2i7sblpmw7qr55khcm0jxrjw.lambda-url.ap-southeast-2.on.aws"
     ;;    
 esac
