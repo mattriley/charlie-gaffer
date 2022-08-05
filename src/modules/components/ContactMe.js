@@ -1,8 +1,6 @@
-const initialState = { name: '', email: '', phone: '', message: '', grecaptchaResponse: '' };
+module.exports = ({ react, pureComponents, effects, config }) => () => {
 
-module.exports = ({ react, pureComponents, effects }) => () => {
-
-    const [message, setMessage] = react.useState(initialState);
+    const [message, setMessage] = react.useState(config.contactMeInitialState);
     const [grecaptcha, setGrecaptcha] = react.useState(false);
     const [errorMessage, setErrorMessage] = react.useState();
     const [status, setStatus] = react.useState();

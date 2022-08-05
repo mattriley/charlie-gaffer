@@ -6,5 +6,6 @@ module.exports = {
     appName: process.env.DISPLAY_NAME,
     contactUrl: process.env.CONTACT_URL,
     googleRecaptchaSiteKey: process.env.GOOGLE_RECAPTCHA_SITE_KEY,
-    googleAnalyticsTrackingId: process.env.GOOGLE_ANALYTICS_TRACKING_ID
+    googleAnalyticsTrackingId: process.env.GOOGLE_ANALYTICS_TRACKING_ID,
+    contactMeInitialState: { name: '', email: '', phone: '', message: '', grecaptchaResponse: '' }
 };
