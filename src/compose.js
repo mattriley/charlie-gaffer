@@ -12,8 +12,9 @@ module.exports = ({ compositionName, window, configs }) => {
     mixpanel.init(config.mixpanelToken, { debug: config.mixpanelDebug });
 
     const { io } = compose('io', { config, mixpanel, window });
+    const { ui } = compose('ui', { window });
     const { effects } = compose('effects', { io, config });
-    compose('components', { react, effects, config, window });
+    compose('components', { react, ui, effects, config });
     return compose.end();
 
 };

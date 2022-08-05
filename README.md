@@ -3,8 +3,8 @@
 
 <p align="right">
     <code>0% cov</code>&nbsp;
-    <code>556 sloc</code>&nbsp;
-    <code>20 files</code>&nbsp;
+    <code>564 sloc</code>&nbsp;
+    <code>22 files</code>&nbsp;
     <code>3 deps</code>&nbsp;
     <code>15 dev deps</code>
 </p>
@@ -25,12 +25,13 @@ Professional lighting for film and TV.
 ```mermaid
 graph TD;
     components-->react;
+    components-->ui;
     components-->effects;
     components-->config;
-    components-->window;
     effects-->io;
     effects-->config;
     io-->config;
     io-->mixpanel;
     io-->window;
+    ui-->window;
 ```

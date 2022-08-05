@@ -1,14 +1,11 @@
-module.exports = ({ react, components, effects }) => () => {
+module.exports = ({ react, ui, components, effects }) => () => {
 
     const [grecaptcha, setGrecaptcha] = react.useState(false);
     const [errorMessage, setErrorMessage] = react.useState();
     const [status, setStatus] = react.useState();
 
     react.useEffect(() => {
-        const grecaptchaScript = window.document.createElement('script');
-        grecaptchaScript.onload = () => { window.grecaptcha.ready(() => setGrecaptcha(window.grecaptcha)); };
-        grecaptchaScript.src = 'https://www.google.com/recaptcha/api.js';
-        window.document.head.append(grecaptchaScript);
+        ui.loadGrecaptcha(setGrecaptcha);
     }, []);
 
     const handleSubmit = async message => {
