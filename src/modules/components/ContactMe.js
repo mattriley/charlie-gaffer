@@ -1,4 +1,4 @@
-module.exports = ({ react, pureComponents, effects, config }) => () => {
+module.exports = ({ window, react, pureComponents, effects, config }) => () => {
 
     const [message, setMessage] = react.useState(config.contactMeInitialState);
     const [grecaptcha, setGrecaptcha] = react.useState(false);
@@ -6,12 +6,10 @@ module.exports = ({ react, pureComponents, effects, config }) => () => {
     const [status, setStatus] = react.useState();
 
     react.useEffect(() => {
-        const grecaptchaScript = document.createElement('script');
-        grecaptchaScript.onload = () => {
-            window.grecaptcha.ready(() => setGrecaptcha(window.grecaptcha));
-        };
+        const grecaptchaScript = window.document.createElement('script');
+        grecaptchaScript.onload = () => { window.grecaptcha.ready(() => setGrecaptcha(window.grecaptcha)); };
         grecaptchaScript.src = 'https://www.google.com/recaptcha/api.js';
-        document.head.append(grecaptchaScript);
+        window.document.head.append(grecaptchaScript);
     }, []);
 
     const handleSubmit = async message => {
