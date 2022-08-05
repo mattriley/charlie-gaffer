@@ -4,7 +4,7 @@ module.exports = ({ react, components, pureComponents, effects }) => () => {
         effects.trackEvent('pageview');
     }, []);
 
-    return <div>
+    return <div id="container">
         <div id="contact-me-link">
             <a href="#contact-me">Contact Me</a>
         </div>

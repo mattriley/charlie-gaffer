@@ -1,17 +1,18 @@
 html, body {
     margin: 0;
-    background-color: black;
-    color: white;
     font-size: 18px;
 }
 
 body {
-    border: solid 1rem #a75ec9
+    border-top: solid 1rem #a75ec9;
+    border-bottom: solid 1rem #a75ec9;
 }
 
 body, button, input, textarea {
     font-family: "Barlow Semi Condensed", "Helvetica", "Arial", "Sans Serif";
     font-size: 1rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .title {
@@ -26,6 +27,9 @@ h1, h2, h3 {
     padding: 0;
 }
 
+h1, h2, h3 {
+    white-space: nowrap;
+}
 
 h1 {
     font-size: 2rem;
@@ -50,11 +54,18 @@ h2::after {
     content: " ❯";
 }
 
-.portfolio {
+#content {
+    color: white;
+    background-color: black;
     text-align: center;
+    padding: 1rem;
+}
+
+.portfolio {
     width: 1000px;
     margin: auto;
 }
+
 
 .portfolio .images {
     line-height: 0;
@@ -112,7 +123,8 @@ button {
 }
 
 button:hover {
-    background-color: black;
+    background-color: #a75ec9;
+    border-color: #a75ec9;
     color: white;
 }
 
@@ -148,4 +160,14 @@ a:hover {
 
 h3 {
     text-transform: uppercase;
+}
+
+
+@media screen and (max-device-width: 600px) {
+
+    .portfolio {
+        width: 100%;
+        margin: auto;
+    }
+
 }
