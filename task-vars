@@ -4,8 +4,6 @@
 
 export DISPLAY_NAME="Charlie Gaffer"
 export WEB_HOST_NAME="charliemoukbel.com"
-export TEST_RUNNER="tape"
-export INDEXGEN_OPTIONS="--fullySpecified"
 
 export COV_BRANCHES=0
 export COV_LINES=0

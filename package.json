@@ -39,8 +39,6 @@
         "module-indexgen": "^0.17.0",
         "parcel": "^2.7.0",
         "process": "^0.11.10",
-        "tap-diff": "^0.1.1",
-        "tape": "^5.5.3",
         "task-library": "^0.56.0"
     }
 }

@@ -6,7 +6,7 @@
     <code>572 sloc</code>&nbsp;
     <code>22 files</code>&nbsp;
     <code>3 deps</code>&nbsp;
-    <code>15 dev deps</code>
+    <code>13 dev deps</code>
 </p>
 
 Professional lighting for film and TV.
