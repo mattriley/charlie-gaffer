@@ -129,13 +129,13 @@ button:hover {
 }
 
 
-#header {
+#contact-me-link {
     position: fixed;
     background-color: white;
     display: flex;
 }
 
-#header a {
+#contact-me-link a {
     background-color: black;
     color: white;
     padding: 1rem;
