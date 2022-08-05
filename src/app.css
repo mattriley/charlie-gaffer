@@ -93,7 +93,7 @@ label {
     text-align: left;
 }
 
-.field input, .field textarea {
+form input, form textarea {
     width: 100%;
     box-sizing: border-box;
     border: solid 1px black;
@@ -116,7 +116,7 @@ button:hover {
     color: white;
 }
 
-.field {
+form > div {
     margin-bottom: 1.5em;
 }
 

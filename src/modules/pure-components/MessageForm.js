@@ -13,23 +13,23 @@ module.exports = ({ config }) => ({ onSubmit, isLoading, grecaptcha }) => {
     const sendButton = <button type="submit">Send</button>;
 
     return <form onSubmit={handleSubmit}>
-        <div className="field">
+        <div>
             <label htmlFor="name">Name</label>
             <input id="name" name="name" type="text" required />
         </div>
-        <div className="field">
+        <div>
             <label htmlFor="email">Email</label>
             <input id="email" name="email" type="email" required />
         </div>
-        <div className="field">
+        <div>
             <label htmlFor="phone">Phone</label>
             <input id="phone" name="phone" type="tel" />
         </div>
-        <div className="field">
+        <div>
             <label htmlFor="message">Message</label>
             <textarea id="message" name="message" required />
         </div>
-        <div className="field">
+        <div>
             <div className="g-recaptcha" data-sitekey={config.googleRecaptchaSiteKey}></div>
         </div>
         {isLoading ? spinner : (grecaptcha ? sendButton : null)}
