@@ -4,6 +4,7 @@ html, body {
 }
 
 body {
+    text-align: center;
     border-top: solid 1rem #a75ec9;
     border-bottom: solid 1rem #a75ec9;
 }
@@ -15,95 +16,36 @@ body, button, input, textarea {
     -moz-osx-font-smoothing: grayscale;
 }
 
-.title {
-    padding: 1rem;
-    text-align: center;
-    background-color: white;
-    color: black;
-}
-
 h1, h2, h3 {
     margin: 0;
     padding: 0;
-}
-
-h1, h2, h3 {
-    /* white-space: nowrap; */
+    font-size: 3rem;
+    font-weight: normal;
+    text-align: center;
 }
 
 h1 {
     font-size: 2rem;
 }
 
-h2, h3 {
-    font-size: 3rem;
+h3 {
+    text-transform: uppercase;
 }
 
-h1, h2 {
-    font-weight: normal;
-    text-align: center;
-    margin: 0;
-    padding: 0;
-}
-
-/* h2 {
-    border-top: solid 1px white;
-} */
-
-/* h2::before {
-    content: "❮ "
-}
-
-h2::after {
-    content: " ❯";
-} */
-
-#content {
+a {
     color: white;
-    background-color: black;
-    text-align: center;
-    padding: 1rem;
+    text-decoration: none;
 }
 
-.portfolio {
-    width: 1000px;
-    margin: auto;
+a:hover {
+    text-decoration: underline;
 }
 
-
-.portfolio .images {
-    line-height: 0;
+form > div {
+    margin-bottom: 1.5em;
 }
 
-.portfolio img {
-    width: 500px;
-}
-
-.project {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-}
-
-.project-details {
-    margin-top: 1rem;
-    text-align: right;
-}
-
-#footer {
-    background-color: white;
-    padding: 2rem;
-}
-
-#contact-me {
-    width: 500px;
-    background-color: white;
-    color: black;
-    text-align: center;
-    margin: auto;
-}
-
-
-label {
+form label {
     display: block;
     text-align: left;
 }
@@ -113,12 +55,9 @@ form input, form textarea {
     box-sizing: border-box;
     border: solid 1px black;
     padding: 0.8rem;
-
 }
 
-
-
-button {
+form button {
     background-color: white;
     border: solid 1px black;
     padding: 1rem;
@@ -126,70 +65,82 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+form button:hover {
     background-color: #a75ec9;
     border-color: #a75ec9;
     color: white;
 }
 
-form > div {
-    margin-bottom: 1.5em;
-}
-
-.errorMessage {
-    color: red;
-}
-
 #contact-me-link {
     position: fixed;
-    background-color: white;
-    display: flex;
-}
-
-#contact-me-link a {
-    background-color: black;
     color: white;
+    background-color: black;
     padding: 1rem;
     text-transform: uppercase;
 }
 
-
-a {
-    text-decoration: none;
+#content {
+    color: white;
+    background-color: black;
+    padding: 1rem;
 }
 
-a:hover {
-    text-decoration: underline;
+#portfolio {
+    width: 1000px;
+    margin: auto;
 }
 
-h3 {
-    text-transform: uppercase;
+#portfolio .images {
+    line-height: 0;
 }
 
+#portfolio img {
+    width: 500px;
+}
 
-.done {
+#portfolio .project {
+    margin: 2rem 0;
+}
 
+#portfolio .project-details {
+    margin-top: 1rem;
+    text-align: right;
+}
+
+#footer {
+    padding: 2rem;
+}
+
+#contact-me {
+    width: 500px;
+    color: black;
+    background-color: white;
+    margin: auto;
+}
+
+#error-message {
+    color: red;
+}
+
+#message-sent {
     margin-top: 5rem;
     margin-bottom: 5rem;
     font-size: 2rem;
-
 }
-
 
 @media screen and (max-device-width: 600px) {
 
-    .portfolio {
+    #portfolio {
         width: 100%;
         margin: auto;
     }
 
-    .portfolio img {
+    #portfolio img {
         width: 100%;
     }
 
     h2, h3 {
         font-size: 2rem;
-        /* white-space: wrap; */
     }
 
     #contact-me {

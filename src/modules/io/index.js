@@ -1,4 +1,4 @@
 module.exports = {
-    fetch: require('./fetch'),
-    fetchJson: require('./fetch-json')
+    fetch: require('./fetch.js'),
+    fetchJson: require('./fetch-json.js')
 };

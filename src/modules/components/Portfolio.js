@@ -51,8 +51,8 @@ module.exports = ({ config }) => () => {
     };
 
     const collections = config.portfolio.collections.map(renderCollection);
-    return <div id="portfolio-container">
-        <div className="portfolio">{collections}</div>
+    return <div>
+        <div id="portfolio">{collections}</div>
     </div>;
 
 };

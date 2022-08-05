@@ -13,8 +13,7 @@ module.exports = ({ compositionName, window, configs }) => {
 
     const { io } = compose('io', { config, window });
     const { effects } = compose('effects', { io, mixpanel, config });
-    const { pureComponents } = compose('pureComponents', { config });
-    compose('components', { react, pureComponents, effects, window });
+    compose('components', { react, effects, config, window });
     return compose.end();
 
 };

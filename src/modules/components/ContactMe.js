@@ -1,4 +1,4 @@
-module.exports = ({ window, react, pureComponents, effects }) => () => {
+module.exports = ({ react, components, effects }) => () => {
 
     const [grecaptcha, setGrecaptcha] = react.useState(false);
     const [errorMessage, setErrorMessage] = react.useState();
@@ -25,15 +25,15 @@ module.exports = ({ window, react, pureComponents, effects }) => () => {
 
     const form = <div>
         <p>Van Package available</p>
-        <p className="errorMessage">{errorMessage}</p>
-        <pureComponents.MessageForm
+        <p id="error-message">{errorMessage}</p>
+        <components.MessageForm
             onSubmit={handleSubmit}
             isLoading={status === 'loading'}
             grecaptcha={grecaptcha}
         />
     </div>;
 
-    const done = <div className="done">Thanks! I&#39;ll be in touch shortly.</div>;
+    const done = <div id="message-sent">Thanks! I&#39;ll be in touch shortly.</div>;
 
     return <div id="contact-me">
         <h3>Contact Me</h3>

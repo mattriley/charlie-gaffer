@@ -1,4 +1,4 @@
-module.exports = ({ react, components, pureComponents, effects }) => () => {
+module.exports = ({ react, components, effects }) => () => {
 
     react.useEffect(() => {
         effects.trackEvent('pageview');
@@ -9,10 +9,10 @@ module.exports = ({ react, components, pureComponents, effects }) => () => {
             <a href="#contact-me">Contact Me</a>
         </div>
         <div id="header">
-            <pureComponents.TitleBar />
+            <components.TitleBar />
         </div>
         <div id="content">
-            <pureComponents.Portfolio />
+            <components.Portfolio />
         </div>
         <div id="footer">
             <components.ContactMe />

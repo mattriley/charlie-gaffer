@@ -1,6 +1,5 @@
 module.exports = {
-    components: require('./components'),
-    effects: require('./effects'),
-    io: require('./io'),
-    pureComponents: require('./pure-components')
+    components: require('./components/index.js'),
+    effects: require('./effects/index.js'),
+    io: require('./io/index.js')
 };

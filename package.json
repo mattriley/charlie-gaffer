@@ -1,5 +1,5 @@
 {
-    "name": "charlie-gaffer-frontend",
+    "name": "charlie-gaffer",
     "version": "1.0.0",
     "description": "Professional lighting for film and TV.",
     "homepage": "https://github.com/mattriley/charlie-gaffer",
@@ -22,26 +22,25 @@
         "test": "npx task test"
     },
     "dependencies": {
-        "mixpanel-browser": "^2.45.0"
+        "mixpanel-browser": "^2.45.0",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
     },
     "devDependencies": {
         "@babel/core": "^7.18.10",
+        "@babel/node": "^7.18.10",
         "@babel/preset-env": "^7.18.10",
         "@babel/preset-react": "^7.18.6",
-        "@node-loader/babel": "^2.0.1",
         "cloc": "^2.10.0",
         "doctoc": "^2.2.0",
         "eslint": "^8.21.0",
         "eslint-plugin-react": "^7.30.1",
         "husky": "^8.0.1",
-        "lodash": "^4.17.21",
-        "parcel": "^2.6.2",
+        "module-indexgen": "^0.17.0",
+        "parcel": "^2.7.0",
         "process": "^0.11.10",
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0",
-        "selenium-webdriver": "^4.3.1",
         "tap-diff": "^0.1.1",
         "tape": "^5.5.3",
-        "task-library": "^0.53.0"
+        "task-library": "^0.56.0"
     }
 }
