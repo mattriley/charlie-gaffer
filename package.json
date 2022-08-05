@@ -36,9 +36,9 @@
         "eslint": "^8.21.0",
         "eslint-plugin-react": "^7.30.1",
         "husky": "^8.0.1",
-        "module-indexgen": "^0.17.0",
+        "module-indexgen": "^0.18.0",
         "parcel": "^2.7.0",
         "process": "^0.11.10",
-        "task-library": "^0.64.0"
+        "task-library": "^0.70.0"
     }
 }
