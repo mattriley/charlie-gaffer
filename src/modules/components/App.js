@@ -6,7 +6,9 @@ module.exports = ({ components, pureComponents }) => () => {
         </div>
         <pureComponents.TitleBar />
         <pureComponents.Portfolio />
-        <components.ContactMe />
+        <div id="footer">
+            <components.ContactMe />
+        </div>
     </div>;
 
 };

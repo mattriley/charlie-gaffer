@@ -32,18 +32,16 @@ module.exports = ({ pureComponents, effects }) => () => {
 
     if (status === 'success') return <pureComponents.MessageSent />;
 
-    return <div id="footer">
-        <div className="message">
-            <h3 id="contact-me">Contact Me</h3>
-            <p className="van">Van Package available</p>
-            <pureComponents.ErrorMessage errorMessage={errorMessage} />
-            <br />
-            <pureComponents.MessageForm
-                message={message}
-                onSubmit={handleSubmit}
-                isLoading={status === 'loading'}
-                grecaptcha={grecaptcha}
-            />
-        </div>
+    return <div className="contact-me-container">
+        <h3 id="contact-me">Contact Me</h3>
+        <p className="van">Van Package available</p>
+        <pureComponents.ErrorMessage errorMessage={errorMessage} />
+        <br />
+        <pureComponents.MessageForm
+            message={message}
+            onSubmit={handleSubmit}
+            isLoading={status === 'loading'}
+            grecaptcha={grecaptcha}
+        />
     </div>;
 };
