@@ -95,6 +95,7 @@ form button:hover {
     background-color: black;
     padding: 1rem;
     text-transform: uppercase;
+    right: 0;
 }
 
 #content {
