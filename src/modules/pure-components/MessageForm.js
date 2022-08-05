@@ -9,7 +9,7 @@ module.exports = ({ config }) => ({ onSubmit, isLoading, grecaptcha }) => {
         onSubmit({ ...formData, grecaptchaResponse });
     };
 
-    const spinner = <span><img src="/images/ajax-loader.gif" /> Sending...</span>;
+    const spinner = <img src="loading.gif" />;
     const sendButton = <button type="submit">Send</button>;
 
     return <form onSubmit={handleSubmit}>

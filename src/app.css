@@ -6,7 +6,7 @@ html, body {
 }
 
 body {
-    border: solid 1rem rgb(168 94 201);
+    border: solid 1rem #a75ec9
 }
 
 body, button, input, textarea {
