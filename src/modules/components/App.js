@@ -1,4 +1,8 @@
-module.exports = ({ components, pureComponents }) => () => {
+module.exports = ({ react, components, pureComponents, effects }) => () => {
+
+    react.useEffect(() => {
+        effects.trackEvent('pageview');
+    }, []);
 
     return <div>
         <div id="contact-me-link">

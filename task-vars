@@ -14,7 +14,7 @@ export COV_STATEMENTS=0
 # This project
 
 export GOOGLE_RECAPTCHA_SITE_KEY="6LeQMAsUAAAAAAm_KMxWOIpbdt3Lzung3U0Jaseh"
-
+export MIXPANEL_TOKEN="787814775404613a99d581cb5093dc59"
 export BFF_URL="http://localhost:3000"
 
 case $STAGE in
