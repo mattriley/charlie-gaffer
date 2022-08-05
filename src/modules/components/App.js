@@ -4,9 +4,13 @@ module.exports = ({ react, components, effects }) => () => {
         effects.trackEvent('pageview');
     }, []);
 
+    const footerRef = react.useRef();
+
+    const scrollToFooter = () => footerRef.current.scrollIntoView({ behavior: 'smooth' });
+
     return <div id="container">
         <div id="contact-me-link">
-            <a href="#contact-me">Contact Me</a>
+            <a onClick={scrollToFooter}>Contact Me</a>
         </div>
         <div id="header">
             <components.TitleBar />
@@ -14,7 +18,7 @@ module.exports = ({ react, components, effects }) => () => {
         <div id="content">
             <components.Portfolio />
         </div>
-        <div id="footer">
+        <div id="footer" ref={footerRef}>
             <components.ContactMe />
         </div>
     </div>;
