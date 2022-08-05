@@ -23,10 +23,7 @@ module.exports = ({ window, react, pureComponents, effects }) => () => {
         }
     };
 
-    if (status === 'success') return <pureComponents.MessageSent />;
-
-    return <div id="contact-me">
-        <h3>Contact Me</h3>
+    const form = <div>
         <p>Van Package available</p>
         <p className="errorMessage">{errorMessage}</p>
         <pureComponents.MessageForm
@@ -34,5 +31,12 @@ module.exports = ({ window, react, pureComponents, effects }) => () => {
             isLoading={status === 'loading'}
             grecaptcha={grecaptcha}
         />
+    </div>;
+
+    const done = <div>Thanks! I&#39;ll be in touch shortly.</div>;
+
+    return <div id="contact-me">
+        <h3>Contact Me</h3>
+        {status === 'success' ? done : form}
     </div>;
 };
