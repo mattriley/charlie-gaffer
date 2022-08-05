@@ -12,8 +12,8 @@ module.exports = ({ window, react, pureComponents, effects }) => () => {
     }, []);
 
     const handleSubmit = async message => {
-        setStatus('loading');
         try {
+            setStatus('loading');
             await effects.sendMessage(message);
             setStatus('success');
         }
@@ -25,11 +25,10 @@ module.exports = ({ window, react, pureComponents, effects }) => () => {
 
     if (status === 'success') return <pureComponents.MessageSent />;
 
-    return <div className="contact-me-container">
-        <h3 id="contact-me">Contact Me</h3>
-        <p className="van">Van Package available</p>
-        <pureComponents.ErrorMessage errorMessage={errorMessage} />
-        <br />
+    return <div id="contact-me">
+        <h3>Contact Me</h3>
+        <p>Van Package available</p>
+        <p className="errorMessage">{errorMessage}</p>
         <pureComponents.MessageForm
             onSubmit={handleSubmit}
             isLoading={status === 'loading'}

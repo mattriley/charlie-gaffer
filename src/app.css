@@ -79,7 +79,7 @@ h2::after {
     padding: 2rem;
 }
 
-.contact-me-container {
+#contact-me {
     width: 500px;
     background-color: white;
     color: black;
@@ -120,14 +120,9 @@ button:hover {
     margin-bottom: 1.5em;
 }
 
-#errorMessage {
+.errorMessage {
     color: red;
 }
-
-.van {
-    text-align: center;
-}
-
 
 #contact-me-link {
     position: fixed;
