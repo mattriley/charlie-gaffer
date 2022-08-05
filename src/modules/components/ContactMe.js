@@ -1,14 +1,13 @@
-const React = require('react');
-const initialState = { name: '', email: '', phone: '', message: '', grecaptchaResponse: null };
+const initialState = { name: '', email: '', phone: '', message: '', grecaptchaResponse: '' };
 
-module.exports = ({ pureComponents, effects }) => () => {
+module.exports = ({ react, pureComponents, effects }) => () => {
 
-    const [message, setMessage] = React.useState(initialState);
-    const [grecaptcha, setGrecaptcha] = React.useState(false);
-    const [errorMessage, setErrorMessage] = React.useState();
-    const [status, setStatus] = React.useState();
+    const [message, setMessage] = react.useState(initialState);
+    const [grecaptcha, setGrecaptcha] = react.useState(false);
+    const [errorMessage, setErrorMessage] = react.useState();
+    const [status, setStatus] = react.useState();
 
-    React.useEffect(() => {
+    react.useEffect(() => {
         const grecaptchaScript = document.createElement('script');
         grecaptchaScript.onload = () => {
             window.grecaptcha.ready(() => setGrecaptcha(window.grecaptcha));
