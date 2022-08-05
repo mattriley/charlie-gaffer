@@ -1,58 +1,39 @@
+const projectKeys = ['subtitle', 'Director', 'Cinematographer', 'Gaffer'];
+const startsWithUpper = str => str[0] === str[0].toUpperCase();
+
 module.exports = ({ config }) => () => {
 
     const renderCollection = (collection, i) => {
+        const renderProject = (p, i) => {
+            const project = { ...p, gaffer: 'Charlie Moukbel' };
 
-        const renderProject = (project, i) => {
-            const images = project.images.map(renderImage);
+            const images = project.images.map((image, i) => {
+                return <img key={i} src={`screenshots/${image}`} />;
+            });
 
-            const filmInfo = [];
+            const projectDetailsArray = projectKeys.flatMap(key => {
+                const val = project[key.toLowerCase()];
+                if (!val) return [];
+                return startsWithUpper(key) ? `${key}: ${val}` : val;
+            });
 
-            if (project.subtitle) {
-                filmInfo.push(project.subtitle);
-            }
-
-            if (project.director) {
-                filmInfo.push('Director: ' + project.director);
-            }
-
-            if (project.cinematographer) {
-                filmInfo.push('Cinematographer: ' + project.cinematographer);
-            }
-
-            filmInfo.push('Gaffer: Charlie Moukbel');
-
-            const fileInfoElements = filmInfo.map((item, i) => <div key={i}>{item}</div>);
+            const projectDetails = projectDetailsArray.map((item, i) => <div key={i}>{item}</div>);
 
             return <div key={i} className="project">
                 <h2>{project.title}</h2>
                 <p>{collection.title}</p>
-                <div className="images">
-                    {images}
-                </div>
-                <div className="project-details">
-                    {fileInfoElements}
-                </div>
+                <div className="images">{images}</div>
+                <div className="project-details">{projectDetails}</div>
                 <br />
                 <hr />
             </div>;
         };
 
         const projects = collection.projects.map(renderProject);
-        return <div key={i} className="collection">
-            {projects}
-        </div>;
-    };
-
-
-
-    const renderImage = (image, i) => {
-        const src = 'screenshots/' + image;
-        return <img key={i} src={src} />;
+        return <div key={i} className="collection">{projects}</div>;
     };
 
     const collections = config.portfolio.collections.map(renderCollection);
-    return <div>
-        <div id="portfolio">{collections}</div>
-    </div>;
+    return <div id="portfolio">{collections}</div>;
 
 };

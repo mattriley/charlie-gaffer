@@ -9,6 +9,23 @@ body {
     border-bottom: solid 1rem #a75ec9;
 }
 
+html, body, #app, #container {
+    height: 100%;
+    min-height: 100%;
+}
+
+#container {
+    position: relative;
+    height: auto !important;
+}
+
+#footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0; /* stick to bottom */
+    border-top: solid 1rem #a75ec9;
+}
+
 body, button, input, textarea {
     font-family: "Barlow Semi Condensed", "Helvetica", "Arial", "Sans Serif";
     font-size: 1rem;
@@ -108,15 +125,14 @@ form button:hover {
     text-align: right;
 }
 
-#footer {
-    padding: 2rem;
-}
-
 #contact-me {
     width: 500px;
     color: black;
     background-color: white;
     margin: auto;
+    padding: 1rem;
+    padding-top: 2rem;
+    padding-bottom: 6rem;
 }
 
 #error-message {

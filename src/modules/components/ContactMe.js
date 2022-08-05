@@ -21,7 +21,7 @@ module.exports = ({ react, ui, components, effects }) => () => {
     };
 
     const form = <div>
-        <p>Van Package available</p>
+        <p>Van package available</p>
         <p id="error-message">{errorMessage}</p>
         <components.MessageForm
             onSubmit={handleSubmit}
@@ -32,8 +32,8 @@ module.exports = ({ react, ui, components, effects }) => () => {
 
     const done = <div id="message-sent">Thanks! I&#39;ll be in touch shortly.</div>;
 
-    return <div id="contact-me">
+    return <>
         <h3>Contact Me</h3>
         {status === 'success' ? done : form}
-    </div>;
+    </>;
 };
