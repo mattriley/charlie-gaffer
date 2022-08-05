@@ -2,7 +2,7 @@ module.exports = ({ components, pureComponents }) => () => {
 
     return <div>
         <div id="contact-me-link">
-            <a href="#contact-me">CONTACT ME</a>
+            <a href="#contact-me">Contact Me</a>
         </div>
         <div id="header">
             <pureComponents.TitleBar />
