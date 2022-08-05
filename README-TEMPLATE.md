@@ -2,4 +2,4 @@
 
 ## Architecture
 
-<%- await lib.compose(c => lib.renderCode(c.mermaid(), 'mermaid'), 'src/compose.js') %>
+<%- await lib.renderModuleDiagram('src/compose.js') %>

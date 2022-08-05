@@ -39,6 +39,6 @@
         "module-indexgen": "^0.17.0",
         "parcel": "^2.7.0",
         "process": "^0.11.10",
-        "task-library": "^0.63.0"
+        "task-library": "^0.64.0"
     }
 }
