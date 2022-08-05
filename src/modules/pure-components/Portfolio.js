@@ -32,6 +32,8 @@ module.exports = ({ config }) => () => {
                 <div className="project-details">
                     {fileInfoElements}
                 </div>
+                <br />
+                <hr />
             </div>;
         };
 

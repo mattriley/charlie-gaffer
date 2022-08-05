@@ -28,7 +28,7 @@ h1, h2, h3 {
 }
 
 h1, h2, h3 {
-    white-space: nowrap;
+    /* white-space: nowrap; */
 }
 
 h1 {
@@ -46,13 +46,17 @@ h1, h2 {
     padding: 0;
 }
 
-h2::before {
+/* h2 {
+    border-top: solid 1px white;
+} */
+
+/* h2::before {
     content: "❮ "
 }
 
 h2::after {
     content: " ❯";
-}
+} */
 
 #content {
     color: white;
@@ -177,6 +181,19 @@ h3 {
     .portfolio {
         width: 100%;
         margin: auto;
+    }
+
+    .portfolio img {
+        width: 100%;
+    }
+
+    h2, h3 {
+        font-size: 2rem;
+        /* white-space: wrap; */
+    }
+
+    #contact-me {
+        width: auto;
     }
 
 }

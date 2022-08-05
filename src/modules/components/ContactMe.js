@@ -2,7 +2,7 @@ module.exports = ({ window, react, pureComponents, effects }) => () => {
 
     const [grecaptcha, setGrecaptcha] = react.useState(false);
     const [errorMessage, setErrorMessage] = react.useState();
-    let [status, setStatus] = react.useState();
+    const [status, setStatus] = react.useState();
 
     react.useEffect(() => {
         const grecaptchaScript = window.document.createElement('script');
@@ -32,8 +32,6 @@ module.exports = ({ window, react, pureComponents, effects }) => () => {
             grecaptcha={grecaptcha}
         />
     </div>;
-
-    status = 'success';
 
     const done = <div className="done">Thanks! I&#39;ll be in touch shortly.</div>;
 
