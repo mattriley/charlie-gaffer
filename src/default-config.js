@@ -5,6 +5,5 @@ module.exports = {
     stage: process.env.STAGE,
     appName: process.env.DISPLAY_NAME,
     bffUrl: process.env.BFF_URL,
-    googleRecaptchaSiteKey: process.env.GOOGLE_RECAPTCHA_SITE_KEY,
-    googleAnalyticsTrackingId: process.env.GOOGLE_ANALYTICS_TRACKING_ID
+    googleRecaptchaSiteKey: process.env.GOOGLE_RECAPTCHA_SITE_KEY
 };

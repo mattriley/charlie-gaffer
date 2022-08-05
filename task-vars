@@ -14,7 +14,6 @@ export COV_STATEMENTS=0
 # This project
 
 export GOOGLE_RECAPTCHA_SITE_KEY="6LeQMAsUAAAAAAm_KMxWOIpbdt3Lzung3U0Jaseh"
-export GOOGLE_ANALYTICS_TRACKING_ID="UA-86847178-1"
 
 export BFF_URL="http://localhost:3000"
 

@@ -37,7 +37,6 @@ module.exports = ({ config }) => () => {
 
         const projects = collection.projects.map(renderProject);
         return <div key={i} className="collection">
-            {/* <h1>{collection.title}</h1> */}
             {projects}
         </div>;
     };
