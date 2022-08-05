@@ -4,6 +4,7 @@
 
 export DISPLAY_NAME="Charlie Gaffer"
 export WEB_HOST_NAME="charliemoukbel.com"
+export PRINT_VARS="$(PRINT_VARS) | BFF_URL"
 
 export COV_BRANCHES=0
 export COV_LINES=0
@@ -14,7 +15,6 @@ export COV_STATEMENTS=0
 
 export GOOGLE_RECAPTCHA_SITE_KEY="6LeQMAsUAAAAAAm_KMxWOIpbdt3Lzung3U0Jaseh"
 export MIXPANEL_TOKEN="787814775404613a99d581cb5093dc59"
-export BFF_URL="http://localhost:3000"
 
 case $STAGE in
   local)
