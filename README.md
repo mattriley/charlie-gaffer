@@ -3,8 +3,8 @@
 
 <p align="right">
     <code>0% cov</code>&nbsp;
-    <code>554 sloc</code>&nbsp;
-    <code>19 files</code>&nbsp;
+    <code>556 sloc</code>&nbsp;
+    <code>20 files</code>&nbsp;
     <code>3 deps</code>&nbsp;
     <code>15 dev deps</code>
 </p>
@@ -29,8 +29,8 @@ graph TD;
     components-->config;
     components-->window;
     effects-->io;
-    effects-->mixpanel;
     effects-->config;
     io-->config;
+    io-->mixpanel;
     io-->window;
 ```
