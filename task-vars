@@ -16,16 +16,16 @@ export COV_STATEMENTS=0
 export GOOGLE_RECAPTCHA_SITE_KEY="6LeQMAsUAAAAAAm_KMxWOIpbdt3Lzung3U0Jaseh"
 export GOOGLE_ANALYTICS_TRACKING_ID="UA-86847178-1"
 
-export CONTACT_URL="http://localhost:3000"
+export BFF_URL="http://localhost:3000"
 
 case $STAGE in
   local)
-    export CONTACT_URL="http://localhost:3000"
+    export BFF_URL="http://localhost:3000"
     ;;
   test)
-    export CONTACT_URL="https://dvyxxovnfx7szz4ojnchxmww5q0fnvto.lambda-url.ap-southeast-2.on.aws"
+    export BFF_URL="https://dvyxxovnfx7szz4ojnchxmww5q0fnvto.lambda-url.ap-southeast-2.on.aws"
     ;;
   prod)
-    export CONTACT_URL="https://74h46gbjouvnintgvgezfqzwma0yxtep.lambda-url.ap-southeast-2.on.aws"
+    export BFF_URL="https://74h46gbjouvnintgvgezfqzwma0yxtep.lambda-url.ap-southeast-2.on.aws"
     ;;    
 esac
