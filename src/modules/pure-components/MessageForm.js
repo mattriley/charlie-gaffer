@@ -1,4 +1,4 @@
-module.exports = ({ config }) => ({ message, onSubmit, isLoading, grecaptcha }) => {
+module.exports = ({ config }) => ({ onSubmit, isLoading, grecaptcha }) => {
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -15,19 +15,19 @@ module.exports = ({ config }) => ({ message, onSubmit, isLoading, grecaptcha }) 
     return <form onSubmit={handleSubmit}>
         <div className="field">
             <label htmlFor="name">Name</label>
-            <input id="name" name="name" type="text" required defaultValue={message.name} />
+            <input id="name" name="name" type="text" required />
         </div>
         <div className="field">
             <label htmlFor="email">Email</label>
-            <input id="email" name="email" type="email" required defaultValue={message.email} />
+            <input id="email" name="email" type="email" required />
         </div>
         <div className="field">
             <label htmlFor="phone">Phone</label>
-            <input id="phone" name="phone" type="tel" defaultValue={message.phone} />
+            <input id="phone" name="phone" type="tel" />
         </div>
         <div className="field">
             <label htmlFor="message">Message</label>
-            <textarea id="message" name="message" required defaultValue={message.message} />
+            <textarea id="message" name="message" required />
         </div>
         <div className="field">
             <div className="g-recaptcha" data-sitekey={config.googleRecaptchaSiteKey}></div>

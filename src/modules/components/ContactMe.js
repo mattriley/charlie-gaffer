@@ -1,6 +1,5 @@
-module.exports = ({ window, react, pureComponents, effects, config }) => () => {
+module.exports = ({ window, react, pureComponents, effects }) => () => {
 
-    const [message, setMessage] = react.useState(config.contactMeInitialState);
     const [grecaptcha, setGrecaptcha] = react.useState(false);
     const [errorMessage, setErrorMessage] = react.useState();
     const [status, setStatus] = react.useState();
@@ -13,7 +12,6 @@ module.exports = ({ window, react, pureComponents, effects, config }) => () => {
     }, []);
 
     const handleSubmit = async message => {
-        setMessage(message);
         setStatus('loading');
         try {
             await effects.sendMessage(message);
@@ -33,7 +31,6 @@ module.exports = ({ window, react, pureComponents, effects, config }) => () => {
         <pureComponents.ErrorMessage errorMessage={errorMessage} />
         <br />
         <pureComponents.MessageForm
-            message={message}
             onSubmit={handleSubmit}
             isLoading={status === 'loading'}
             grecaptcha={grecaptcha}
