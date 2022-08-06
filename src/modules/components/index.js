@@ -1,7 +1,7 @@
 module.exports = {
-    App: require('./App.js'),
-    ContactMe: require('./ContactMe.js'),
-    MessageForm: require('./MessageForm.js'),
-    Portfolio: require('./Portfolio.js'),
-    TitleBar: require('./TitleBar.js')
+    App: require('./App'),
+    ContactMe: require('./ContactMe'),
+    MessageForm: require('./MessageForm'),
+    Portfolio: require('./Portfolio'),
+    TitleBar: require('./TitleBar')
 };

@@ -1,3 +1,3 @@
 module.exports = {
-    loadGrecaptcha: require('./load-grecaptcha.js')
+    loadGrecaptcha: require('./load-grecaptcha')
 };

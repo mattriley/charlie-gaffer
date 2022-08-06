@@ -1,4 +1,4 @@
 module.exports = {
-    sendMessage: require('./send-message.js'),
-    trackEvent: require('./track-event.js')
+    sendMessage: require('./send-message'),
+    trackEvent: require('./track-event')
 };
