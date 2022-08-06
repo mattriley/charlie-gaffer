@@ -1,11 +1,5 @@
-require('./app.css');
 const { createRoot } = require('react-dom/client');
 const compose = require('./compose');
-
-const fonts = document.createElement('link');
-fonts.rel = 'stylesheet';
-fonts.href = 'https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed';
-document.head.append(fonts);
 
 const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
