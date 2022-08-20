@@ -11,17 +11,12 @@
         "plugin:react/recommended",
         "plugin:react/jsx-runtime"
     ],
-    "settings": {
-        "react": {
-            "version": "detect"
-        }
-    },
     "parserOptions": {
         "ecmaVersion": "latest",
+        "allowImportExportEverywhere": true,
         "ecmaFeatures": {
             "jsx": true
-        },
-        "allowImportExportEverywhere": true
+        }
     },
     "rules": {
         "indent": [
@@ -57,5 +52,14 @@
         "react/prop-types": [
             "off"
         ]
+    },
+    "overrides": [],
+    "plugins": [
+        "react"
+    ],
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
     }
 }

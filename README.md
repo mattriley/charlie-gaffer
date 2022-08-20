@@ -1,6 +1,6 @@
 # Charlie Gaffer
 
-<p align="right"><code>569 sloc</code>&nbsp;<code>23 files</code>&nbsp;<code>3 deps</code>&nbsp;<code>13 dev deps</code></p>
+<p align="right"><code>569 sloc</code>&nbsp;<code>23 files</code>&nbsp;<code>4 deps</code>&nbsp;<code>17 dev deps</code></p>
 
 Professional lighting for film and TV.
 
