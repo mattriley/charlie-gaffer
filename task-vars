@@ -2,7 +2,6 @@
 
 # Task library
 
-export DISPLAY_NAME="Charlie Gaffer"
 export WEB_HOST_NAME="charliemoukbel.com"
 export PRINT_VARS="$(PRINT_VARS) | BFF_URL"
 
@@ -15,6 +14,4 @@ export COV_STATEMENTS=0
 
 export GOOGLE_RECAPTCHA_SITE_KEY="6LeQMAsUAAAAAAm_KMxWOIpbdt3Lzung3U0Jaseh"
 export MIXPANEL_TOKEN="787814775404613a99d581cb5093dc59"
-
-BFF_URL_PROD="https://xeh4kq3z2i7sblpmw7qr55khcm0jxrjw.lambda-url.ap-southeast-2.on.aws"
-export_staged BFF_URL
+export BFF_URL__PROD="https://xeh4kq3z2i7sblpmw7qr55khcm0jxrjw.lambda-url.ap-southeast-2.on.aws"
