@@ -2,4 +2,4 @@
 
 ## Architecture
 
-<%- await lib.renderModuleDiagram('src/compose.js') %>
+<%- await lib.renderModuleDiagram() %>
