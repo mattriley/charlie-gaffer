@@ -1,6 +1,6 @@
-module.exports = ({ io, config }) => message => {
+module.exports = ({ io, constants }) => message => {
 
-    const url = `${config.bffUrl}/messages`;
+    const url = `${constants.bffUrl}/messages`;
     return io.fetchJson(url, { method: 'POST', body: message });
 
 };
