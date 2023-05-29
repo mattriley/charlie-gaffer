@@ -1,7 +1,7 @@
 const projectKeys = ['subtitle', 'Director', 'Cinematographer', 'Gaffer'];
 const startsWithUpper = str => str[0] === str[0].toUpperCase();
 
-module.exports = ({ constants }) => () => {
+module.exports = ({ config }) => () => {
 
     const renderCollection = (collection, i) => {
         const renderProject = (p, i) => {
@@ -33,7 +33,7 @@ module.exports = ({ constants }) => () => {
         return <div key={i} className="collection">{projects}</div>;
     };
 
-    const collections = constants.portfolio.collections.map(renderCollection);
+    const collections = config.portfolio.collections.map(renderCollection);
     return <div id="portfolio">{collections}</div>;
 
 };

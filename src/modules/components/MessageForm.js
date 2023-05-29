@@ -1,4 +1,4 @@
-module.exports = ({ constants }) => ({ onSubmit, isLoading, grecaptcha }) => {
+module.exports = ({ config }) => ({ onSubmit, isLoading, grecaptcha }) => {
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -30,7 +30,7 @@ module.exports = ({ constants }) => ({ onSubmit, isLoading, grecaptcha }) => {
             <textarea id="message" name="message" required />
         </div>
         <div>
-            <div className="g-recaptcha" data-sitekey={constants.googleRecaptchaSiteKey}></div>
+            <div className="g-recaptcha" data-sitekey={config.googleRecaptchaSiteKey}></div>
         </div>
         {isLoading ? spinner : (grecaptcha ? sendButton : null)}
     </form>;

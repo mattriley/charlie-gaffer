@@ -1,6 +1,6 @@
-module.exports = ({ mixpanel, constants }) => async (event, properties = {}) => {
+module.exports = ({ mixpanel, config }) => async (event, properties = {}) => {
 
-    const { isTest, isSynthetic } = constants;
+    const { isTest, isSynthetic } = config;
     return mixpanel.track(event, { ...properties, isTest, isSynthetic });
 
 };

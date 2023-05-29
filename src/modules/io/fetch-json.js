@@ -1,10 +1,10 @@
-module.exports = ({ io, constants }) => async (url, options = {}) => {
+module.exports = ({ io, config }) => async (url, options = {}) => {
 
     const fullOptions = {
         ...options,
         body: {
             ...options.body,
-            isSynthetic: constants.isSynthetic
+            isSynthetic: config.isSynthetic
         },
         headers: {
             ...options.headers,

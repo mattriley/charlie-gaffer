@@ -7,12 +7,11 @@ const defaultConfig = require('./default-config');
 module.exports = ({ window, config }) => {
 
     const { configure } = composer(modules);
-    const { compose, constants } = configure(defaultConfig, config, c => {
+    const { compose } = configure(defaultConfig, config, c => {
         const isTest = c.stage !== 'prod';
+        mixpanel.init(c.mixpanelToken, { debug: c.mixpanelDebug ?? isTest });
         return { isTest };
     });
-
-    mixpanel.init(constants.mixpanelToken, { debug: constants.mixpanelDebug ?? constants.isTest });
 
     const { io } = compose('io', { mixpanel, window });
     const { ui } = compose('ui', { window });

@@ -1,4 +1,4 @@
-module.exports = ({ react, components, effects, constants }) => () => {
+module.exports = ({ react, components, effects, config }) => () => {
 
     react.useEffect(() => {
         effects.trackEvent('pageview');
@@ -22,7 +22,7 @@ module.exports = ({ react, components, effects, constants }) => () => {
             <components.ContactMe />
         </div>
         <div id="footer">
-            <dev-bar app-name={constants.appName}></dev-bar>
+            <dev-bar app-name={config.appName}></dev-bar>
         </div>
     </div>;
 
