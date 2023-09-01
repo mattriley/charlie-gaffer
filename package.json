@@ -24,7 +24,7 @@
     },
     "dependencies": {
         "mixpanel-browser": "^2.47.0",
-        "module-composer": "^0.149.0",
+        "module-composer": "^0.150.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0"
     },
@@ -41,11 +41,11 @@
         "eslint-plugin-import": "^2.28.1",
         "eslint-plugin-react": "^7.33.2",
         "husky": "^8.0.3",
-        "module-indexgen": "^0.38.0",
+        "module-indexgen": "^0.39.0",
         "npm-check-updates": "^16.13.2",
         "parcel": "^2.9.3",
         "process": "^0.11.10",
-        "task-library": "^0.269.0",
+        "task-library": "^0.270.0",
         "testing": "file:./testing"
     }
 }
