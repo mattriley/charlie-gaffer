@@ -1,12 +1,14 @@
 #!/bin/bash
 
+export NODE_VERSION="20.5.0"
+
 export WEB_HOST_NAME="charliemoukbel.com"
 export PRINT_VARS; PRINT_VARS="$(PRINT_VARS) | BFF_URL"
 
-export COV_BRANCHES="0"
-export COV_LINES="0"
-export COV_FUNCTIONS="0"
-export COV_STATEMENTS="0"
+export COV_BRANCHES=0
+export COV_LINES=0
+export COV_FUNCTIONS=0
+export COV_STATEMENTS=0
 
 # This project
 

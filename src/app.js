@@ -7,9 +7,8 @@ const isSynthethic = params.synth === '1';
 
 const compositionName = 'Charlie Gaffer';
 const configs = [{ isSynthethic }];
-const composition = compose({ compositionName, window, configs });
-const { modules } = composition;
+const { components } = compose({ compositionName, window, configs });
 
 const container = document.getElementById('app');
 const root = createRoot(container);
-root.render(<modules.components.App />);
+root.render(<components.App />);
